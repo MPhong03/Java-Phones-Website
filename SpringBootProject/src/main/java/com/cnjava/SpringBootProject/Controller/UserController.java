@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.cnjava.SpringBootProject.Model.User;
 import com.cnjava.SpringBootProject.Service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class UserController {
 
@@ -42,24 +45,41 @@ public class UserController {
 	}
 	
 	@PostMapping(value = {"/signUp"})
-	public String login(@RequestParam String email, @RequestParam String password, Model model) {
-		List<User> list = userService.getAllUser();
+	public String login(@RequestParam String email, @RequestParam String password, Model model, HttpSession session) {
+		/*
+		 * List<User> list = userService.getAllUser();
+		 * 
+		 * boolean userExists = false;
+		 * 
+		 * for (User user : list) { if (user.getEmail().equals(email) &&
+		 * user.getPassword().equals(password)) { userExists = true; break; } }
+		 * 
+		 * if (userExists) {
+		 * 
+		 * return "redirect:/home"; } else { model.addAttribute("error",
+		 * "Invalid email or password."); return "login"; }
+		 */
+		User user = userService.getUserByEmail(email);
 
-		boolean userExists = false;
-
-	    for (User user : list) {
-	        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-	            userExists = true;
-	            break;
-	        }
-	    }
-
-	    if (userExists) {
-	    	
+	    if (user != null && user.getPassword().equals(password)) {
+	    	// Tạo phiên bằng session
+	    	session.setAttribute("email", email);
+	    	session.setAttribute("username", user.getUserName());
 	        return "redirect:/home";
 	    } else {
-	    	model.addAttribute("error", "Invalid email or password.");
-            return "login";
+	        model.addAttribute("error", "Invalid email or password.");
+	        return "login";
 	    }
 	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false); // Lấy phiên hiện tại, nếu không tồn tại thì không tạo mới
+
+        if (session != null) {
+            session.invalidate(); // Kết thúc phiên (invalidate session)
+        }
+
+        return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
+    }
 }
