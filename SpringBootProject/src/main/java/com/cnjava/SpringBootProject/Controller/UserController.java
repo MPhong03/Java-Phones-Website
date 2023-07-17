@@ -1,7 +1,5 @@
 package com.cnjava.SpringBootProject.Controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +63,7 @@ public class UserController {
 	    	// Tạo phiên bằng session
 	    	session.setAttribute("email", email);
 	    	session.setAttribute("username", user.getUserName());
+	    	
 	        return "redirect:/home";
 	    } else {
 	        model.addAttribute("error", "Invalid email or password.");
