@@ -93,7 +93,7 @@
                             <td>
                                 <!-- Form for deleting a product -->
                                 <form th:action="@{/deleteProduct}" method="POST">
-                                    <input type="hidden" th:name="productId" th:value="${product.ProductID}">
+                                    <input type="hidden" th:name="ProductID" th:value="${product.ProductID}">
                                     <button type="submit" class="btn btn-danger">Delete</button>
                                 </form>
                             </td>

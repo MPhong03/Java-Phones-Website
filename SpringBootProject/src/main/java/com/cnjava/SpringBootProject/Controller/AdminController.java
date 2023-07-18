@@ -59,8 +59,8 @@ public class AdminController {
 	}
 	
 	@PostMapping(value = {"/deleteProduct"})
-	public String deleteProduct(@RequestParam int productid) {
-		productService.deleteById(productid);
+	public String deleteProduct(@RequestParam int ProductID) {
+		productService.deleteById(ProductID);
 		return "redirect:/admin/products";
 	}
 }
