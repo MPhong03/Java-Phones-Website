@@ -24,7 +24,7 @@ public class Product {
 	@Column(name = "price")
 	private int Price;
 	
-	@Column(name = "description", length = 255)
+	@Column(name = "description", length = 2000)
 	private String Description;
 	
 	@Column(name = "imagelink", length = 255)

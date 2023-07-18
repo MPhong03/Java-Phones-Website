@@ -2,10 +2,16 @@ package com.cnjava.SpringBootProject.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Repository.BrandRepository;
 
+@Service
 public class BrandService {
+	
+	@Autowired
 	private BrandRepository brandRepository;
 	
 	public void save(Brand b) {
