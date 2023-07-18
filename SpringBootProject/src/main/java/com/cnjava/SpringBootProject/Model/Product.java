@@ -32,70 +32,85 @@ public class Product {
 	
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
-	@Column(name = "categoryid")
-	private int CategoryID;
+	private Category Category;
 	
 	@ManyToOne
 	@JoinColumn(name = "brandid")
-	@Column(name = "brandid")
-	private int BrandID;
+	private Brand Brand;
+	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Product(int productID, String productName, int price, String description, String imageLink, int categoryID,
-			int brandID) {
+
+	public Product(int productID, String productName, int price, String description, String imageLink,
+			com.cnjava.SpringBootProject.Model.Category category, com.cnjava.SpringBootProject.Model.Brand brand) {
 		super();
 		ProductID = productID;
 		ProductName = productName;
 		Price = price;
 		Description = description;
 		ImageLink = imageLink;
-		CategoryID = categoryID;
-		BrandID = brandID;
+		Category = category;
+		Brand = brand;
 	}
+
 	public int getProductID() {
 		return ProductID;
 	}
+
 	public void setProductID(int productID) {
 		ProductID = productID;
 	}
+
 	public String getProductName() {
 		return ProductName;
 	}
+
 	public void setProductName(String productName) {
 		ProductName = productName;
 	}
+
 	public int getPrice() {
 		return Price;
 	}
+
 	public void setPrice(int price) {
 		Price = price;
 	}
+
 	public String getDescription() {
 		return Description;
 	}
+
 	public void setDescription(String description) {
 		Description = description;
 	}
+
 	public String getImageLink() {
 		return ImageLink;
 	}
+
 	public void setImageLink(String imageLink) {
 		ImageLink = imageLink;
 	}
-	public int getCategoryID() {
-		return CategoryID;
+
+	public Category getCategory() {
+		return Category;
 	}
-	public void setCategoryID(int categoryID) {
-		CategoryID = categoryID;
+
+	public void setCategory(Category category) {
+		Category = category;
 	}
-	public int getBrandID() {
-		return BrandID;
+
+	public Brand getBrand() {
+		return Brand;
 	}
-	public void setBrandID(int brandID) {
-		BrandID = brandID;
+
+	public void setBrand(Brand brand) {
+		Brand = brand;
 	}
+	
 	
 	
 }

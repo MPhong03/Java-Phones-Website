@@ -22,7 +22,7 @@ public class Category {
 	@Column(name = "categoryname", length = 255)
 	private String CategoryName;
 	
-	@OneToMany(mappedBy = "categoryid")
+	@OneToMany(mappedBy = "Category")
 	private List<Product> products;
 
 	public Category(int categoryID, String categoryName) {

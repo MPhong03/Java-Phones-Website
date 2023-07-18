@@ -22,7 +22,7 @@ public class Brand {
 	@Column(name = "brandname", length = 255)
 	private String BrandName;
 	
-	@OneToMany(mappedBy = "brandid")
+	@OneToMany(mappedBy = "Brand")
 	private List<Product> products;
 
 	public Brand() {
