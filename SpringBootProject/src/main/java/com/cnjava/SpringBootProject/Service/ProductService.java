@@ -3,6 +3,9 @@ package com.cnjava.SpringBootProject.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.cnjava.SpringBootProject.Model.Product;
@@ -28,5 +31,15 @@ public class ProductService {
 	public void deleteById(int id) {
 		productRepository.deleteById(id);
 	}
+	
+	public Page<Product> getProductsPage(int page) {
+        // Calculate the page size based on the total number of products
+        long totalProducts = productRepository.count();
+        int pageSize = (int) Math.min(5, Math.max(0, totalProducts));
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        return productRepository.findAll(pageable);
+    }
 	
 }

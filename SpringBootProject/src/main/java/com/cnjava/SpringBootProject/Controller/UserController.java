@@ -1,6 +1,7 @@
 package com.cnjava.SpringBootProject.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +22,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@GetMapping(value = {"/", "/home"})
 	public String index() {
@@ -80,5 +86,17 @@ public class UserController {
         }
 
         return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
+    }
+	
+	@GetMapping("/products")
+	public String getProductsPage(@RequestParam(defaultValue = "0") int page, Model model) {
+        Page<Product> productPage = productService.getProductsPage(page);
+
+        // Set model attributes
+        model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", productPage.getNumber());
+        model.addAttribute("totalPages", productPage.getTotalPages());
+
+        return "user/products";
     }
 }

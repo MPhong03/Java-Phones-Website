@@ -10,7 +10,7 @@
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" th:fragment="navbar">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand p-2" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,19 +18,18 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link active" href="/home">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link disabled" href="#">Disabled</a>
+                <a class="nav-item nav-link" href="/products">Products</a>
+                <!-- <a class="nav-item nav-link" href="#"></a> -->
             </div>
-            <div class="navbar-nav ml-auto"> <!-- Use 'ml-auto' class to align items to the right -->
-                <div th:if="${session.email != null}" class="navbar-nav ml-auto">
-                    <span class="nav-item nav-link">Hello, <span th:text="${session.username}"></span></span>
-                    <a class="nav-item nav-link" href="/logout">Logout</a>
-                </div>
-                <div th:unless="${session.email != null}" class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/login">Login</a>
-                    <a class="nav-item nav-link" href="/register">Register</a>
-                </div>
+        </div>
+        <div class="navbar-nav ml-auto"> <!-- Use 'ml-auto' class to align items to the right -->
+            <div th:if="${session.email != null}" class="navbar-nav ml-auto">
+                <span class="nav-item nav-link">Hello, <span th:text="${session.username}"></span></span>
+                <a class="nav-item nav-link" href="/logout">Logout</a>
+            </div>
+            <div th:unless="${session.email != null}" class="navbar-nav ml-auto">
+                <a class="nav-item nav-link" href="/login">Login</a>
+                <a class="nav-item nav-link" href="/register">Register</a>
             </div>
         </div>
         
