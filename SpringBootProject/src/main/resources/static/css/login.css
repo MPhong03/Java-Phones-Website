@@ -15,24 +15,58 @@
   }
 
 #togglePassword{
-  position: absolute; right: 15%; top: 48%;
+  position: absolute; right: 15%; top: 84%;
+}
+
+#togglePassword2{
+  position: absolute; 
+ right:15%;
+ top: 96%;
 }
 
 
-@media screen and (max-width: 1000px) {
+#togglePassword3{
+  position: absolute; 
+ right:15%;
+ top: 48%;
+}
+
+
+
+
+@media screen and (max-width: 1300px) {
   
   #togglePassword{
-      top: 50%;
+      top: 88%;
   }
 
+  #togglePassword2{
+    top: 100%;
 }
+
+  #togglePassword3{
+    top: 51%;
+	}
+
+}
+
+
+
 
 
 @media screen and (max-width: 800px) {
   
   #togglePassword{
-      top: 50%;
+      top: 88%;
   }
+
+  #togglePassword2{
+    top: 100%;
+	}
+	
+	 #togglePassword3{
+    top: 50%;
+	}
 
 }
 
@@ -66,6 +100,8 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
 }
+
+
 
 
 .input-field {

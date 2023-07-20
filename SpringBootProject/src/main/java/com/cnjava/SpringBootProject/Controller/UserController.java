@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
@@ -43,8 +44,17 @@ public class UserController {
 	}
 	
 	@PostMapping(value = {"/addUser"})
-	public String addUser(@ModelAttribute User user) {
+	public String addUser(@ModelAttribute User user,RedirectAttributes attributes ) {
+
+		User usertmp = userService.getUserByEmail(user.getEmail());
+		
+		if(usertmp != null) {
+			 attributes.addFlashAttribute("error","Email đã tồn tại");
+			return "redirect:/register";
+		}
+		
 		userService.save(user);
+
 		return "redirect:/login";
 	}
 	
