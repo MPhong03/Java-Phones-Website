@@ -15,6 +15,17 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "userid")
 	private int UserID;
+
+	public int getUserID() {
+		return UserID;
+	}
+	public void setUserID(int userID) {
+		UserID = userID;
+	}
+	
+	@Column(name = "email", length = 255, unique = true)
+	private String Email;
+	
 	
 	@Column(name = "username", length = 255)
 	private String UserName;
@@ -22,8 +33,6 @@ public class User {
 	@Column(name = "password", length = 255)
 	private String Password;
 	
-	@Column(name = "email", length = 255)
-	private String Email;
 	
 	@Column(name = "address", length = 255)
 	private String Address;
@@ -41,6 +50,7 @@ public class User {
 	public User(int userID, String userName, String password, String email, String address, String phoneNumber,
 			boolean isAdmin) {
 		super();
+		
 		UserID = userID;
 		UserName = userName;
 		Password = password;
@@ -49,12 +59,8 @@ public class User {
 		PhoneNumber = phoneNumber;
 		IsAdmin = isAdmin;
 	}
-	public int getUserID() {
-		return UserID;
-	}
-	public void setUserID(int userID) {
-		UserID = userID;
-	}
+
+
 	public String getUserName() {
 		return UserName;
 	}
