@@ -33,6 +33,11 @@ public class User {
 	@Column(name = "password", length = 255)
 	private String Password;
 	
+<<<<<<< HEAD
+=======
+	@Column(name = "email", length = 255, unique = true)
+	private String Email;
+>>>>>>> b9f556473d5e080791404c4cf0e1ab643e35cc78
 	
 	@Column(name = "address", length = 255)
 	private String Address;
