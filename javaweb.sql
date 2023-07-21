@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2023 at 05:36 AM
+-- Generation Time: Jul 21, 2023 at 05:29 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -89,13 +89,30 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productid`, `description`, `imagelink`, `price`, `productname`, `brandid`, `categoryid`) VALUES
-(1, 'Những nâng cấp lớn về hiệu năng, dung lượng pin, và trên hết là camera sau chính là những điểm khiến nó trở thành siêu phẩm trong phân khúc cao cấp. Dưới đây là những thông tin cần biết về dòng điện thoại vừa ra mắt của Samsung. Dưới đây', 'unknown', 17000000, 'Samsung Galaxy S22 Ultra (8GB - 128GB)', 1, 1),
-(2, 'Apple Magic Mouse 2 mang trong mình một thiết kế bằng kim loại phần khung và thân chuột, giúp chúng có một độ sang trọng và cao cấp nhất định. Cùng với đó, phần thao tác bằng nhựa cao cấp, bền bỉ ở bên trên giúp cho bạn có thể có được những thao tác gọn nhẹ, linh hoạt và thoải mái nhất có thể. Thiết kế này của chuột Magic Mouse 2 giúp đồng bộ và hài hoà khi bạn sử dụng với thiết bị Apple.', 'unknown', 2300000, 'Chuột Apple Magic Mouse 2022 MMMQ3 | Chính hãng Apple Việt Nam', 2, 4),
-(3, 'Vừa qua, Apple đã chính thức cho ra mắt chiếc tai nghe Apple Airpods 2 sở hữu chip H1 được dành riêng giúp chuyển nhanh các cuộc gọi từ iPhone sang Airpods cũng như giảm mức tiêu thụ điện năng cực kỳ thấp. Thời gian sử dụng đến 5 giờ nghe nhạc hoặc 3 giờ đàm thoại và khi kết hợp với hộp sạc cho thời gian đến 24 giờ. Kết nối không dây chất lượng cao, tự động bật và luôn kết nối giúp sẵn sàng theo bạn đến bất kỳ đâu. Cùng tham khảo thêm về chiếc Airpod 2 này nhé.', 'unknown', 2670000, 'Tai nghe Bluetooth Apple AirPods 2 | Chính hãng Apple Việt Nam', 2, 6),
-(4, 'Điện thoại Xiaomi Redmi Note 12 – Thiết kế sang trọng, hiệu năng mạnh mẽ\r\nDòng Redmi Note của Xiaomi có được khá đông đảo anh em công nghệ quan tâm tới, bởi vì thường có mức giá rẻ và sâu bên trong là bộ vi xử lý mạnh mẽ hơn hẳn những đối thủ trong cùng tầm giá.', 'unknown', 4390000, 'Xiaomi Redmi Note 12 4GB 128GB', 3, 1),
-(5, 'Asus ROG Strix G15 G513IH-HN015TW là chiếc laptop có cấu hình mạnh mẽ, đáp ứng được hầu hết các tựa game trên thị trường hiện nay. Ngay cả khi hoạt động trong nhiều giờ liền máy vẫn khá mát mẻ do có hệ thống tản nhiệt cao cấp. Nếu bạn là một game thủ hay người dùng muốn tìm máy có cấu hình cao thì đừng bỏ qua chiếc laptop Asus chất lượng này.', 'unknown', 18290000, 'Laptop Asus Gaming Rog Strix G15 G513IH HN015W', 5, 2),
-(6, 'Sau thành công của dòng Macbook M1 thì Apple lại chuẩn bị mang đến cho người dùng dòng sản phẩm Macbook Air 2022 với những điểm nâng cấp đáng chú ý. Bên cạnh đó mức giá thành lại thấp hơn so với hiện tại, chắc chắn rằng các iFan đang rất nóng lòng chờ đón sự xuất hiện của dòng sản phẩm mới này.', 'unknown', 26990000, 'Apple Macbook Air M2 2022 8GB 256GB I Chính hãng Apple Việt Nam', 2, 2),
-(7, 'Sản phẩm bàn phím Apple Magic Keyboard 2021 MK2A3 đến từ thương hiệu chính hãng Apple, sở hữu thiết kế hiện đại, nhỏ gọn nhưng vẫn được cung cấp đầy đủ các phím chức năng phổ biến. Hãy cùng CellphoneS tìm hiểu rõ hơn về chất lượng của bàn phím này nhé!', 'unknown', 2090000, 'Bàn phím Apple Magic Keyboard 2021 MK2A3 | Chính hãng Apple Việt Nam', 2, 4);
+(13, 'Bàn phím laptop được thiết kế khoa học với cấu trúc liền khối cùng hành trình phím ngắn. Nhờ vậy bạn có thể bấm phím thoải mái, dễ dàng không bị dính phím. đồng thời tiếng động gây ra từ bàn phím khá nhỏ không làm ồn đến người dùng cũng như môi trường xung quanh.', 'unknown', 11690000, 'Laptop ASUS VivoBook R564JA-UH31T', 5, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productvalue`
+--
+
+CREATE TABLE `productvalue` (
+  `valueid` int(11) NOT NULL,
+  `valueindex` varchar(255) DEFAULT NULL,
+  `valuename` varchar(255) DEFAULT NULL,
+  `productid` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `productvalue`
+--
+
+INSERT INTO `productvalue` (`valueid`, `valueindex`, `valuename`, `productid`) VALUES
+(4, 'Intel Core I3-1005G1 1.20 GHz up to 3.40 GHz', 'Loại CPU', 13),
+(5, 'Intel UHD Graphics', 'Loại card đồ họa', 13),
+(6, '4GB', 'Dung lượng RAM', 13),
+(7, 'Tai nghe Bluetooth Apple AirPods 2 | Chính hãng Apple Việt Nam', '12', 13);
 
 -- --------------------------------------------------------
 
@@ -146,6 +163,13 @@ ALTER TABLE `product`
   ADD KEY `FK4ort9abhumpx4t2mlngljr1vi` (`categoryid`);
 
 --
+-- Indexes for table `productvalue`
+--
+ALTER TABLE `productvalue`
+  ADD PRIMARY KEY (`valueid`),
+  ADD KEY `FKowugdbg12112ys9qacm9om453` (`productid`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -165,7 +189,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `productvalue`
+--
+ALTER TABLE `productvalue`
+  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -183,6 +213,12 @@ ALTER TABLE `user`
 ALTER TABLE `product`
   ADD CONSTRAINT `FK4ort9abhumpx4t2mlngljr1vi` FOREIGN KEY (`categoryid`) REFERENCES `category` (`categoryid`),
   ADD CONSTRAINT `FKbjg13m30ju2y2g5icqbuycglv` FOREIGN KEY (`brandid`) REFERENCES `brand` (`brandid`);
+
+--
+-- Constraints for table `productvalue`
+--
+ALTER TABLE `productvalue`
+  ADD CONSTRAINT `FKowugdbg12112ys9qacm9om453` FOREIGN KEY (`productid`) REFERENCES `product` (`productid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
