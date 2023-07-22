@@ -1,5 +1,8 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Service.MailService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
 
@@ -29,14 +33,32 @@ public class UserController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private MailService mailService;
+	
 	@GetMapping(value = {"/", "/home"})
 	public String index() {
 		return "index.html";
 	}
 	
-	@GetMapping(value = {"/login"})
+	@GetMapping(value = {"/login","/sendOTP","/updatePassword"})
 	public String showLoginForm() {
 		return "login";
+	}
+	
+	@GetMapping(value = {"/forgetPassword"})
+	public String showForgetPasswordForm() {
+		return "forgetpassword";
+	}
+	
+	@GetMapping(value = {"/newPassword"})
+	public String showNewPasswordForm() {
+		return "newpassword";
+	}
+	
+	@GetMapping(value = {"/message"})
+	public String showMessageForm() {
+		return "message";
 	}
 	
 	@GetMapping(value = {"/register"})
@@ -69,6 +91,74 @@ public class UserController {
 	    }  
 	    return new String(otp);  
 	}
+	
+	
+	
+	
+	@PostMapping(value = {"/sendOTP"})
+	public String sendOTP(@RequestParam String email, HttpSession session,RedirectAttributes attributes) {
+		
+		
+		User userTmp = userService.getUserByEmail(email);
+		
+		if(userTmp == null) {
+			 attributes.addFlashAttribute("error","Tài khoản không tồn tại");
+			 return "redirect:/forgetPassword";
+		}
+		
+		 String otp = generateOTP(6);
+		
+		 mailService.sendMail(email, otp);
+		 
+
+		 LocalDateTime now = LocalDateTime.now(); 
+		 DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		 String formattedDateTime = now.format(dateTimeFormatter);
+		 userService.updateOtp(otp, formattedDateTime, email);
+		
+		 session.setAttribute("emailFG", email);
+		
+		 return "redirect:/newPassword";
+	}
+	
+	@PostMapping(value = {"/updatePassword"})
+	public String newPassword(@RequestParam String otp,@RequestParam String password, HttpSession session,RedirectAttributes attributes) {
+		
+		
+		String email = (String) session.getAttribute("emailFG");
+		
+		String getOtp = userService.getOTP(email);
+		String getTime = userService.getTime(email);
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime dateTime = LocalDateTime.parse(getTime, formatter);
+		
+		LocalDateTime now = LocalDateTime.now();
+		
+		Duration duration = Duration.between(dateTime, now);
+
+		long minutes = duration.toMinutes();
+		
+		if(!getOtp.equals(otp)) {
+			attributes.addFlashAttribute("error","Sai mã xác thực");
+			return "redirect:/newPassword";
+		}
+		else {
+			if(minutes > 5) {
+				attributes.addFlashAttribute("error","Mã xác thực đã hết hiệu lực");
+				return "redirect:/newPassword";
+			}
+		}
+		
+		userService.updatePassword(password, email);
+		attributes.addFlashAttribute("message","Bạn đã thay đổi mật khẩu thành công");
+		
+		session.removeAttribute("emailFG");
+		
+		return "redirect:/message";
+	}
+	
+	
 	
 	
 	@PostMapping(value = {"/signUp"})

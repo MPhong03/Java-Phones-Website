@@ -1,5 +1,7 @@
 package com.cnjava.SpringBootProject.Model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -43,6 +45,13 @@ public class User {
 	@Column(name = "isadmin")
 	private boolean IsAdmin;
 	
+	@Column(name ="otp")
+	private String otp;
+	
+	@Column(name ="otp_requested_time")
+	private String otp_requested_time;
+	
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -96,6 +105,20 @@ public class User {
 	}
 	public void setIsAdmin(boolean isAdmin) {
 		IsAdmin = isAdmin;
+	}
+	
+	
+	public String getOneTimePassword() {
+		return otp;
+	}
+	public void setOneTimePassword(String oneTimePassword) {
+		this.otp = oneTimePassword;
+	}
+	public String getOtpRequestedTime() {
+		return otp_requested_time;
+	}
+	public void setOtpRequestedTime(String otpRequestedTime) {
+		this.otp_requested_time = otpRequestedTime;
 	}
 	
 }

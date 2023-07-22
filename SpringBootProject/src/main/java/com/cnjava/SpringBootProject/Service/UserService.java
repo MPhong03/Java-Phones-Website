@@ -1,5 +1,6 @@
 package com.cnjava.SpringBootProject.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,23 @@ public class UserService {
 	}
 	public void deleteById(int id) {
 		userRepository.deleteById(id);
+	}
+	
+	public int updateOtp(String otp, String date, String email) {
+		return userRepository.updateOtp(otp, date, email);
+	}
+	
+	
+	public String getOTP(String email) {
+		return userRepository.getOTP(email);
+	}
+	
+	public String getTime(String email) {
+		return userRepository.getTime(email);
+	}
+	
+	public int updatePassword(String password, String email) {
+		return userRepository.updatePassword(password, email);
 	}
 	
 }
