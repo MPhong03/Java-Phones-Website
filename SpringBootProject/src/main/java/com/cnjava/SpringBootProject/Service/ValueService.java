@@ -29,4 +29,8 @@ public class ValueService {
 	public void deleteById(int id) {
 		valueRepository.deleteById(id);
 	}
+	
+	public List<Value> getValuesByProductID(int productid) {
+		return valueRepository.getValuesByProductID(productid);
+	}
 }

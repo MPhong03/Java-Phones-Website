@@ -1,5 +1,7 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,7 @@ public class AdminController {
     
     @Autowired
     private ValueService valueService;
-	
+    	
 	@GetMapping(value = {"/admin/products"})
 	public String productsManagement(Model model) {
 		model.addAttribute("products", productService.getAllProduct());
@@ -82,7 +84,13 @@ public class AdminController {
 	
 	@PostMapping(value = {"/deleteProduct"})
 	public String deleteProduct(@RequestParam int ProductID) {
+		List<Value> valuesToDelete = valueService.getValuesByProductID(ProductID);
+
+	    for (Value value : valuesToDelete) {
+	        valueService.deleteById(value.getValueID());
+	    }
 		productService.deleteById(ProductID);
 		return "redirect:/admin/products";
 	}
+
 }
