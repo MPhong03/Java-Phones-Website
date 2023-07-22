@@ -65,7 +65,7 @@ public class AdminController {
 		    String[] nameValuePairs = values.split(";");
 
 		    for (String nameValuePair : nameValuePairs) {
-		        String[] parts = nameValuePair.split(",");
+		        String[] parts = nameValuePair.split("_");
 		        String valueName = parts[0];
 	            String valueIndex = parts[1];
 
