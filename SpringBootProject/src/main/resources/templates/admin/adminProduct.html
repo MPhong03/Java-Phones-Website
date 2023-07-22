@@ -136,16 +136,12 @@
                     <!-- Loop through the list of products and display them as cards -->
                     <div th:each="product : ${products}" class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="card">
-                            <!-- Split the ImageLink string into individual URLs -->
-                            <!-- Split the ImageLink string into individual URLs -->
                             <th:block th:if="${product.ImageLink}">
-                                <!-- Get the first URL from the ImageLink string -->
+                                <!-- Split the ImageLink string into individual URLs -->
                                 <th:block th:with="firstImageUrl=${#strings.listSplit(product.ImageLink, ';')[0]}">
+                                    <img th:src="${firstImageUrl}" class="card-img-top" alt="Product Image">
                                 </th:block>
-                                <!-- Use relative path to access the image -->
-                                <img th:src="${firstImageUrl}" class="card-img-top" alt="Product Image">
                             </th:block>
-                            <img th:src="${firstImageUrl}" class="card-img-top" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${product.ProductName}"></h5>
                                 <p class="card-text" th:text="${product.Price}"></p>
