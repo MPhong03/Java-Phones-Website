@@ -41,7 +41,7 @@
 
                                                     <li><a  href="">Liên hệ</a></li>
 
-                                                    <li><a  href="">Quản trị viên</a></li>
+                                                    <li><a  href="/admin/products">Quản trị viên</a></li>
 
                                                     <li><a th:if="${session.email != null}" href="/logout">Đăng xuất</a></li>
                                                   
@@ -114,12 +114,18 @@
                             <li>
                                 <a href="#">Danh mục</a>
                                 <ul>
-                                    <li><a href="#">Điện thoại</a></li>
-                                    <li><a href="#">Laptop</a></li>
-                                    <li><a href="#">PC</a></li>
-                                    <li><a href="#">Phụ kiện điện thoại</a></li>
-                                    <li><a href="#">Sản phẩm khác</a></li>
-                                </ul>
+						            <li th:each="category : ${categories}">
+						                <a th:href="@{'/category/' + ${category.CategoryID}}" th:text="${category.CategoryName}"></a>
+						            </li>
+						        </ul>
+                            </li>
+                            <li>
+                                <a href="#">Nhãn hiệu</a>
+                                <ul>
+						            <li th:each="brand : ${brands}">
+						                <a th:href="@{'/brand/' + ${brand.BrandID}}" th:text="${brand.BrandName}"></a>
+						            </li>
+						        </ul>
                             </li>
                             <li><a href="#">Tin tức</a></li>
                             

@@ -3,6 +3,7 @@ package com.cnjava.SpringBootProject.Controller;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cnjava.SpringBootProject.Model.Brand;
+import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Service.BrandService;
+import com.cnjava.SpringBootProject.Service.CategoryService;
 import com.cnjava.SpringBootProject.Service.MailService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
@@ -31,13 +36,21 @@ public class UserController {
 	private UserService userService;
 	
 	@Autowired
-	private ProductService productService;
-	
-	@Autowired
 	private MailService mailService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
+	@Autowired
+	private BrandService brandService;
+	
 	@GetMapping(value = {"/", "/home"})
-	public String index() {
+	public String index(Model model) {
+		List<Category> categories = categoryService.getAllCategory();
+		List<Brand> brands = brandService.getAllBrand();
+		
+        model.addAttribute("categories", categories);
+        model.addAttribute("brands", brands);
 		return "index.html";
 	}
 	
@@ -201,15 +214,4 @@ public class UserController {
         return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
     }
 	
-	@GetMapping("/products")
-	public String getProductsPage(@RequestParam(defaultValue = "0") int page, Model model) {
-        Page<Product> productPage = productService.getProductsPage(page);
-
-        // Set model attributes
-        model.addAttribute("products", productPage.getContent());
-        model.addAttribute("currentPage", productPage.getNumber());
-        model.addAttribute("totalPages", productPage.getTotalPages());
-
-        return "user/products";
-    }
 }

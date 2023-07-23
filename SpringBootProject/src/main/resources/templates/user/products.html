@@ -8,13 +8,16 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Sản phẩm</title>
 
-	<link rel ="stylesheet" href ="css/headerfooter.css">
+	<link rel ="stylesheet" href ="/css/headerfooter.css">
 </head>
 
 <body>
     <div th:replace="~{layouts/user/header :: header}"></div>
     <div class="container mt-4">
         <div class="row">
+        	<div th:if="${products.empty}" class="col-12 text-center">
+                <h3>Không có sản phẩm nào</h3>
+            </div>
             <div th:each="product : ${products}" class="col-lg-2 col-md-4 col-sm-6 mb-4">
                 <div class="card">
                     <img th:src="${product.imageLink}" class="card-img-top" alt="Product Image">

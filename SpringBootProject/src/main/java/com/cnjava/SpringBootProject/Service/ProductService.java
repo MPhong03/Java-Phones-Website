@@ -33,13 +33,30 @@ public class ProductService {
 	}
 	
 	public Page<Product> getProductsPage(int page) {
-        // Calculate the page size based on the total number of products
         long totalProducts = productRepository.count();
-        int pageSize = (int) Math.min(5, Math.max(0, totalProducts));
+        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
 
         Pageable pageable = PageRequest.of(page, pageSize);
 
         return productRepository.findAll(pageable);
+    }
+	
+	public Page<Product> getProductsPageByBrand(int brandid, int page) {
+        long totalProducts = productRepository.countByBrand(brandid);
+        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        return productRepository.findByBrand(brandid, pageable);
+    }
+	
+	public Page<Product> getProductsPageByCategory(int categoryid, int page) {
+        long totalProducts = productRepository.countByCategory(categoryid);
+        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+        return productRepository.findByBrand(categoryid, pageable);
     }
 	
 }
