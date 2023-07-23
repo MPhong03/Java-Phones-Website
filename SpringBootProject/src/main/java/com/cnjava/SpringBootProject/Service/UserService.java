@@ -49,4 +49,8 @@ public class UserService {
 		return userRepository.updatePassword(password, email);
 	}
 	
+	public int updateUser(String username, String address, String phone, String email) {
+		return userRepository.updateUser(username, address, phone, email);
+	}
+	
 }

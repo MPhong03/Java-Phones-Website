@@ -54,7 +54,7 @@ public class UserController {
 		return "index.html";
 	}
 	
-	@GetMapping(value = {"/login","/sendOTP","/updatePassword"})
+	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
 		return "login";
 	}
@@ -171,6 +171,37 @@ public class UserController {
 		return "redirect:/message";
 	}
 	
+	@GetMapping(value = {"/userinfo"})
+	public String userInfo( HttpSession session, RedirectAttributes attributes, Model model) {
+		String email = (String) session.getAttribute("email");
+		
+		if(email == null) {
+			attributes.addFlashAttribute("message", "Vui lòng đăng nhập để xem thông tin tài khoản");
+			return "redirect:/message";
+		}
+		
+		User user = userService.getUserByEmail(email);
+		
+		model.addAttribute("username", user.getUserName());
+		model.addAttribute("email", user.getEmail());
+		model.addAttribute("address", user.getAddress());
+		model.addAttribute("phone", user.getPhoneNumber());
+		
+		model.addAttribute("user", new User());
+	
+		return "userinfo";
+	}
+	
+	
+	@PostMapping(value= {"/updateUser"})
+	public String updateUser(@RequestParam String username,@RequestParam String address, @RequestParam String phone,  HttpSession session ) {
+		String email = (String) session.getAttribute("email");
+		
+		userService.updateUser(username, address, phone, email);
+		session.setAttribute("username", username);
+		
+		return "redirect:/userinfo";
+	}
 	
 	
 	
