@@ -38,19 +38,8 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 	
-	@Autowired
-	private CategoryService categoryService;
-	
-	@Autowired
-	private BrandService brandService;
-	
 	@GetMapping(value = {"/", "/home"})
 	public String index(Model model) {
-		List<Category> categories = categoryService.getAllCategory();
-		List<Brand> brands = brandService.getAllBrand();
-		
-        model.addAttribute("categories", categories);
-        model.addAttribute("brands", brands);
 		return "index.html";
 	}
 	
