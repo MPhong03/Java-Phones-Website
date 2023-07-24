@@ -43,7 +43,7 @@ public class ProductService {
 	
 	public Page<Product> getProductsPageByBrand(int brandid, int page) {
         long totalProducts = productRepository.countByBrand(brandid);
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable = PageRequest.of(page, pageSize);
 
@@ -52,7 +52,7 @@ public class ProductService {
 	
 	public Page<Product> getProductsPageByCategory(int categoryid, int page) {
         long totalProducts = productRepository.countByCategory(categoryid);
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable = PageRequest.of(page, pageSize);
 

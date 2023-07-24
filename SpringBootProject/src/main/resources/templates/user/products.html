@@ -20,7 +20,7 @@
             </div>
             <div th:each="product : ${products}" class="col-lg-2 col-md-4 col-sm-6 mb-4">
                 <div class="card">
-                    <img th:src="${product.imageLink}" class="card-img-top" alt="Product Image">
+                    <img class="card-img-top" th:src="${product.firstImageUrl}" th:alt="${product.ProductName}"/>
                     <div class="card-body">
                         <h5 class="card-title" th:text="${product.productName}"></h5>
                         <p class="card-text" th:text="${product.Price}"></p>
