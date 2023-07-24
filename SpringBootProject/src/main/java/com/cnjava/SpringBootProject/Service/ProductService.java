@@ -56,7 +56,7 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(page, pageSize);
 
-        return productRepository.findByBrand(categoryid, pageable);
+        return productRepository.findByCategory(categoryid, pageable);
     }
 	
 }
