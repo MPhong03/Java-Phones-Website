@@ -1,13 +1,20 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Category;
@@ -32,6 +39,8 @@ public class AdminController {
     
     @Autowired
     private ValueService valueService;
+    
+    private final String uploadDirectory = "static/uploads/";
     	
 	@GetMapping(value = {"/admin/products"})
 	public String productsManagement(Model model) {
@@ -46,19 +55,42 @@ public class AdminController {
 		    @RequestParam String productName,
 		    @RequestParam int productPrice,
 		    @RequestParam String productDescription,
-		    @RequestParam String productImageLink,
+		    @RequestParam("imageFiles") MultipartFile[] imageFiles,
 		    @RequestParam int productBrand,
 		    @RequestParam int productCategory,
 		    @RequestParam("values") String values
-		) {
+		) throws Exception {
 		    Brand brand = brandService.getBrandById(productBrand);
 		    Category category = categoryService.getCategoryById(productCategory);
+		    
+		    File staticFolder = ResourceUtils.getFile("classpath:" + uploadDirectory);
+		    String absolutePath = staticFolder.getAbsolutePath();
+
+		    String imageUrls = "";
+		    for (MultipartFile file : imageFiles) {
+		        if (!file.isEmpty()) {
+		            String originalFilename = file.getOriginalFilename();
+		            String filename = originalFilename;
+
+		            String fullPath = absolutePath + File.separator + filename;
+		            Path uploadPath = Paths.get(fullPath);
+
+		            if (Files.exists(uploadPath)) {
+		                FileCopyUtils.copy(file.getBytes(), uploadPath.toFile());
+		            } else {
+		                Files.write(uploadPath, file.getBytes());
+		            }
+
+		            String imageUrl = "/uploads/" + filename;
+		            imageUrls += imageUrl + ";";
+		        }
+		    }
 
 		    Product product = new Product();
 		    product.setProductName(productName);
 		    product.setPrice(productPrice);
 		    product.setDescription(productDescription);
-		    product.setImageLink(productImageLink);
+		    product.setImageLink(imageUrls);
 		    product.setBrand(brand);
 		    product.setCategory(category);
 

@@ -111,6 +111,22 @@ public class Product {
 		Brand = brand;
 	}
 	
+	public void addImageUrl(String imageUrl) {
+        if (this.ImageLink == null || this.ImageLink.isEmpty()) {
+            this.ImageLink = imageUrl;
+        } else {
+            this.ImageLink += ";" + imageUrl;
+        }
+    }
 	
+	public String getFirstImageUrl() {
+        if (this.ImageLink != null && !this.ImageLink.isEmpty()) {
+            String[] urls = this.ImageLink.split(";");
+            if (urls.length > 0) {
+                return urls[0];
+            }
+        }
+        return null;
+    }
 	
 }
