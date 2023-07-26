@@ -24,10 +24,117 @@
 
 <body>
 	<div th:replace="~{layouts/user/header:: header}"></div>
-
-	<div class="container d-flex justify-content-center">
-	    <h1>Welcome!</h1>
+	
+	<div class="container mt-3">
+		<div class="row d-flex align-items-stretch">
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<div id="advertise-carousel" class="carousel carousel-dark slide"
+					data-bs-ride="carousel">
+					<div class="carousel-indicators">
+					    <button type="button" data-bs-target="#advertise-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					    <button type="button" data-bs-target="#advertise-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					    <button type="button" data-bs-target="#advertise-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				    </div>
+					<div class="carousel-inner rounded shadow">
+						<div class="carousel-item active">
+							<img src="/img/ad-banner/banner-note20u.png" class="d-block w-100"
+								alt="banner-note20u">
+						</div>
+						<div class="carousel-item">
+							<img src="/img/ad-banner/banner-oppo-a78.png" class="d-block w-100"
+								alt="banner-oppo-a78">
+						</div>
+						<div class="carousel-item">
+							<img src="/img/ad-banner/banner-s21u.png" class="d-block w-100"
+								alt="banner-s21u">
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#advertise-carousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+							class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#advertise-carousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+							class="visually-hidden">Next</span>
+					</button>
+				</div>
+			
+			</div>
+		
+			<div class="col-3 d-none d-md-block">
+				<img src="/img/ad-banner/ipadth7-new.jpg" alt="ipadth7-new" class="rounded shadow mb-2">
+				
+				<img src="/img/ad-banner/msi-gaming-right-banner.jpg" alt="msi-gaming-right-banner" class="rounded shadow mb-2">
+			
+				<img src="/img/ad-banner/right-ss-z-moi-1.jpg" alt="right-ss-z-moi-1" class="rounded shadow">
+			</div>
+		</div>
+		
+		
+		<div class="row mt-4">
+			<h3>Samsung</h3>
+			<div th:if="${samsung.empty}" class="col-12 text-center">
+				<h3>Không có sản phẩm nào</h3>
+			</div>
+			<div th:each="product : ${samsung}"
+				class="col-lg-2 col-md-4 col-sm-6 mb-4">
+				<div class="card">
+					<img class="card-img-top" th:src="${product.firstImageUrl}"
+						th:alt="${product.ProductName}"
+						style="height: 200px; object-fit: cover;">
+					<div class="card-body">
+						<h5 class="card-title font-weight-bold"
+							th:text="${product.productName}"></h5>
+						<p id="price" class="card-text" th:text="${product.Price}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row mt-4">
+			<h3>Apple</h3>
+			<div th:if="${apple.empty}" class="col-12 text-center">
+				<h3>Không có sản phẩm nào</h3>
+			</div>
+			<div th:each="product : ${apple}"
+				class="col-lg-2 col-md-4 col-sm-6 mb-4">
+				<div class="card">
+					<img class="card-img-top" th:src="${product.firstImageUrl}"
+						th:alt="${product.ProductName}"
+						style="height: 200px; object-fit: cover;">
+					<div class="card-body">
+						<h5 class="card-title font-weight-bold"
+							th:text="${product.productName}"></h5>
+						<p id="price" class="card-text" th:text="${product.Price}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	
+	<script>
+        // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#price');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
+    </script>
+
 
 	<div th:replace="~{layouts/user/footer:: footer}"></div>
 </body>

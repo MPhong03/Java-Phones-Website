@@ -38,11 +38,6 @@ public class UserController {
 	@Autowired
 	private MailService mailService;
 	
-	@GetMapping(value = {"/", "/home"})
-	public String index(Model model) {
-		return "index.html";
-	}
-	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
 		return "login";

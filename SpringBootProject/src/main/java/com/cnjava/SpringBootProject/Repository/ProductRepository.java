@@ -22,4 +22,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT COUNT(p) FROM Product p WHERE p.Category.CategoryID = :categoryid")
     long countByCategory(@Param("categoryid") int categoryid);
+    
+    @Query("SELECT p FROM Product p WHERE p.Brand.BrandID = :brandid ORDER BY p.ProductID DESC")
+    Page<Product> findTop5ByBrand(@Param("brandid") int brandid, Pageable pageable);
+
+    @Query("SELECT p FROM Product p WHERE p.Category.CategoryID = :categoryid ORDER BY p.ProductID DESC")
+    Page<Product> findTop5ByCategory(@Param("categoryid") int categoryid, Pageable pageable);
 }

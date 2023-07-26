@@ -59,4 +59,12 @@ public class ProductService {
         return productRepository.findByCategory(categoryid, pageable);
     }
 	
+	public Page<Product> getTop5ProductsByBrand(int brandId) {
+        return productRepository.findTop5ByBrand(brandId, PageRequest.of(0, 6));
+    }
+
+    public Page<Product> getTop5ProductsByCategory(int categoryId) {
+        return productRepository.findTop5ByCategory(categoryId, PageRequest.of(0, 6));
+    }
+	
 }

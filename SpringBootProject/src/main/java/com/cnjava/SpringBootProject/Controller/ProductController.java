@@ -17,6 +17,17 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@GetMapping(value = {"/", "/home"})
+	public String index(Model model) {
+		Page<Product> samsungProduct = productService.getTop5ProductsByBrand(1);
+		Page<Product> appleProduct = productService.getTop5ProductsByBrand(2);
+		
+		model.addAttribute("samsung", samsungProduct.getContent());
+		model.addAttribute("apple", appleProduct.getContent());
+		
+		return "index.html";
+	}
+	
 	@GetMapping("/products")
 	public String getProductsPage(@RequestParam(defaultValue = "0") int page, Model model) {
         Page<Product> productPage = productService.getProductsPage(page);
