@@ -27,13 +27,14 @@ function addNameAndValue() {
 }
 
 function updateValuesInput() {
-    const nameElements = document.querySelectorAll('td:first-child');
-    const valueElements = document.querySelectorAll('td:nth-child(2)');
+    const nameElements = document.querySelectorAll('#dataTableBody td:first-child');
+    const valueElements = document.querySelectorAll('#dataTableBody td:nth-child(2)');
     const nameValueArray = [];
 
     for (let i = 0; i < nameElements.length; i++) {
         const name = nameElements[i].textContent;
         const value = valueElements[i].textContent;
+        console.log(`${name}_${value}`);
         nameValueArray.push(`${name}_${value}`);
     }
 
