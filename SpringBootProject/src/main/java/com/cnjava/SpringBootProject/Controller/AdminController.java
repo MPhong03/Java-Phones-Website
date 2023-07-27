@@ -50,6 +50,12 @@ public class AdminController {
 		return "admin/adminProduct";
 	}
 	
+	@GetMapping(value = {"/admin/brands"})
+	public String brandsManagement(Model model) {
+		model.addAttribute("brands", brandService.getAllBrand());
+		return "admin/adminBrand";
+	}
+	
 	@PostMapping(value = {"/addProduct"})
 	public String addProduct(
 		    @RequestParam String productName,
@@ -123,6 +129,23 @@ public class AdminController {
 	    }
 		productService.deleteById(ProductID);
 		return "redirect:/admin/products";
+	}
+	
+	@PostMapping(value = {"/addBrand"})
+	public String addBrand(@RequestParam("brandName") String brandName) {
+		Brand brand = new Brand();
+		
+		brand.setBrandName(brandName);
+		
+		brandService.save(brand);
+		
+		return "redirect:/admin/brands";
+	}
+	
+	@PostMapping(value = {"/deleteBrand"})
+	public String deleteBrand(@RequestParam int BrandID) {
+		brandService.deleteById(BrandID);
+		return "redirect:/admin/brands";
 	}
 
 }

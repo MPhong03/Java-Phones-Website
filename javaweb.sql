@@ -192,6 +192,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `brand`
+--
+ALTER TABLE `brand`
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
