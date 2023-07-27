@@ -21,7 +21,7 @@
 
 
 
-<title>Thương hiệu</title>
+<title>Danh mục</title>
 
 </head>
 
@@ -34,40 +34,40 @@
 			<!-- Main -->
 			<div class="col-sm p-3 min-vh-100">
 			
-				<form th:action="@{/addBrand}" method="post" class="row g-3 align-items-center mt-1">
+				<form th:action="@{/addCategory}" method="post" class="row g-3 align-items-center mt-1">
 				    <div class="col-auto">
-				        <input type="text" class="form-control" id="brandName" name="brandName" required>
+				        <input type="text" class="form-control" id="categoryName" name="categoryName" required>
 				    </div>
 				    <div class="col-auto">
-				        <button type="submit" class="btn btn-primary">Thêm thương hiệu</button>
+				        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
 				    </div>
 				</form>
 
 
 				<hr>
 
-				<h2 class="text-center">Tất cả thương hiệu hiện có</h2>
+				<h2 class="text-center">Tất cả danh mục hiện có</h2>
 				<div class="table-responsive">
 					<table class="table table-striped">
 						<thead class="table-dark">
 							<tr>
 								<th>ID</th>
-								<th>Tên thương hiệu</th>
+								<th>Tên danh mục</th>
 								<th>Số lượng sản phẩm</th>
 								<th>Tác vụ</th>
 							</tr>
 						</thead>
 						<tbody>
 							<!-- Loop through the list of products and display them in table rows -->
-							<tr th:each="brand : ${brands}">
-								<td th:text="${brand.BrandID}"></td>
-								<td th:text="${brand.BrandName}"></td>
-								<td th:text="${brand.products.size()}"></td>
+							<tr th:each="category : ${categories}">
+								<td th:text="${category.CategoryID}"></td>
+								<td th:text="${category.CategoryName}"></td>
+								<td th:text="${category.products.size()}"></td>
 								<td>
 									<!-- Form for deleting a product -->
-									<form th:action="@{/deleteBrand}" method="POST">
-										<input type="hidden" th:name="BrandID"
-											th:value="${brand.BrandID}">
+									<form th:action="@{/deleteCategory}" method="POST">
+										<input type="hidden" th:name="CategoryID"
+											th:value="${category.CategoryID}">
 										<button type="submit" class="btn btn-danger">Xóa</button>
 									</form>
 								</td>

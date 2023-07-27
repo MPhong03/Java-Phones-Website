@@ -56,6 +56,12 @@ public class AdminController {
 		return "admin/adminBrand";
 	}
 	
+	@GetMapping(value = {"/admin/categories"})
+	public String categoriesManagement(Model model) {
+		model.addAttribute("categories", categoryService.getAllCategory());
+		return "admin/adminCategory";
+	}
+	
 	@PostMapping(value = {"/addProduct"})
 	public String addProduct(
 		    @RequestParam String productName,
@@ -146,6 +152,23 @@ public class AdminController {
 	public String deleteBrand(@RequestParam int BrandID) {
 		brandService.deleteById(BrandID);
 		return "redirect:/admin/brands";
+	}
+	
+	@PostMapping(value = {"/addCategory"})
+	public String addCategory(@RequestParam("categoryName") String categoryName) {
+		Category category = new Category();
+		
+		category.setCategoryName(categoryName);
+		
+		categoryService.save(category);
+		
+		return "redirect:/admin/categories";
+	}
+	
+	@PostMapping(value = {"/deleteCategory"})
+	public String deleteCategory(@RequestParam int CategoryID) {
+		categoryService.deleteById(CategoryID);
+		return "redirect:/admin/categories";
 	}
 
 }
