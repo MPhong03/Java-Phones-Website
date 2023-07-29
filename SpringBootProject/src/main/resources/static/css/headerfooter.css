@@ -44,6 +44,14 @@ header .main-header .info-cart {float:left}header .main-header .info-cart p{font
     padding: 2px;
 }
 
+.card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
 
 
 

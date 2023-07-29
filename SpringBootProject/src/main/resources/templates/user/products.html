@@ -19,6 +19,7 @@
 <title>Sản phẩm</title>
 
 <link rel="stylesheet" href="/css/headerfooter.css">
+
 </head>
 
 <body>
@@ -28,19 +29,16 @@
 			<div th:if="${products.empty}" class="col-12 text-center">
 				<h3>Không có sản phẩm nào</h3>
 			</div>
-			<div th:each="product : ${products}"
-				class="col-lg-2 col-md-4 col-sm-6 mb-4">
-				<div class="card">
-					<img class="card-img-top" th:src="${product.firstImageUrl}"
-						th:alt="${product.ProductName}"
-						style="height: 200px; object-fit: cover;">
-					<div class="card-body">
-						<h5 class="card-title font-weight-bold"
-							th:text="${product.productName}"></h5>
-						<p id="price" class="card-text" th:text="${product.Price}"></p>
-					</div>
-				</div>
-			</div>
+			<div th:each="product : ${products}" class="col-lg-2 col-md-4 col-sm-6 col-xs-6 mb-4">
+	            <div class="card h-100 shadow">
+	                <img class="card-img-top p-3" th:src="${product.firstImageUrl}"
+	                    th:alt="${product.ProductName}" style="object-fit: cover;">
+	                <div class="card-body d-flex flex-column">
+	                    <h5 class="card-title font-weight-bold flex-grow-1 fs-6" th:text="${product.productName}"></h5>
+	                    <p id="price" class="card-text text-danger fs-5" th:text="${product.Price}"></p>
+	                </div>
+	            </div>
+	        </div>
 		</div>
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
