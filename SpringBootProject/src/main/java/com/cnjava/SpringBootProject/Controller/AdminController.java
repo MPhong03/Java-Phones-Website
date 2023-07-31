@@ -148,6 +148,16 @@ public class AdminController {
 		return "redirect:/admin/brands";
 	}
 	
+	@PostMapping(value = {"/renameBrand"})
+	public String renameBrand(@RequestParam("brandId") int brandId, @RequestParam("newBrandName") String newBrandName) {
+		Brand brand = brandService.getBrandById(brandId);
+	    if (brand != null) {
+	    	brand.setBrandName(newBrandName);
+	    	brandService.save(brand);
+	    }
+	    return "redirect:/admin/brands";
+	}
+	
 	@PostMapping(value = {"/deleteBrand"})
 	public String deleteBrand(@RequestParam int BrandID) {
 		brandService.deleteById(BrandID);
@@ -164,6 +174,17 @@ public class AdminController {
 		
 		return "redirect:/admin/categories";
 	}
+	
+	@PostMapping(value = {"/renameCategory"})
+	public String renameCategory(@RequestParam("categoryId") int categoryId, @RequestParam("newCategoryName") String newCategoryName) {
+	    Category category = categoryService.getCategoryById(categoryId);
+	    if (category != null) {
+	        category.setCategoryName(newCategoryName);
+	        categoryService.save(category);
+	    }
+	    return "redirect:/admin/categories";
+	}
+
 	
 	@PostMapping(value = {"/deleteCategory"})
 	public String deleteCategory(@RequestParam int CategoryID) {
