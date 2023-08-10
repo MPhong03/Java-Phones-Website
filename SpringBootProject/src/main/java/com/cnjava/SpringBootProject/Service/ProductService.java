@@ -66,5 +66,14 @@ public class ProductService {
     public Page<Product> getTop5ProductsByCategory(int categoryId) {
         return productRepository.findTop5ByCategory(categoryId, PageRequest.of(0, 6));
     }
+    
+    public Page<Product> getProductByKeyword(String keyword, int page) {
+    	long totalProducts = productRepository.countProductByKeyword(keyword);
+        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+
+        Pageable pageable = PageRequest.of(page, pageSize);
+
+    	return productRepository.getProductByKeyword(keyword, pageable);
+    }
 	
 }

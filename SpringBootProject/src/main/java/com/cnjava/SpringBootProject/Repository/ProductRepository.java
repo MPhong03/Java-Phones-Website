@@ -28,4 +28,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT p FROM Product p WHERE p.Category.CategoryID = :categoryid ORDER BY p.ProductID DESC")
     Page<Product> findTop5ByCategory(@Param("categoryid") int categoryid, Pageable pageable);
+    
+    @Query("SELECT COUNT(p) FROM Product p WHERE p.Category.CategoryName LIKE %:keyword% OR p.Brand.BrandName LIKE %:keyword% OR p.ProductName LIKE %:keyword%")
+    long countProductByKeyword(@Param("keyword") String keyword);
+    
+    @Query("SELECT p FROM Product p WHERE p.Category.CategoryName LIKE %:keyword% OR p.Brand.BrandName LIKE %:keyword% OR p.ProductName LIKE %:keyword%")
+    Page<Product> getProductByKeyword(@Param("keyword") String keyword, Pageable pageable);
 }

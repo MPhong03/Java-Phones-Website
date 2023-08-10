@@ -62,4 +62,15 @@ public class ProductController {
         return "user/products";
 	}
 	
+	@GetMapping("/searching")
+	public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page) {
+		Page<Product> productPage = productService.getProductByKeyword(keyword, page);
+		
+		model.addAttribute("products", productPage.getContent());
+        model.addAttribute("currentPage", productPage.getNumber());
+        model.addAttribute("totalPages", productPage.getTotalPages());
+		
+		return "/user/products";
+	}
+	
 }
