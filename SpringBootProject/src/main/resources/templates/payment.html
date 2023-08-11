@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title>Thanh toán</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="css/headerfooter.css">
+<link rel="stylesheet" href="css/payment.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid" style="background-color: rgb(217, 233, 233);" >
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 col-12" id="main">
+                    <form action="" method="post">
+                            <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12" id="left">
+                                            <div class="row">
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12" style="text-align: center;">
+                                                           <h3 class="tieude"> THÔNG TIN ĐẶT HÀNG </h3>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                        <label for="name" class="text" >Họ tên:</label>
+                                                        <div class="input-container2">
+                                                            <input class="input-field" type="text" placeholder="Nhập họ tên người nhận hàng" name="name" id="name" required>
+                                                            <span />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                        <label for="email" class="text" >Email:</label>
+                                                        <div class="input-container2">
+                                                            <input class="input-field" type="email" placeholder="Nhập email" name="email" id="email" required>
+                                                            <span />
+                                                        </div>     
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                        <label for="phone"  class="text" >Số điện thoại: </label>
+                                                                    
+                                                        <div class="input-container2">
+                                                            <input class="input-field" type="tel" name="phone" id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="Nhập số điện thoại"  required>
+                                                            <span />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                        <label for="country-state" class="text" >Tỉnh: </label>
+                                                        <div class="input-container2">
+                                                            <select id="country-state" name="country-state" style="width: 100%;" required>
+
+                                                                <option value="44" >An Giang</option>
+                                                                <option value="43">Bà Rịa-Vũng Tàu</option>
+                                                                <option value="54">Bắc Giang</option>
+                                                                <option value="53">Bắc Kạn</option>
+                                                                <option value="55">Bạc Liêu</option>
+                                                                <option value="56">Bắc Ninh</option>
+                                                                <option value="50">Bến Tre</option>
+                                                                <option value="57">Bình Dương</option>
+                                                                <option value="31">Bình Định</option>
+                                                                <option value="58">Bình Phước</option>
+                                                                <option value="40">Bình Thuận</option>
+                                                                <option value="59">Cà Mau</option>
+                                                                <option value="04">Cao Bằng</option>
+                                                                <option value="DN">Da Nang</option>
+                                                                <option value="33">Đắk Lắk</option>
+                                                                <option value="72">Đắk Nông</option>
+                                                                <option value="71">Điện Biên</option>
+                                                                <option value="39">Đồng Nai</option>
+                                                                <option value="45">Đồng Tháp</option>
+                                                                <option value="30">Gia Lai</option>
+                                                                <option value="03">Hà Giang</option>
+                                                                <option value="63">Hà Nam</option>
+                                                                <option value="15">Hà Tây</option>
+                                                                <option value="23">Hà Tĩnh</option>
+                                                                <option value="61">Hải Dương</option>
+                                                                <option value="HP">Haiphong</option>
+                                                                <option value="HN">Hanoi</option>
+                                                                <option value="73">Hậu Giang</option>
+                                                                <option value="SG">Ho Chi Minh City</option>
+                                                                <option value="14">Hòa Bình</option>
+                                                                <option value="66">Hưng Yên</option>
+                                                                <option value="34">Khánh Hòa</option>
+                                                                <option value="47">Kiên Giang</option>
+                                                                <option value="28">Kon Tum</option>
+                                                                <option value="01">Lai Châu</option>
+                                                                <option value="35">Lâm Đồng</option>
+                                                                <option value="09">Lạng Sơn</option>
+                                                                <option value="02">Lào Cai</option>
+                                                                <option value="41">Long An</option>
+                                                                <option value="67">Nam Định</option>
+                                                                <option value="22">Nghệ An</option>
+                                                                <option value="18">Ninh Bình</option>
+                                                                <option value="36">Ninh Thuận</option>
+                                                                <option value="68">Phú Thọ</option>
+                                                                <option value="32">Phú Yên</option>
+                                                                <option value="24">Quảng Bình</option>
+                                                                <option value="27">Quảng Nam</option>
+                                                                <option value="29">Quảng Ngãi</option>
+                                                                <option value="13">Quảng Ninh</option>
+                                                                <option value="25">Quảng Trị</option>
+                                                                <option value="52">Sóc Trăng</option>
+                                                                <option value="05">Sơn La</option>
+                                                                <option value="37">Tây Ninh</option>
+                                                                <option value="20">Thái Bình</option>
+                                                                <option value="69">Thái Nguyên</option>
+                                                                <option value="21">Thanh Hóa</option>
+                                                                <option value="26">Thừa Thiên-Huế</option>
+                                                                <option value="46">Tiền Giang</option>
+                                                                <option value="51">Trà Vinh</option>
+                                                                <option value="07">Tuyên Quang</option>
+                                                                <option value="49">Vĩnh Long</option>
+                                                                <option value="70">Vĩnh Phúc</option>
+                                                                <option value="06">Yên Bái</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                        <label for="address" class="text" >Địa chỉ:</label>
+                                                        <div class="input-container2">
+                                                            <input class="input-field" type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
+                                                            <span />
+                                                        </div>   
+                                                    </div>
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+
+                                                        <p class="text" > Tổng cộng:  </p>
+
+                                                    </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12" id="right">
+                                          <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12" style="text-align: center;">
+                                                    <h3 class="tieude" > THANH TOÁN</h3>
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <p class="text" > Chấp nhận thẻ: </p>
+                                                    <img src="img/card_img.png"></img>
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                       <label for="name_on_card" class="text">Tên chủ thẻ:</label>
+                                                        <div class="input-container2">
+                                                            <input class="input-field" type="text" placeholder="Nhập tên chủ thẻ" name="name_on_card" id="name_on_card" required>
+                                                            <span />
+                                                        </div>   
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <label for="cardnumber" class="text" >Số thẻ:</label>
+                                                    <div class="input-container2">
+                                                        <input class="input-field" type="number" placeholder="Nhập số thẻ" name="cardnumber" id="cardnumber" required>
+                                                        <span />
+                                                    </div>  
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <label for="month" class="text" >Exp month:</label>
+                                                    <div class="input-container2">
+                                                        
+                                                        <select id="month" name="month">
+                                                                <option value="1">January</option>
+                                                                <option value="2">February</option>
+                                                                <option value="3">March</option>
+                                                                <option value="4">April</option>
+                                                                <option value="5">May</option>
+                                                                <option value="6">June</option>
+                                                                <option value="7">July </option>
+                                                                <option value="8">August</option>
+                                                                <option value="9">September </option>
+                                                                <option value="10">October</option>
+                                                                <option value="11">November</option>
+                                                                <option value="12">December</option>                                                            
+                                                        </select>
+
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <label for="year" class="text" >Exp year:</label>
+                                                    <div class="input-container2">           
+                                                        <input  class="input-field" type="number" name="year" id="year" placeholder="Exp year" min = 2023  max = 2027 required>
+                                                        <span />
+                                                    </div>
+                                                   
+                                                 
+                                                </div>
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <label for="cvv" class="text" >CVV/CVC:</label>
+                                                    <div class="input-container2">
+                                                        <input class="input-field" type="text" name="cvv" id="cvv" placeholder="CVV/CVC" required>
+                                                        <span />
+                                                    </div>
+                                                  
+                                                    
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+                                                    <button style="margin-top: 20px;margin-bottom: 20px;" type="submit" class="btn btn-success">Thanh toán</button>
+
+                                                </div>
+                                                
+                                          </div>
+                                    </div>
+                            </div>
+                    </form>
+
+                </div>
+                    
+            </div>
+    </div>
+
+
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

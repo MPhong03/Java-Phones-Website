@@ -229,4 +229,9 @@ public class UserController {
         return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
     }
 	
+	@GetMapping("/payment")  //doi sau
+	public String showPayment() {
+		return "payment";
+	}
+	
 }
