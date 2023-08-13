@@ -234,4 +234,10 @@ public class UserController {
 		return "payment";
 	}
 	
+	@GetMapping("/cart")  //doi sau
+	public String showCart() {
+		return "cart";
+	}
+	
+	
 }
