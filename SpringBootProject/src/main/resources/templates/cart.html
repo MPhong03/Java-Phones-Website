@@ -26,7 +26,7 @@
 	
 	 <div class="card">
         <div class="row">
-            <div class="col-md-8 cart">
+            <div class="col-md-9 cart">
                 <div class="title">
                     <div class="row">
                         <div class="col"><h4><b>Giỏ hàng</b></h4></div>
@@ -34,35 +34,67 @@
                     </div>
                 </div>    
                  <table class="table table-hover">
-                     <th>STT</th>
-                     <th></th>
-                      <th>Tên</th>
-                      <th>Số lượng</th>
+                       <th>STT</th>
+                       <th></th>
+                       <th>Tên</th>
+                       <th>Số lượng</th>
                        <th>Giá</th>
                        <th>*</th>
                        
-                       <tbody>
-						   
+                       <tbody th:with="mycounter = ${counter.get()}">
+						   <tr th:with="mycounter=${counter.incrementAndGet()}"  th:each ="cart : ${list}" >
+							   <td th:text = "${mycounter}" ></td>
+							   <td> <img th:src = "${cart.productid.ImageLink}" style="width: 50%;"> </td>
+							   <td th:text = "${cart.productid.ProductName}">  </td>
+							   <td>
+								    <form action="/updatequantity" method="post">
+										<input style="display: none;" type = "number" name="idcart" th:value = "${cart.cartID}"  readonly> 
+										<input type ="number" name="quantity" min = 1  max = 10  th:value = "${cart.quantity}" >
+										<button type="submit" class="btn btn-primary">Cập nhật</button>
+									</form>
+							   </td>
+							   
+							   <td >
+								   <span th:text = "${cart.price}"> </span> VND
+							   </td>
+							        
+							   <td>
+								  <a class="btn btn-danger" th:href = "@{'/deletecart/' + ${cart.cartID}}" role="button">Xóa</a>
+							   </td>
+						   </tr>
+							   
 					   </tbody>
 				</table>
-                <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Trang chủ</span></div>
+                <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Trang chủ</span></div>
             </div>
-            <div class="col-md-4 summary">
+            <div class="col-md-3 summary">
                 
                 <hr>
                 <div class="row">
-                    <div class="col" style="padding-left:0;">Sản phẩm 5</div>
-                    <div class="col text-right"> 132.00  &dollar;</div>
+                    <div class="col" style="padding-left:0;">Số tiền: </div>
+                    <div class="col text-right"> <span th:text = "${total}"></span> VND</div>
                 </div>
-                <form>
-                    <p>Mã giảm giá</p>
-                    <input id="code" placeholder="Nhập mã giảm giá">
+                
+                <div class="row" th:if ="${discount}">
+                    <div class="col" style="padding-left:0;">Mã giảm giá: </div>
+                    <div class="col text-right"> - <span th:text = "${discount}"></span> VND </div>
+                </div>
+                <form method="post" action="/getCode">
+                    <input id="code" name="code" placeholder="Nhập mã giảm giá">
                 </form>
+                
+                <p style="color: red;" th:text = "${error}"> </p>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">Tổng cộng: </div>
-                    <div class="col text-right">&euro; 130.00</div>
+                    <div class="col text-right" th:unless = "${discount}"> <span th:text = "${total}"> </span> VND</div>
+                    <div class="col text-right" th:if = "${discount}"> <span th:text = "${total - discount}"> </span> VND</div>
                 </div>
-                <button class="buy">MUA HÀNG</button>
+                <form action="" method="post">
+					<input th:if = "${code}" style="display: none;" type="text" name="discount" th:value = "${code}" readonly >
+					<input th:unless = "${code}" style="display: none;" type="text" name="discount" th:value = "notdiscount" readonly >
+					<button class="buy">MUA HÀNG</button>
+				</form>
+                
             </div>
         </div>
         
@@ -71,5 +103,8 @@
 
 	<div th:replace="~{layouts/user/footer:: footer}"></div>
 </body>
+
+	
+
 
 </html>

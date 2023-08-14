@@ -12,16 +12,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnjava.SpringBootProject.Model.Brand;
+import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
+import com.cnjava.SpringBootProject.Model.Code;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
 import com.cnjava.SpringBootProject.Service.BrandService;
+import com.cnjava.SpringBootProject.Service.CartService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
+import com.cnjava.SpringBootProject.Service.CodeService;
 import com.cnjava.SpringBootProject.Service.MailService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
@@ -37,6 +42,12 @@ public class UserController {
 	
 	@Autowired
 	private MailService mailService;
+	
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private CodeService codeService;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -234,9 +245,96 @@ public class UserController {
 		return "payment";
 	}
 	
-	@GetMapping("/cart")  //doi sau
-	public String showCart() {
-		return "cart";
+	@GetMapping("/cart")  
+	public String showCart(HttpServletRequest request, Model model) {
+		
+		
+		 HttpSession session = request.getSession(false);
+		 
+		 if(session == null) {
+			 return "redirect:/login"; 
+		 }
+		 
+		
+		 
+		 String email = (String) session.getAttribute("email");
+		 
+		 User user = userService.getUserByEmail(email);
+		 
+		 List< Cart> list = cartService.getCartByEmail(email);
+		 
+		 if(list.size() == 0) {
+			 model.addAttribute("message", "Không có sản phẩm trong giỏ hàng");
+			 return "message";
+		 }
+		 
+		 model.addAttribute("list", list);
+		 model.addAttribute("counter", new Counter());
+		 
+		 int total = 0;
+		 
+		 for(Cart c: list) {
+			 total = total + c.getPrice();
+		 }
+		
+		 
+		 model.addAttribute("total", total);
+		 
+		 return "cart";
+	}
+	
+	
+	@PostMapping("/updatequantity")
+	public String updateQuantity(@RequestParam("quantity") int quantity, @RequestParam("idcart") int idcart) {
+		
+		Cart cart = cartService.getById(idcart);
+		
+		Product product = cart.getProductid();
+		
+		cart.setPrice(quantity * product.getPrice());
+		
+		cart.setQuantity(quantity);
+		
+		cartService.saveCart(cart);
+		
+		
+		return "redirect:/cart";
+		
+	}
+	
+	@PostMapping("/getCode")
+	public String getCode(@RequestParam("code") String  code,  RedirectAttributes redirectAttributes) {
+		
+		
+		System.out.println(code);
+		
+		Code getCode = codeService.getCodeByText(code);
+		
+		
+		if(getCode == null) {
+			redirectAttributes.addFlashAttribute("error","Mã giảm giá không đúng");
+			return "redirect:/cart";
+		}
+		
+		if(getCode.getStatus() == 1) {
+			redirectAttributes.addFlashAttribute("error","Mã giảm giá đã được sử dụng");
+			return "redirect:/cart";
+		}
+		
+		
+		redirectAttributes.addFlashAttribute("discount", getCode.getPrice());
+		redirectAttributes.addFlashAttribute("code", code);
+		
+		return "redirect:/cart";
+	}
+	
+	
+	@GetMapping("/deletecart/{id}")
+	public String deleteCart(@PathVariable("id") int cartID) {
+		
+		cartService.deleteCart(cartID);
+		
+		return "redirect:/cart";
 	}
 	
 	
