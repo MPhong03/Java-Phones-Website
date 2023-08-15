@@ -22,7 +22,7 @@ public class Product {
 	private String ProductName;
 	
 	@Column(name = "price")
-	private int Price;
+	private int price;
 	
 	@Column(name = "description", length = 2000)
 	private String Description;
@@ -43,12 +43,12 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int productID, String productName, int price, String description, String imageLink,
+	public Product(int productID, String productName, int Price, String description, String imageLink,
 			com.cnjava.SpringBootProject.Model.Category category, com.cnjava.SpringBootProject.Model.Brand brand) {
 		super();
 		ProductID = productID;
 		ProductName = productName;
-		Price = price;
+		price = Price;
 		Description = description;
 		ImageLink = imageLink;
 		Category = category;
@@ -72,11 +72,11 @@ public class Product {
 	}
 
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 
-	public void setPrice(int price) {
-		Price = price;
+	public void setPrice(int Price) {
+		price = Price;
 	}
 
 	public String getDescription() {

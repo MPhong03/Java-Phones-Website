@@ -29,46 +29,49 @@ public class ProductController {
 	}
 	
 	@GetMapping("/products")
-	public String getProductsPage(@RequestParam(defaultValue = "0") int page, Model model) {
-        Page<Product> productPage = productService.getProductsPage(page);
+	public String getProductsPage(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model) {
+        Page<Product> productPage = productService.getProductsPageSorted(page, sortingOptions);
 
-        // Set model attributes
         model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("sortingOptions", sortingOptions);
 
         return "user/products";
     }
 	
 	@GetMapping("/brand/{brandid}")
-	public String getProductsPageByBrand(@PathVariable("brandid") int brandId, @RequestParam(defaultValue = "0") int page, Model model) {
-		Page<Product> productPage = productService.getProductsPageByBrand(brandId, page);
+	public String getProductsPageByBrand(@PathVariable("brandid") int brandId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model) {
+		Page<Product> productPage = productService.getProductsPageSortedByBrand(brandId, page, sortingOptions);
 
 		model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("sortingOptions", sortingOptions);
         
         return "user/products";
 	}
 	
 	@GetMapping("/category/{categoryid}")
-	public String getProductsPageByCategory(@PathVariable("categoryid") int categoryId, @RequestParam(defaultValue = "0") int page, Model model) {
-		Page<Product> productPage = productService.getProductsPageByCategory(categoryId, page);
+	public String getProductsPageByCategory(@PathVariable("categoryid") int categoryId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model) {
+		Page<Product> productPage = productService.getProductsPageSortedByCategory(categoryId, page, sortingOptions);
 
 		model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("sortingOptions", sortingOptions);
 
         return "user/products";
 	}
 	
 	@GetMapping("/searching")
-	public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page) {
-		Page<Product> productPage = productService.getProductByKeyword(keyword, page);
+	public String search(@RequestParam("keyword") String keyword, Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions) {
+		Page<Product> productPage = productService.getProductsPageSortedByKeyword(keyword, page, sortingOptions);
 		
 		model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
+        model.addAttribute("sortingOptions", sortingOptions);
 		
 		return "/user/products";
 	}
