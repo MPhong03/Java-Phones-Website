@@ -37,6 +37,24 @@ public class Order {
 	@Column(name = "status")
 	private int status;
 	
+	
+	
+	@Column(name ="fullname")
+	private String fullname;
+	
+	@Column(name ="email")
+	private String email;
+	
+	@Column(name ="phonenumber")
+	private String phonenumber;
+	
+	@Column(name ="province")
+	private String province;
+	
+	@Column(name ="address")
+	private String address;
+	
+	
 	@Column(name = "code")
 	private String code;
 
@@ -45,7 +63,8 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(int orderid, User userid, String date, String discount, int total, int status, String code) {
+	public Order(int orderid, User userid, String date, String discount, int total, int status, String fullname,
+			String email, String phonenumber, String province, String address, String code) {
 		super();
 		this.orderid = orderid;
 		this.userid = userid;
@@ -53,6 +72,11 @@ public class Order {
 		this.discount = discount;
 		this.total = total;
 		this.status = status;
+		this.fullname = fullname;
+		this.email = email;
+		this.phonenumber = phonenumber;
+		this.province = province;
+		this.address = address;
 		this.code = code;
 	}
 
@@ -104,6 +128,46 @@ public class Order {
 		this.status = status;
 	}
 
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -111,8 +175,7 @@ public class Order {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
-	
+
 	
 	
 }

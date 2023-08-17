@@ -18,4 +18,8 @@ public class CodeService {
 		Code code = codeRepository.getCodeByCodeText(text);
 		return code;
 	}
+	
+	public void saveCode(Code c) {
+		codeRepository.save(c);
+	}
 }

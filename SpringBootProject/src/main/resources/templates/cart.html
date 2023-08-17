@@ -89,7 +89,7 @@
                     <div class="col text-right" th:unless = "${discount}"> <span th:text = "${total}"> </span> VND</div>
                     <div class="col text-right" th:if = "${discount}"> <span th:text = "${total - discount}"> </span> VND</div>
                 </div>
-                <form action="" method="post">
+                <form action="/checkout" method="post">
 					<input th:if = "${code}" style="display: none;" type="text" name="discount" th:value = "${code}" readonly >
 					<input th:unless = "${code}" style="display: none;" type="text" name="discount" th:value = "notdiscount" readonly >
 					<button class="buy">MUA HÀNG</button>

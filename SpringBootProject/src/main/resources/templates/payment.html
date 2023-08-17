@@ -13,6 +13,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Thanh toán</title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,9 +38,9 @@
                                                     </div>
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-                                                        <label for="name" class="text" >Họ tên:</label>
+                                                        <label for="fullname" class="text" >Họ tên:</label>
                                                         <div class="input-container2">
-                                                            <input class="input-field" type="text" placeholder="Nhập họ tên người nhận hàng" name="name" id="name" required>
+                                                            <input class="input-field" type="text" placeholder="Nhập họ tên người nhận hàng" name="fullname" id="fullname" required>
                                                             <span />
                                                         </div>
                                                     </div>
@@ -143,8 +144,12 @@
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 
-                                                        <p class="text" > Tổng cộng:  </p>
-
+                                                          <p class="text" > Tổng cộng: <span th:text="${total}"></span> VND</p>
+													      <p class="text" th:if ="${textcode}" > Mã giảm giá: <span id="code" th:text = "${textcode}"></span> (<span id="value" th:text="${value}" > </span> VND) </p>
+													      <p class="text" th:unless ="${textcode}"> Mã giảm giá: <span id="code"> Không có</span> </p>
+													      <p class="text"  th:if ="${textcode}" > Thành tiền: <span id="final" th:text="${total - value}"> </span> VND </p>
+													      <p class="text"  th:unless ="${textcode}"> Thành tiền: <span id="final" th:text = "${total}" ></span> VND</p>
+													      
                                                     </div>
                                             </div>
                                     </div>
@@ -171,7 +176,7 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                                                     <label for="cardnumber" class="text" >Số thẻ:</label>
                                                     <div class="input-container2">
-                                                        <input class="input-field" type="number" placeholder="Nhập số thẻ" name="cardnumber" id="cardnumber" required>
+                                                        <input class="input-field" type="text" placeholder="Nhập số thẻ" name="cardnumber" id="cardnumber" required>
                                                         <span />
                                                     </div>  
                                                 </div>
@@ -202,7 +207,7 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                                                     <label for="year" class="text" >Exp year:</label>
                                                     <div class="input-container2">           
-                                                        <input  class="input-field" type="number" name="year" id="year" placeholder="Exp year" min = 2023  max = 2027 required>
+                                                        <input  class="input-field" type="number" name="year" id="year" placeholder="Exp year" min = 2023  max = 2100 required>
                                                         <span />
                                                     </div>
                                                    
@@ -212,14 +217,14 @@
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
                                                     <label for="cvv" class="text" >CVV/CVC:</label>
                                                     <div class="input-container2">
-                                                        <input class="input-field" type="text" name="cvv" id="cvv" placeholder="CVV/CVC" required>
+                                                        <input class="input-field" type="number" name="cvv" id="cvv" min=100 placeholder="CVV/CVC"  required>
                                                         <span />
                                                     </div>
                                                   
                                                     
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-                                                    <button style="margin-top: 20px;margin-bottom: 20px;" type="submit" class="btn btn-success">Thanh toán</button>
+                                                    <button style="margin-top: 20px;margin-bottom: 20px;" type="button" onclick="payment()" class="btn btn-success">Thanh toán</button>
 
                                                 </div>
                                                 
@@ -237,5 +242,52 @@
 
 	<div th:replace="~{layouts/user/footer:: footer}"></div>
 </body>
+	
+	<script>
+		
+		
+		function payment(){
+			
+			
+		  if (confirm("Xác nhận đặt hàng") == true){
+			let name = $("#name_on_card").val();
+		    let numbercard = $("#cardnumber").val();
+		    let month =  $("#month").val();
+		    let year = $("#year").val();
+		    let cvv = $("#cvv").val();
+		    
+		    let fullname = $("#fullname").val();
+		    let email = $("#email").val();
+		    let phone = $("#phone").val();
+		    let province = $("#country-state").val();
+		    let address =  $("#address").val();
+		    
+		   let code =  document.getElementById("code").innerHTML;
+		   let final =  document.getElementById("final").innerHTML;
+		    
+
+		      $.ajax({
+		       type: 'get',
+       		   url: '/payment/saveorder',
+         	   data: {name: name, numbercard: numbercard, month: month, year: year, cvv: cvv,
+         	   fullname: fullname, email: email, phone: phone, province: province, address: address,
+         	   code: code, final: final 
+         	   },
+          	   contentType: "application/json; charset=utf-8",
+          	   traditional: true,
+		        success: function (msg) {
+		            alert(msg['message']);
+		            window.location.href = "/";
+		        }
+		  
+		     });
+			}
+			
+			
+		}
+		
+		
+	</script>
+
 
 </html>

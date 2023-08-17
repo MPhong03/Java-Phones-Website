@@ -33,4 +33,8 @@ public class CartService {
 	public void deleteCart(int cartID) {
 		cartRepository.deleteById(cartID);
 	}
+	
+	public void deleteByUserEmail(String email) {
+		cartRepository.deleteCart(email);
+	}
 }

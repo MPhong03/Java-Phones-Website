@@ -336,6 +336,41 @@ public class UserController {
 		
 		return "redirect:/cart";
 	}
+
+	@PostMapping("/checkout")
+	public String showPayment(@RequestParam("discount") String codediscount, Model model, HttpServletRequest request) {
+		
+		
+		 HttpSession session = request.getSession(false);
+		 
+	     String email = (String) session.getAttribute("email");
+		 
+		 User user = userService.getUserByEmail(email);
+		 
+		 List< Cart> list = cartService.getCartByEmail(email);
+		
+		 int total = 0;
+		 
+		 for(Cart c: list) {
+			 total = total + c.getPrice();
+		 }
+		
+		 
+		 model.addAttribute("total", total);
+		 
+		 
+		 if(!codediscount.equals("notdiscount")) {
+			 	Code code = codeService.getCodeByText(codediscount);
+		
+			 	model.addAttribute("textcode",codediscount);
+		
+			 	model.addAttribute("value", code.getPrice());
+			
+		 }
+		 
 	
+		
+		return "payment";
+	}
 	
 }
