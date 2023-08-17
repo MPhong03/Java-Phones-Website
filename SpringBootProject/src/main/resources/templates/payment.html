@@ -277,7 +277,10 @@
           	   traditional: true,
 		        success: function (msg) {
 		            alert(msg['message']);
-		            window.location.href = "/";
+		            if(msg['status'] == "true"){
+						window.location.href = "/";
+					}
+		            
 		        }
 		  
 		     });
