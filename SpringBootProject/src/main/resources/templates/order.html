@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title>Đơn hàng</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<link rel="stylesheet" href="css/headerfooter.css">
+<link rel="stylesheet" href="css/order.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	 <div class="card">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 cart">
+                <div class="title">
+                        <div class="col"><h4><b>Đơn hàng</b></h4></div>
+                        
+                </div>  
+                
+               <div style="width: 100%;">
+				   <form class="row g-3" style="width: 50%;">
+					   <div class="col-auto"> 
+						    <input type="text" class="form-control" id="search" placeholder="Tìm kiếm mã đơn hàng" required>	
+						    <button type="submit" class="btn btn-primary mb-3">Tìm kiếm</button>	   
+					   </div>
+			
+					   
+				   </form>
+			   </div>
+                
+                 <table class="table table-hover" style="width: 100%;">
+					 <th>STT</th>
+					 <th>Mã đơn hàng</th>
+					 <th>Tên người nhận</th>
+					 <th>Số điện thoại</th>
+					 <th>Ngày</th>
+					 <th>Tổng cộng</th>
+					 <th>Trạng thái</th>
+					 <th>*</th>
+					 
+					 <tbody  th:with="mycounter = ${counter.get()}">
+						  <tr th:with="mycounter=${counter.incrementAndGet()}"  th:each ="order : ${list}" >
+							    <td th:text = "${mycounter}" ></td>
+							    <td th:text = "${order.code}"  > </td>
+							     <td th:text = "${order.fullname}"  > </td>
+							     <td th:text = "${order.phonenumber}"  > </td>
+							     <td th:text = "${order.date}"  > </td>
+							     <td > <span th:text = "${order.total}"> </span> VND</td>
+							     <td th:if = "${order.status == 0}" > Đang xử lý </td>
+							     <td th:if = "${order.status == 1}" > Đang giao hàng</td>
+							     <td th:if = "${order.status == 2}" > Đang giao hàng </td>
+							     <td> <a class="btn btn-success" href="#" role="button">Xem chi tiết</a></td>
+						  </tr>
+					 </tbody>
+					
+					 
+				 </table>
+				 
+				  <div class="page" style="text-align: center;">
+					  	<a class="btn btn-primary" onclick="pre()" role="button" th:if="${pre != 0}">Trước </a>
+					  	<a class="btn btn-primary"  onclick="next()" role="button">Sau</a>
+				  </div>
+                 
+                <div class="back-to-shop"><a href="/">&leftarrow;</a><span class="text-muted">Trang chủ</span></div>
+            </div>
+           
+        </div>
+        
+    </div>
+
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+	<script>
+		
+		function pre(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var page =  parseInt(urlParams.get('page')) - 1;
+			
+			window.location.href = "/order?page=" + page;
+		}
+		
+		function next(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var page =  parseInt(urlParams.get('page')) + 1;
+			
+			window.location.href = "/order?page=" + page;
+		}
+		
+	</script>
+
+
+</html>

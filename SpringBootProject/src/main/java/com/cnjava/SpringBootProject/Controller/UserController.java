@@ -21,6 +21,7 @@ import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Code;
+import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
 import com.cnjava.SpringBootProject.Service.BrandService;
@@ -28,6 +29,7 @@ import com.cnjava.SpringBootProject.Service.CartService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
 import com.cnjava.SpringBootProject.Service.CodeService;
 import com.cnjava.SpringBootProject.Service.MailService;
+import com.cnjava.SpringBootProject.Service.OrderService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
 
@@ -48,6 +50,9 @@ public class UserController {
 	
 	@Autowired
 	private CodeService codeService;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -243,6 +248,38 @@ public class UserController {
 	@GetMapping("/payment")  //doi sau
 	public String showPayment() {
 		return "payment";
+	}
+	
+	
+	@GetMapping("/order")
+	public String showOrders(HttpServletRequest request, Model model, @RequestParam("page") int page) {
+		
+         HttpSession session = request.getSession(false);
+		 
+		 if(session == null) {
+			 return "redirect:/login"; 
+		 }
+		 
+		 int n = 10;
+		 
+		 int offset = page*n-n;
+		
+		 String email = (String) session.getAttribute("email");
+		 User user = userService.getUserByEmail(email);
+		 
+		 List<Order> list = orderService.getListOrder(user.getUserID(), offset, n);
+		 
+		 if(list.size() == 0) {
+			 model.addAttribute("message", "Không còn đơn hàng");
+			 return "message";
+		 }
+		 
+		 model.addAttribute("list", list);
+		 model.addAttribute("pre", page - 1);
+		 model.addAttribute("counter", new Counter());
+		 
+		 
+		 return "order";
 	}
 	
 	@GetMapping("/cart")  

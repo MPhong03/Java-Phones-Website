@@ -1,5 +1,7 @@
 package com.cnjava.SpringBootProject.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,10 @@ public class OrderService {
 	
 	public Order getOrderByCode(String code) {
 		return orderRepository.getByCode(code);
+	}
+	
+	public List<Order> getListOrder(int userid, int offset, int number){
+		return orderRepository.getListOrder(userid, offset, number);
 	}
 	
 }
