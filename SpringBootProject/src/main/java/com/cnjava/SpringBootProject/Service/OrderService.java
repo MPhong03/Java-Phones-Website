@@ -1,6 +1,7 @@
 package com.cnjava.SpringBootProject.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,15 @@ public class OrderService {
 	
 	public List<Order> getListOrder(int userid, int offset, int number){
 		return orderRepository.getListOrder(userid, offset, number);
+	}
+	
+	public Order getOrderById(int id) {
+		Optional<Order> getOrder = orderRepository.findById(id);
+		return getOrder.get();
+	}
+	
+	public Order getOrderIdMail(String email, int id) {
+		return orderRepository.getOrderIdEmail(email, id);
 	}
 	
 }

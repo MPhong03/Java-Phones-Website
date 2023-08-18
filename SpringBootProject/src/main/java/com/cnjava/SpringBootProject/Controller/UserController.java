@@ -22,6 +22,7 @@ import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Code;
 import com.cnjava.SpringBootProject.Model.Order;
+import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.User;
 import com.cnjava.SpringBootProject.Service.BrandService;
@@ -29,6 +30,7 @@ import com.cnjava.SpringBootProject.Service.CartService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
 import com.cnjava.SpringBootProject.Service.CodeService;
 import com.cnjava.SpringBootProject.Service.MailService;
+import com.cnjava.SpringBootProject.Service.OrderDetailService;
 import com.cnjava.SpringBootProject.Service.OrderService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
@@ -53,6 +55,9 @@ public class UserController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private OrderDetailService orderDetailService;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -408,6 +413,39 @@ public class UserController {
 	
 		
 		return "payment";
+	}
+	
+	
+	@GetMapping("/orderdetail")
+	public String showOrderDdetail(@RequestParam("id")int id, Model model,  HttpServletRequest request) {
+		
+		 HttpSession session = request.getSession(false);
+		
+		 if(session == null) {
+			 return "redirect:/login"; 
+		 }
+		 
+		 String email = (String) session.getAttribute("email");
+		
+		Order or = orderService.getOrderIdMail(email, id);
+		
+		List<OrderDetail> list = orderDetailService.getList(id);
+		
+		Code code = codeService.getCodeByText(or.getDiscount());
+		
+		if(code == null) {
+			model.addAttribute("discount", 0);
+		}
+		else {
+			model.addAttribute("discount", code.getPrice());
+		}
+		
+	    model.addAttribute("list", list);
+		model.addAttribute("or", or);
+		model.addAttribute("code", code);
+		model.addAttribute("counter", new Counter());
+		
+		return "orderdetail";
 	}
 	
 }

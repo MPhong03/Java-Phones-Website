@@ -19,4 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM orders where userid= :userid limit :offset,:number")
 	List<Order> getListOrder(@Param("userid") int userid, @Param("offset") int offset, @Param("number") int number);
+	
+	@Query("SELECT or FROM Order or WHERE or.userid.Email= :mail and or.orderid= :id")
+	Order getOrderIdEmail(@Param("mail") String mail, @Param("id") int id);
 }
