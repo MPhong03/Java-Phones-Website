@@ -448,4 +448,34 @@ public class UserController {
 		return "orderdetail";
 	}
 	
+	@PostMapping("/searchorder")
+	public String searchOrder(@RequestParam("search") String key, Model model) {
+		
+		Order or = orderService.getOrderByCode(key);
+		
+		if(or == null) {
+			model.addAttribute("message", "Không tìm thấy đơn hàng phù hợp");
+			return "message";
+		}
+		
+		return "redirect:/orderdetail?id=" + or.getOrderid();
+	}
+	
+	
+	@PostMapping("/editorder")
+	public String editOrder(@RequestParam("ordercode") String ordercode,@RequestParam("fullname")String fullname,@RequestParam("email") String email,@RequestParam("phone") String phone, @RequestParam("country-state") String area, @RequestParam("address") String address  ) {
+		
+		Order or = orderService.getOrderByCode(ordercode);
+		
+		or.setFullname(fullname);
+		or.setEmail(email);
+		or.setPhonenumber(phone);
+		or.setProvince(area);
+		or.setAddress(address);
+		
+		orderService.saveOrder(or);
+		
+		return "redirect:/orderdetail?id=" + or.getOrderid();
+	}
+	
 }

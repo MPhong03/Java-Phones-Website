@@ -48,6 +48,7 @@
                                 <p th:if="${or.status == 0}"> <span class="tieude">Tình trạng đơn hàng: </span>  <span class="noidung" > Đang xử lý </span></p>
                                 <p th:if="${or.status == 1}"> <span class="tieude">Tình trạng đơn hàng: </span>  <span class="noidung" > Đang giao hàng </span></p>
                                 <p th:if="${or.status == 2}"> <span class="tieude">Tình trạng đơn hàng: </span>  <span class="noidung" > Đã giao hàng</span></p>
+                                <button th:if="${or.status == 0}" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Cập nhật địa chỉ nhận hàng</button>
                             </div>
 
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px;margin-bottom: 20px;">
@@ -98,6 +99,141 @@
 
 
 	<div th:replace="~{layouts/user/footer:: footer}"></div>
+	
+	
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Địa chỉ nhận hàng</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form action="/editorder" method="post">
+					
+					<div class="edit">
+                            <label for="ordercode" class="text" >Mã đơn hàng:</label>
+                            <div class="input-container2">
+                                <input class="input-field" type="text"  name="ordercode" id="ordercode" readonly th:value="${or.code}">
+                                <span />
+                            </div>
+                    </div>
+					
+		             <div class="edit">
+                            <label for="fullname" class="text" >Họ tên:</label>
+                            <div class="input-container2">
+                                <input class="input-field" type="text" placeholder="Nhập họ tên người nhận hàng" name="fullname" id="fullname" required>
+                                <span />
+                            </div>
+                    </div>
+
+                        <div  class="edit">
+                            <label for="email" class="text" >Email:</label>
+                            <div class="input-container2">
+                                <input class="input-field" type="email" placeholder="Nhập email" name="email" id="email" required>
+                                <span />
+                            </div>     
+                        </div>
+
+                        <div  class="edit">
+                            <label for="phone"  class="text" >Số điện thoại: </label>
+                                        
+                            <div class="input-container2">
+                                <input class="input-field" type="tel" name="phone" id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" placeholder="Nhập số điện thoại"  required>
+                                <span />
+                            </div>
+                        </div>      
+                        <div  class="edit">
+                            <label for="country-state" class="text" >Khu vực: </label>
+                            <div class="input-container2">
+                                <select id="country-state" name="country-state" style="width: 100%;" required>
+
+                                    <option value="An Giang" >An Giang</option>
+                                    <option value="Bà Rịa-Vũng Tàu">Bà Rịa-Vũng Tàu</option>
+                                    <option value="Bắc Giang">Bắc Giang</option>
+                                    <option value="Bắc Kạn">Bắc Kạn</option>
+                                    <option value="Bạc Liêu">Bạc Liêu</option>
+                                    <option value="Bắc Ninh">Bắc Ninh</option>
+                                    <option value="Bến Tre">Bến Tre</option>
+                                    <option value="Bình Dương">Bình Dương</option>
+                                    <option value="Bình Định">Bình Định</option>
+                                    <option value="Bình Phước">Bình Phước</option>
+                                    <option value="Bình Thuận">Bình Thuận</option>
+                                    <option value="Cà Mau">Cà Mau</option>
+                                    <option value="Cao Bằng">Cao Bằng</option>
+                                    <option value="Đà Nẵng">Đà Nẵng</option>
+                                    <option value="Đắk Lắk">Đắk Lắk</option>
+                                    <option value="Đắk Nông">Đắk Nông</option>
+                                    <option value="Điện Biên">Điện Biên</option>
+                                    <option value="Đồng Nai">Đồng Nai</option>
+                                    <option value="Đồng Tháp">Đồng Tháp</option>
+                                    <option value="Gia Lai">Gia Lai</option>
+                                    <option value="Hà Giang">Hà Giang</option>
+                                    <option value="Hà Nam">Hà Nam</option>
+                                    <option value="Hà Tây">Hà Tây</option>
+                                    <option value="Hà Tĩnh">Hà Tĩnh</option>
+                                    <option value="Hải Dương">Hải Dương</option>
+                                    <option value="Hải Phòng">Hải Phòng</option>
+                                    <option value="Hà Nội">Hà Nội</option>
+                                    <option value="Hậu Giang">Hậu Giang</option>
+                                    <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                                    <option value="Hòa Bình">Hòa Bình</option>
+                                    <option value="Hưng Yên">Hưng Yên</option>
+                                    <option value="Khánh Hòa">Khánh Hòa</option>
+                                    <option value="Kiên Giang">Kiên Giang</option>
+                                    <option value="Kon Tum">Kon Tum</option>
+                                    <option value="Lai Châu">Lai Châu</option>
+                                    <option value="Lâm Đồng">Lâm Đồng</option>
+                                    <option value="Lạng Sơn">Lạng Sơn</option>
+                                    <option value="Lào Cai">Lào Cai</option>
+                                    <option value="Long An">Long An</option>
+                                    <option value="Nam Định">Nam Định</option>
+                                    <option value="Nghệ An">Nghệ An</option>
+                                    <option value="Ninh Bình">Ninh Bình</option>
+                                    <option value="Ninh Thuận">Ninh Thuận</option>
+                                    <option value="Phú Thọ">Phú Thọ</option>
+                                    <option value="Phú Yên">Phú Yên</option>
+                                    <option value="Quảng Bình">Quảng Bình</option>
+                                    <option value="Quảng Nam">Quảng Nam</option>
+                                    <option value="Quảng Ngãi">Quảng Ngãi</option>
+                                    <option value="Quảng Ninh">Quảng Ninh</option>
+                                    <option value="Quảng Trị">Quảng Trị</option>
+                                    <option value="Sóc Trăng">Sóc Trăng</option>
+                                    <option value="Sơn La">Sơn La</option>
+                                    <option value="Tây Ninh">Tây Ninh</option>
+                                    <option value="Thái Bình">Thái Bình</option>
+                                    <option value="Thái Nguyên">Thái Nguyên</option>
+                                    <option value="Thanh Hóa">Thanh Hóa</option>
+                                    <option value="Thừa Thiên-Huế">Thừa Thiên-Huế</option>
+                                    <option value="Tiền Giang">Tiền Giang</option>
+                                    <option value="Trà Vinh">Trà Vinh</option>
+                                    <option value="Tuyên Quang">Tuyên Quang</option>
+                                    <option value="Vĩnh Long">Vĩnh Long</option>
+                                    <option value="Vĩnh Phúc">Vĩnh Phúc</option>
+                                    <option value="Yên Bái">Yên Bái</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div  class="edit">
+                            <label for="address" class="text" >Địa chỉ:</label>
+                            <div class="input-container2">
+                                <input class="input-field" type="text" placeholder="Nhập địa chỉ" name="address" id="address" required>
+                                <span />
+                            </div>   
+                        </div> 
+                        
+                        <div  class="edit">
+							<button type="submit" class="btn btn-primary">Lưu</button> 
+						</div>
+                        
+		        </form>
+		      </div>
+		     
+		    </div>
+		  </div>
+		</div>
+	
 </body>
 
    <script>
