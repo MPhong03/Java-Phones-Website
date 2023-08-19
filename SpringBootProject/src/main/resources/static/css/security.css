@@ -1,0 +1,21 @@
+.noidungbaomat{
+    font-size: 15px;
+}
+
+.tieudetieumuc{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.link{
+    color: red;
+    text-decoration: none;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+#first{
+    margin-top: 20px;
+}

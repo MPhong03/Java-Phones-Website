@@ -481,4 +481,15 @@ public class UserController {
 		return "redirect:/orderdetail?id=" + or.getOrderid();
 	}
 	
+	@GetMapping("/warranty")
+	public String showWarranty() {
+		return "warranty";
+	}
+	
+
+	@GetMapping("/security")
+	public String showSecurity() {
+		return "security";
+	}
+	
 }
