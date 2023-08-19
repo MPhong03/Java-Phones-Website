@@ -409,6 +409,9 @@ public class UserController {
 			 	model.addAttribute("value", code.getPrice());
 			
 		 }
+		 else {
+			 	 model.addAttribute("value", 0);
+		 }
 		 
 	
 		

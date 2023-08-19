@@ -144,11 +144,11 @@
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
 
-                                                          <p class="text" > Tổng cộng: <span th:text="${total}"></span> VND</p>
-													      <p class="text" th:if ="${textcode}" > Mã giảm giá: <span id="code" th:text = "${textcode}"></span> (<span id="value" th:text="${value}" > </span> VND) </p>
+                                                          <p class="text" > Tổng cộng: <span id="giatien" th:text="${total}"></span> </p>
+													      <p class="text" th:if ="${textcode}" > Mã giảm giá: <span id="code" th:text = "${textcode}"></span> - <span id="giatien" th:text="${value}" > </span> </p>
 													      <p class="text" th:unless ="${textcode}"> Mã giảm giá: <span id="code"> Không có</span> </p>
-													      <p class="text"  th:if ="${textcode}" > Thành tiền: <span id="final" th:text="${total - value}"> </span> VND </p>
-													      <p class="text"  th:unless ="${textcode}"> Thành tiền: <span id="final" th:text = "${total}" ></span> VND</p>
+													      <p class="text"  > Thành tiền: <span id="giatien" th:text="${total - value}"> </span>  </p>
+													      <p style="display: none;"> Thành tiền: <span id="final" th:text="${total - value}"> </span>  </p>
 													      
                                                     </div>
                                             </div>
@@ -246,6 +246,8 @@
 	<script>
 		
 		
+		
+		
 		function payment(){
 			
 			
@@ -264,6 +266,7 @@
 		    
 		   let code =  document.getElementById("code").innerHTML;
 		   let final =  document.getElementById("final").innerHTML;
+		   
 		    
 
 		      $.ajax({
@@ -278,7 +281,7 @@
 		        success: function (msg) {
 		            alert(msg['message']);
 		            if(msg['status'] == "true"){
-						window.location.href = "/";
+						window.location.href = "/order?page=1";
 					}
 		            
 		        }
@@ -289,6 +292,25 @@
 			
 		}
 		
+		
+		 // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#giatien');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
 		
 	</script>
 

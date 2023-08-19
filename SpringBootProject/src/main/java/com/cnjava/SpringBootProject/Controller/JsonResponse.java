@@ -99,8 +99,9 @@ public class JsonResponse {
 					HttpSession session = request.getSession(false);
 					 
 				    String userEmail = (String) session.getAttribute("email");
+				    
 					 
-					User user = userService.getUserByEmail(email);
+					User user = userService.getUserByEmail(userEmail);
 					
 					Date date = new Date();  
 					SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy hh:mm:ss a");  

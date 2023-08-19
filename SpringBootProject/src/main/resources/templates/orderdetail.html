@@ -66,7 +66,7 @@
 													     <td th:text = "${mycounter}" ></td>
 													     <td> <img th:src = "${ord.productid.ImageLink}" style="width: 50%;"> </td>
 													     <td > <a href="#" th:text="${ord.productid.ProductName}" style="text-decoration: none; color: black;"> </a></td>
-													     <td > <span th:text = "${ord.productid.price}"> </span> VND</td>
+													     <td > <span id="giatien" th:text = "${ord.productid.price}"> </span></td>
 													     <td th:text = "${ord.quantity}" ></td>
 												  </tr>	 
 									  </tbody>
@@ -76,10 +76,10 @@
                            </div>
 
                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"   style="">
-                              <p> <span class="tieude">Tổng cộng: </span>  <span class="noidung" th:text = "${or.total + discount} +' '+VND" > </span> </p>
-                               <p th:if = "${code != null}"> <span class="tieude">Mã giảm giá: </span>  <span class="noidung" th:text = "${code.codetext}"> </span> <span class="noidung" th:text=" ${ code.price} + ' ' +VND"> </span> </p>
+                              <p> <span class="tieude">Tổng cộng: </span>  <span class="noidung" id="giatien" th:text = "${or.total + discount}" > </span> </p>
+                               <p th:if = "${code != null}"> <span class="tieude">Mã giảm giá: </span>  <span class="noidung" th:text = "${code.codetext}"> </span> - <span class="noidung" id="giatien" th:text=" ${ code.price}"> </span> </p>
                                <p th:if = "${code == null}"> <span class="tieude">Mã giảm giá: </span>  <span class="noidung">Không có</span></p>
-                               <p> <span class="tieude">Thành tiền: </span>  <span class="noidung" th:text = "${or.total} +' ' +VND"> </span> </p>
+                               <p> <span class="tieude">Thành tiền: </span>  <span class="noidung" id="giatien" th:text = "${or.total}"> </span> </p>
                           </div>
                              
                       </div>
@@ -240,6 +240,25 @@
         function createPDF(){
 			alert("Tính năng đang được phát triển");
 		}
+		
+		 // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#giatien');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
     </script>
 
 </html>

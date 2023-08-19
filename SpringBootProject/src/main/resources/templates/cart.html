@@ -54,8 +54,8 @@
 									</form>
 							   </td>
 							   
-							   <td >
-								   <span th:text = "${cart.price}"> </span> VND
+							   <td id="giatien" >
+								   <span th:text = "${cart.price}"> </span> 
 							   </td>
 							        
 							   <td>
@@ -72,12 +72,12 @@
                 <hr>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Số tiền: </div>
-                    <div class="col text-right"> <span th:text = "${total}"></span> VND</div>
+                    <div class="col text-right"> <span id="giatien" th:text = "${total}"></span></div>
                 </div>
                 
                 <div class="row" th:if ="${discount}">
                     <div class="col" style="padding-left:0;">Mã giảm giá: </div>
-                    <div class="col text-right"> - <span th:text = "${discount}"></span> VND </div>
+                    <div class="col text-right"> - <span id="giatien" th:text = "${discount}"></span> </div>
                 </div>
                 <form method="post" action="/getCode">
                     <input id="code" name="code" placeholder="Nhập mã giảm giá">
@@ -86,8 +86,8 @@
                 <p style="color: red;" th:text = "${error}"> </p>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">Tổng cộng: </div>
-                    <div class="col text-right" th:unless = "${discount}"> <span th:text = "${total}"> </span> VND</div>
-                    <div class="col text-right" th:if = "${discount}"> <span th:text = "${total - discount}"> </span> VND</div>
+                    <div class="col text-right" th:unless = "${discount}"> <span id="giatien" th:text = "${total}"> </span> </div>
+                    <div class="col text-right" th:if = "${discount}"> <span id="giatien" th:text = "${total - discount}"> </span> </div>
                 </div>
                 <form action="/checkout" method="post">
 					<input th:if = "${code}" style="display: none;" type="text" name="discount" th:value = "${code}" readonly >
@@ -104,7 +104,26 @@
 	<div th:replace="~{layouts/user/footer:: footer}"></div>
 </body>
 
-	
+	<script>
+        // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#giatien');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
+    </script>
 
 
 </html>

@@ -61,7 +61,7 @@
 							     <td th:text = "${order.fullname}"  > </td>
 							     <td th:text = "${order.phonenumber}"  > </td>
 							     <td th:text = "${order.date}"  > </td>
-							     <td > <span th:text = "${order.total}"> </span> VND</td>
+							     <td > <span id="giatien" th:text = "${order.total}"> </span></td>
 							     <td th:if = "${order.status == 0}" > Đang xử lý </td>
 							     <td th:if = "${order.status == 1}" > Đang giao hàng</td>
 							     <td th:if = "${order.status == 2}" > Đang giao hàng </td>
@@ -107,6 +107,26 @@
 			
 			window.location.href = "/order?page=" + page;
 		}
+		
+		
+		 // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#giatien');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
 		
 	</script>
 
