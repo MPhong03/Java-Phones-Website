@@ -492,4 +492,19 @@ public class UserController {
 		return "security";
 	}
 	
+	@GetMapping("/delivery")
+	public String showDelivery() {
+		return "delivery";
+	}
+	
+	@GetMapping("/pay")
+	public String showPay() {
+		return "pay";
+	}
+	
+
+	@GetMapping("/tragop")
+	public String showTraGop() {
+		return "tragop";
+	}
 }

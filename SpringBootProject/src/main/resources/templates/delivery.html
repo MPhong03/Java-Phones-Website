@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title>Chính sách vận chuyển</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="css/headerfooter.css">
+<link rel="stylesheet" href="css/delivery.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="background-color: #2C76F6; border-radius: 10px; text-align: center; color: white; margin-top: 20px;">
+                                <h2> Chính sách giao hàng</h2>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+
+                                <p class="noidunggiaohang" id="first"> 
+                                    <span class="tieudetieumuc"> 1. Đơn hàng trong nội thành TP Hồ Chí Minh </span>
+                                    <br><br>
+                                    + Chi phí vận chuyển:
+                                    <br>
+                                    <ul>
+                                        <li>
+                                            Miễn phí giao hàng dưới 5km áp dụng cho đơn hàng trên 1.000.000 VND
+                                        </li>
+                                        <li>Tính phí giao hàng cho đơn hàng trên 5km và dưới 1.000.000 VND là 5.000 VND/ km (Nếu khách hàng cần gấp )</li>
+                                    </ul>
+                                  
+                                    + Thời gian giao hàng:
+                                    <ul>
+                                        <li>Các đơn hàng đặt hàng trước 17h30 sẽ được giao luôn trong ngày, thời giai giao hàng từ 30 phút đến 2h phút kể từ thời điểm khách hàng đặt hàng.</li>
+                                        <li>Các đơn hàng đặt sau 17h30 sẽ giao vào ngày hôm sau.</li>
+                                    </ul>
+                                </p>
+
+
+                                <p class="noidunggiaohang"> 
+                                    <span class="tieudetieumuc"> 2. Đơn hàng ngoại thành TP Hồ Chí Minh và các tỉnh. </span>
+                                    <br><br>
+                                    +Hình thức vận chuyển:
+                                    <ul>
+                                        <li>Giao hàng qua các đơn vị vận chuyển như: GHTK, GHN, Viettel Port tùy theo khu vực khách hàng.</li>
+                                    </ul>
+                                   
+                                    + Chi phí vận chuyển:
+                                    <ul>
+                                        <li>Tùy theo đơn hàng và quy định của đơn vị vận chuyển hàng hóa, khách hàng thanh toán chi phí vận chuyển cho đối tác vận chuyển của ABC.</li>
+                                    </ul>
+                                   
+                                    + Thời gian giao hàng:
+                                    <ul>
+                                        <li>
+                                            Từ 2 ngày đến 6 ngày tùy thuộc vào địa điểm nhận của khách .
+                                        </li>
+                                    </ul>
+                               
+                                    Nếu có bất cứ thắc mắc gì về chính sách giao nhận hàng hóa của ABC, vui lòng liên hệ với chúng tôi qua hotline 0921.281.281 hoặc ABC.com.vn
+                                </p>
+
+                    
+                        </div>
+                    </div>
+           
+                </div>
+           
+         </div>
+     </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>
