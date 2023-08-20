@@ -15,7 +15,11 @@
 <title>Sản phẩm</title>
 
 <link rel="stylesheet" href="/css/headerfooter.css">
-
+<style type="text/css">
+	.rating-color{
+	    color:#fbc634 !important;
+	}
+</style>
 </head>
 
 <body>
@@ -94,7 +98,7 @@
 
 
 				
-				<div class="card border border-danger mt-5">
+				<div class="border border-danger mt-5 rounded">
 					<div class="card-header bg-danger text-light"><i class="bi bi-gift"></i> KHUYẾN MÃI</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Tặng Gift Voucher 100k ( áp dụng cho lần mua sau).</li>
@@ -109,7 +113,7 @@
 			    </div>
 			</div>
 			<div class="col-lg-4">
-				<div class="card">
+				<div class="border rounded">
 					<div class="card-body">
 						<ul class="list-group list-group-flush">
 							<li class="list-group-item">
@@ -133,6 +137,124 @@
 		<div class="row gx-4">
 			<div class="col-lg-8">
 				<p class=" border rounded shadow p-3" th:text="${product.Description}"></p>
+				
+				<div class="mt-4 border rounded shadow p-3">
+					<h5>ĐÁNH GIÁ SẢN PHẨM</h5>
+					
+					<th:block th:if="${comments.isEmpty()}">
+					    <p class="fs-3 text-center">Chưa có đánh giá nào!</p>
+					</th:block>
+										
+					
+					<th:block th:each="comment : ${comments}">
+					
+						<div class="container w-100 bg-light pt-3 mb-3" style="height: 115px;">
+							<div class="row">
+								<div class="col-2" style="width: 75px; height: 75px;">
+									<img alt="avatar" src="/img/temp-avatar.png">
+								</div>
+								<div class="col-10">
+									<div class="col-12 d-flex justify-content-between">
+										<h6 class="fw-bold" th:text="${comment.user.UserName}">Bruce Wayne</h6>
+										<div class="small-ratings">
+										    <span th:remove="tag" th:each="i : ${#numbers.sequence(1, 5)}">
+										        <i th:if="${i <= comment.rate}" class="fa fa-star rating-color"></i>
+										        <i th:unless="${i <= comment.rate}" class="fa fa-star"></i>
+										    </span>
+										</div>
+
+									</div>
+									<div class="col-12">
+										<p th:text="${comment.commenttext}">Good product!</p>
+									</div>
+								
+								</div>
+								<div class="col-12 d-flex justify-content-end">
+									<span th:text="${comment.date}">01/01/2023</span>
+								</div>
+							
+							</div>
+						</div>
+						
+					</th:block>
+					
+					
+					<!-- <div class="container w-100 bg-light pt-3" style="height: 115px;">
+						<div class="row">
+							<div class="col-2" style="width: 75px; height: 75px;">
+								<img alt="avatar" src="/img/temp-avatar.png">
+							</div>
+							<div class="col-10">
+								<div class="col-12 d-flex justify-content-between">
+									<h6 class="fw-bold">Bruce Wayne</h6>
+									<div class="small-ratings">
+						                <i class="fa fa-star rating-color"></i>
+						                <i class="fa fa-star rating-color"></i>
+						                <i class="fa fa-star rating-color"></i>
+						                <i class="fa fa-star"></i>
+						                <i class="fa fa-star"></i>
+						            </div>
+								</div>
+								<div class="col-12">
+									<p>Good product!</p>
+								</div>
+							
+							</div>
+							<div class="col-12 d-flex justify-content-end">
+								<span>01/01/2023</span>
+							</div>
+						
+						</div>
+					</div> -->
+					
+					<div class="col-12">
+						<h5>ĐÁNH GIÁ</h5>
+						<div th:if="${email == null}">
+						    <p class="fs-3 text-center">Login to leave a comment!</p>
+						</div>
+						<div th:unless="${email == null}">
+						    <form th:action="@{/submit-comment}" method="post" class="mt-4">
+							    <div class="form-group">
+							        <textarea class="form-control" name="commentText" placeholder="Nhận xét của bạn" required></textarea>
+							    </div>
+							    <div class="form-group">
+							        <div class="star-rating">
+									    <div class="form-check form-check-inline">
+									        <input class="form-check-input star" type="radio" name="rating" id="star1" value="1" required>
+									        <label class="form-check-label" for="star1">1 Star</label>
+									    </div>
+									    
+									    <div class="form-check form-check-inline">
+									        <input class="form-check-input star" type="radio" name="rating" id="star2" value="2" required>
+									        <label class="form-check-label" for="star2">2 Stars</label>
+									    </div>
+									    
+									    <div class="form-check form-check-inline">
+									        <input class="form-check-input star" type="radio" name="rating" id="star3" value="3" required>
+									        <label class="form-check-label" for="star3">3 Stars</label>
+									    </div>
+									    
+									    <div class="form-check form-check-inline">
+									        <input class="form-check-input star" type="radio" name="rating" id="star4" value="4" required>
+									        <label class="form-check-label" for="star4">4 Stars</label>
+									    </div>
+									    
+									    <div class="form-check form-check-inline">
+									        <input class="form-check-input star" type="radio" name="rating" id="star5" value="5" required>
+									        <label class="form-check-label" for="star5">5 Stars</label>
+									    </div>
+									</div>
+
+
+							    </div>
+							    <input type="hidden" name="productId" th:value="${product.ProductID}" required/>
+							    <button type="submit" class="btn btn-primary">Gửi</button>
+							</form>
+
+						</div>
+
+					</div>
+				</div>
 			</div>
 			<div class="col-lg-4">
 				<div class="border rounded shadow p-3">

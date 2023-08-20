@@ -1,5 +1,7 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,12 +11,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cnjava.SpringBootProject.Model.Comment;
 import com.cnjava.SpringBootProject.Model.Product;
+import com.cnjava.SpringBootProject.Model.User;
 import com.cnjava.SpringBootProject.Model.Value;
+import com.cnjava.SpringBootProject.Repository.CommentRepository;
+import com.cnjava.SpringBootProject.Repository.UserRepository;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.ValueService;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
@@ -24,6 +34,12 @@ public class ProductController {
 	
 	@Autowired
 	private ValueService valueService;
+	
+	@Autowired
+	private CommentRepository commentRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@GetMapping(value = {"/", "/home"})
 	public String index(Model model) {
@@ -85,12 +101,17 @@ public class ProductController {
 	}
 	
 	@GetMapping("/product/{id}")
-	public String productDetail(@PathVariable("id") int id, Model model) {
+	public String productDetail(@PathVariable("id") int id, Model model, HttpSession session) {
 		Product product = productService.getProductById(id);
 		List<Value> values = valueService.getValuesByProductID(id);
+		List<Comment> comments = commentRepository.findAllCommentsByProductID(id);
+		
+		session.getAttribute("email");
 		
 		model.addAttribute("product", product);
 		model.addAttribute("performances", values);
+		model.addAttribute("comments", comments);
+		model.addAttribute("email", session.getAttribute("email"));
 		
 		List<String> imageLinks = Arrays.asList(product.getImageLink().split(";"));
 
@@ -98,4 +119,25 @@ public class ProductController {
 		
 		return "user/product";
 	}
+	
+	@PostMapping("/submit-comment")
+    public String submitComment(@RequestParam("commentText") String commentText,
+                                @RequestParam("rating") int rating,
+                                @RequestParam("productId") int productId,
+                                HttpSession session) {
+		
+        User user = userRepository.findByEmail((String) session.getAttribute("email"));
+        Product product = productService.getProductById(productId);
+
+        // Create a new Comment object and save it
+        Comment comment = new Comment();
+        comment.setCommenttext(commentText);
+        comment.setRate(rating);
+        comment.setUser(user);
+        comment.setProduct(product);
+        comment.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        commentRepository.save(comment);
+
+        return "redirect:/product/" + productId;
+    }
 }

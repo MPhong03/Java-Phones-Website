@@ -1,12 +1,14 @@
 package com.cnjava.SpringBootProject.Model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -51,7 +53,9 @@ public class User {
 	@Column(name ="otp_requested_time")
 	private String otp_requested_time;
 	
-
+	@OneToMany(mappedBy = "user")
+	private List<Comment> comments;
+	
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -119,6 +123,12 @@ public class User {
 	}
 	public void setOtpRequestedTime(String otpRequestedTime) {
 		this.otp_requested_time = otpRequestedTime;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 }
