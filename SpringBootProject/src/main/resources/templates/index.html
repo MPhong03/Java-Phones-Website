@@ -78,7 +78,7 @@
 				<h3>Không có sản phẩm nào</h3>
 			</div>
 			<div th:each="product : ${samsung}" class="col-lg-2 col-md-4 col-sm-6 col-xs-6 mb-4">
-	            <div class="card h-100 shadow">
+	            <div class="card h-100 shadow" th:onclick="'redirectToProductPage(' + ${product.ProductID} + ')'" style="cursor: pointer;">
 	                <img class="card-img-top p-3" th:src="${product.firstImageUrl}"
 	                    th:alt="${product.ProductName}" style="object-fit: cover;">
 	                <div class="card-body d-flex flex-column">
@@ -95,7 +95,7 @@
 				<h3>Không có sản phẩm nào</h3>
 			</div>
 			<div th:each="product : ${apple}" class="col-lg-2 col-md-4 col-sm-6 col-xs-6 mb-4">
-	            <div class="card h-100 shadow">
+	            <div class="card h-100 shadow" th:onclick="'redirectToProductPage(' + ${product.ProductID} + ')'" style="cursor: pointer;">
 	                <img class="card-img-top p-3" th:src="${product.firstImageUrl}"
 	                    th:alt="${product.ProductName}" style="object-fit: cover;">
 	                <div class="card-body d-flex flex-column">
@@ -126,6 +126,9 @@
             });
             return formatter.format(price);
         }
+	    function redirectToProductPage(productId) {
+	        window.location.href = '/product/' + productId;
+	    }
     </script>
 
 

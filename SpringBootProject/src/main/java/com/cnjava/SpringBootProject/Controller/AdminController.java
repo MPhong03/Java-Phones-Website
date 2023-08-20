@@ -70,7 +70,10 @@ public class AdminController {
 		    @RequestParam("imageFiles") MultipartFile[] imageFiles,
 		    @RequestParam int productBrand,
 		    @RequestParam int productCategory,
-		    @RequestParam("values") String values
+		    @RequestParam("values") String values,
+		    @RequestParam String productState,
+		    @RequestParam String productColors,
+		    @RequestParam String productSupples
 		) throws Exception {
 		    Brand brand = brandService.getBrandById(productBrand);
 		    Category category = categoryService.getCategoryById(productCategory);
@@ -105,6 +108,9 @@ public class AdminController {
 		    product.setImageLink(imageUrls);
 		    product.setBrand(brand);
 		    product.setCategory(category);
+		    product.setColors(productColors);
+		    product.setState(productState);
+		    product.setSupples(productSupples);
 
 		    productService.save(product);
 

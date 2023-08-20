@@ -30,6 +30,15 @@ public class Product {
 	@Column(name = "imagelink", length = 255)
 	private String ImageLink;
 	
+	@Column(name = "state")
+	private String state;
+	
+	@Column(name = "supples")
+	private String supples;
+	
+	@Column(name = "colors")
+	private String colors;
+	
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category Category;
@@ -127,6 +136,44 @@ public class Product {
             }
         }
         return null;
+    }
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getSupples() {
+		return supples;
+	}
+
+	public void setSupples(String supples) {
+		this.supples = supples;
+	}
+
+	public String getColors() {
+		return colors;
+	}
+
+	public void setColors(String colors) {
+		this.colors = colors;
+	}
+	
+	public void addColor(String newColor) {
+        if (colors == null) {
+            colors = newColor;
+        } else {
+            String[] colorArray = colors.split(";");
+            for (String color : colorArray) {
+                if (color.equalsIgnoreCase(newColor)) {
+                    return;
+                }
+            }
+            colors += ";" + newColor;
+        }
     }
 	
 }
