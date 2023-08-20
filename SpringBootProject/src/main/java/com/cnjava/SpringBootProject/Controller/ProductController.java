@@ -1,5 +1,8 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -9,13 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnjava.SpringBootProject.Model.Product;
+import com.cnjava.SpringBootProject.Model.Value;
 import com.cnjava.SpringBootProject.Service.ProductService;
+import com.cnjava.SpringBootProject.Service.ValueService;
 
 @Controller
 public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private ValueService valueService;
 	
 	@GetMapping(value = {"/", "/home"})
 	public String index(Model model) {
@@ -76,4 +84,18 @@ public class ProductController {
 		return "/user/products";
 	}
 	
+	@GetMapping("/product/{id}")
+	public String productDetail(@PathVariable("id") int id, Model model) {
+		Product product = productService.getProductById(id);
+		List<Value> values = valueService.getValuesByProductID(id);
+		
+		model.addAttribute("product", product);
+		model.addAttribute("performances", values);
+		
+		List<String> imageLinks = Arrays.asList(product.getImageLink().split(";"));
+
+	    model.addAttribute("imageLinks", imageLinks);
+		
+		return "user/product";
+	}
 }
