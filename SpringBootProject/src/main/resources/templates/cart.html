@@ -44,7 +44,7 @@
                        <tbody th:with="mycounter = ${counter.get()}">
 						   <tr th:with="mycounter=${counter.incrementAndGet()}"  th:each ="cart : ${list}" >
 							   <td th:text = "${mycounter}" ></td>
-							   <td> <img th:src = "${cart.productid.ImageLink}" style="width: 50%;"> </td>
+							   <td> <img th:src = "${cart.productid.firstImageUrl}" style="width: 50%;"> </td>
 							   
 							   <td th:text = "${cart.productid.ProductName}">  </td>
 							   <td>
