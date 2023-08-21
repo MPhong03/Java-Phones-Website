@@ -107,9 +107,18 @@
 					</ul>
 			    </div>
 			    
-			    <div class="mt-3">
-			    	<button type="button" class="btn btn-danger w-50">Mua ngay</button>
-			    	<button type="button" class="btn btn-outline-danger"><i class="bi bi-cart"></i> Thêm vào giỏ</button>
+			    <div class="mt-3 d-flex justify-content-between">
+					<form class="" th:action="@{/cart/{id} (id = ${product.ProductID})}" method="post">
+						 	<button type="submit" class="btn btn-danger">Mua ngay</button> 
+					</form>
+			   	
+			   		<form class="" th:action="@{/cart/{id} (id = ${product.ProductID})}" method="post">
+						
+						 <button type="submit" class="btn btn-outline-danger"><i class="bi bi-cart"></i> Thêm vào giỏ</button>
+			   
+					</form>
+					
+			    
 			    </div>
 			</div>
 			<div class="col-lg-4">
@@ -276,4 +285,7 @@
 	</div>
 
 	<div th:replace="~{layouts/user/footer :: footer}"></div>
+
+	
+	
 </html>

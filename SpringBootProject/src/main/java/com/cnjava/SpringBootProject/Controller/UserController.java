@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnjava.SpringBootProject.Model.Brand;
@@ -43,7 +46,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+	private ProductService productService;
 	@Autowired
 	private MailService mailService;
 	
@@ -325,7 +329,30 @@ public class UserController {
 		 return "cart";
 	}
 	
+	@RequestMapping(value = "/cart/{id}", method = RequestMethod.POST)
 	
+	public String addtoCart(HttpServletRequest request,@PathVariable("id") int idproduct) {
+		Product p = productService.getProductById(idproduct);
+		HttpSession session = request.getSession(false);
+		 
+		 if(session == null) {
+			 return "redirect:/login"; 
+		 }
+		 
+		
+		 
+		 String email = (String) session.getAttribute("email");
+		 
+		 User user = userService.getUserByEmail(email);
+		 
+		 Cart cart = new Cart();
+		 cart.setProductid(p);
+		 cart.setPrice(p.getPrice());
+		 cart.setUserid(user);
+		 cart.setQuantity(1);
+		 cartService.saveCart(cart);
+		return "redirect:/cart";
+	}
 	@PostMapping("/updatequantity")
 	public String updateQuantity(@RequestParam("quantity") int quantity, @RequestParam("idcart") int idcart) {
 		
