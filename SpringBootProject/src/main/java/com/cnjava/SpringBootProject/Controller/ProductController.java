@@ -61,7 +61,7 @@ public class ProductController {
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
 
-        return "user/products";
+        return "products";
     }
 	
 	@GetMapping("/brand/{brandid}")
@@ -73,7 +73,7 @@ public class ProductController {
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
         
-        return "user/products";
+        return "products";
 	}
 	
 	@GetMapping("/category/{categoryid}")
@@ -85,7 +85,7 @@ public class ProductController {
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
 
-        return "user/products";
+        return "products";
 	}
 	
 	@GetMapping("/searching")
@@ -117,7 +117,7 @@ public class ProductController {
 
 	    model.addAttribute("imageLinks", imageLinks);
 		
-		return "user/product";
+		return "product";
 	}
 	
 	@PostMapping("/submit-comment")

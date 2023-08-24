@@ -11,15 +11,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.util.ResourceUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cnjava.SpringBootProject.Model.Admin;
+import com.cnjava.SpringBootProject.Model.AdminDTO;
 import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.Value;
+import com.cnjava.SpringBootProject.Service.AdminService;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
 import com.cnjava.SpringBootProject.Service.ProductService;
@@ -40,7 +46,48 @@ public class AdminController {
     @Autowired
     private ValueService valueService;
     
+    @Autowired
+    private AdminService adminService;
+    
     private final String uploadDirectory = "static/uploads/";
+    
+    @GetMapping("/admin")
+    public String index() {
+    	return "admin/admin";
+    }
+    
+    @GetMapping("/admin/login")
+    public String adminLogin() {
+    	return "admin/login";
+    }
+    
+    @GetMapping("/admin/register")
+    public String showRegistrationForm(Model model){
+        AdminDTO admin = new AdminDTO();
+        model.addAttribute("admin", admin);
+        return "admin/register";
+    }
+    
+    @PostMapping("/admin/register/save")
+    public String registration(@Validated @ModelAttribute("admin") AdminDTO adminDTO,
+                               BindingResult result,
+                               Model model){
+        Admin existingAdmin = adminService.findAdminByEmail(adminDTO.getEmail());
+
+        if(existingAdmin != null && existingAdmin.getEmail() != null && !existingAdmin.getEmail().isEmpty()){
+            result.rejectValue("email", null,
+                    "There is already an account registered with the same email");
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("admin", adminDTO);
+            return "/admin/register";
+        }
+
+        adminService.saveAdmin(adminDTO);
+        
+        return "redirect:/admin/register?success";
+    }
     	
 	@GetMapping(value = {"/admin/products"})
 	public String productsManagement(Model model) {
