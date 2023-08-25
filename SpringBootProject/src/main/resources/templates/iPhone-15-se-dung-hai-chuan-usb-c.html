@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+							  <p> Cả bốn mẫu iPhone 15 dự kiến đều trang bị cổng USB C, nhưng chỉ hai bản cao cấp hỗ trợ truyền tải tốc độ cao. </p>
+							  
+							  <img src="/img/iPhone-15-to-Switch-From-Light-3250-4695-1668707741.webp">
+							  
+							  <p> Theo nhà phân tích Ming-chi Kuo, hai phiên bản 15 Pro và 15 Ultra sẽ hỗ trợ tốc độ truyền tải USB 3.2 và thậm chí là Thunderbolt 3. Trong khi đó, iPhone 15 và 15 Plus vẫn dùng chuẩn USB 2.0 tương đương cổng Lightning hiện nay. Tốc độ truyền của USB 2.0 giới hạn ở mức 480 Mb/giây, trong khi USB 3.2 là 20 Gb/giây còn Thunderbolt 3 lên tới 40 Gb/giây.</p>
+							  <br>
+							  <p> Apple được cho là sẽ bắt đầu chuyển sang sử dụng cổng USB C trên các mẫu iPhone ra mắt trong năm tới. Hãng phải thực hiện thay đổi này để tuân thủ quy định của châu Âu, trong đó yêu cầu các thiết bị điện tử phải sử dụng chuẩn sạc chung. Ngoài iPhone, Apple hiện vẫn còn một số thiết bị sử dụng cổng Lightning như AirPods 3, AirPods Pro 2, chuột Magic Mouse… Theo The Verge, cáp Lightning đi kèm thiết bị của Apple vốn bị phàn nàn nhiều vì nhanh hỏng, đứt, gẫy ở đầu nối. Trong khi đó, cáp của bên thứ ba đòi hỏi đáp ứng nhiều tiêu chuẩn và chip MFi mới có thể sử dụng ổn định.</p>
+							  <br>
+							  <p> Ngoài cổng USB C, theo nhà phân tích Ross Young, tính năng Dynamic Island sẽ có mặt trên cả iPhone 15 và 15 Plus thay vì dành riêng cho dòng Pro như hiện nay. Tuy nhiên, hai mẫu iPhone bản thường vẫn sẽ không được trang bị màn hình ProMotion với tần số quét 120 Hz và tính năng Always-on Display.</p>
+							  <br>
+							  <p> Điểm đáng chú ý nhất của dòng iPhone 15 là sẽ đổi tên 15 Pro Max thành 15 Ultra với những nâng cấp vượt trội về vật liệu, tính năng so với các model còn lại. Phone 15 Ultra được cho là sẽ dùng vỏ titan tương tự Apple Watch Ultra, tích hợp camera tiềm vọng phía sau và camera selfie kép ở mặt trước. Mức giá của 15 Ultra sẽ cao hơn so với 14 Pro Max khi ra mắt.</p>
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

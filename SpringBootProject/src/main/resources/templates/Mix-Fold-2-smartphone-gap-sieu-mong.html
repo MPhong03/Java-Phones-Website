@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+								 <p> Xiaomi Mix Fold 2 có thiết kế đẹp, màn hình lớn hơn, mỏng hơn Z Fold4 nhưng không có chống nước, phần mềm tương thích kém</p>
+								 <br>
+								 <img src="/img/mixfold2-1.jpg" style="width: 80%;">
+								 <br>
+								 <br>
+								 <p>Một tuần sau khi ra mắt tại thị trường Trung Quốc, Xiaomi Mix Fold 2 đã có mặt tại Việt Nam qua đường xách tay. Model đầu tiên là phiên bản dung lượng 512 GB nhưng không được cửa hàng tiết lộ giá bán. Tại thị trường Trung Quốc, bản thấp nhất dung lượng 256 GB có giá 8,999 tệ (khoảng 31 triệu đồng) và bản 1 TB có giá 11,999 tệ (gần 42 triệu đồng). Mix Fold 2 được coi là đối thủ đáng gờm nhất của Galaxy Z Fold4 cũng mới ra mắt ngày 10/8.</p>
+								 <br>
+								 <img src="/img/mixfold2-2.jpg" style="width: 80%;">
+								 <br><br>
+								 <p> Khác biệt lớn nhất của Mix Fold 2 so với Galaxy Z Fold 4 là máy có thiết kế vuông vức hơn đáng kể. Bản lề ở lưng máy khi gập cũng không nhô ra nhiều như đối thủ. Theo Xiaomi, cấu tạo bản lề được làm bằng các tấm hợp kim và sợi carbon.</p>
+								 <br>
+								 <img src="/img/mixfold2-3.jpg" style="width: 80%;">
+								 <br><br>
+								 <p>Mix Fold 2 là mẫu smartphone gập mỏng nhất hiện nay, mỏng hơn tới 30% so với Galaxy Z Fold 4. Khi gập, độ mỏng của máy là 11,2 mm ( Z Fold4 là 14,2 mm). Khi mở ra, độ mỏng của mỗi bên màn hình chỉ là 5,4 mm. Cân nặng điện thoại gập của Xiaomi gần tương tự model bên phía Samsung là 261 và 262 gram tương ứng.</p>
+								 <br>
+								 <img src="/img/mixfold2-4.jpg" style="width: 80%;">
+								 <br><br>
+								 <p>Mix Fold 2 khi gập cho hai bề mặt gần như phẳng hoàn toàn. Thiết kế này cho cảm giác liền mạch hơn, mỏng hơn. Tuy nhiên, việc ép sát hai nửa màn hình gây lo ngại bụi ở giữa dễ làm xước hơn. Với Galaxy Z Fold4, Samsung từng giải thích khoảng hở giữa hai màn hình giúp máy hạn chế xước, va chạm vật lý, thoát nước dễ hơn. Điện thoại của Xiaomi cũng không có chuẩn kháng nước như Samsung.</p>
+								 <br>
+								 <img src="/img/mixfold2-5.jpg" style="width: 80%;">
+								 <br><br>
+								 <p>Màn hình bên trong sử dụng tấm nền OLED LTPO2 với kích thước 8 inch độ phân giải 1.914 x 2.160 pixel, tốc độ làm tươi tự động điều chỉnh từ 1 tới 120Hz. Màn hình của máy sử dụng công nghệ OLED Eco2 loại bỏ lớp phân cực giúp tăng chất lượng hiển thị, đồng thời tiết kiệm năng lượng hơn. Màn hình này còn hỗ trợ HDR10 + và Dolby Vision và độ sáng tối đa là 1300 nit. Xiaomi sử dụng kính Schott UTG cho màn hình bên trong.</p>
+								 <br>
+								 <p>Quan sát thực tế cho thấy Mix Fold 2 có nếp gấp chính giữa đỡ lộ hơn so với Z Fold 4. Tuy nhiên, máy lại không có camera selfie bên trong, rất bất tiện khi sử dụng chụp “tự sướng”, video call hay họp nhóm với màn hình chính.</p>
+								 <br>
+								 <img src="/img/mixfold2-6.jpg" style="width: 80%;">
+								 <br>
+								 <img src="/img/mixfold2-7.jpg" style="width: 80%;">
+								 <br><br>
+								 <p>Xiaomi sử dụng màn hình AMOLED 6,56 inch tỷ lệ 21:9 cho màn hình bên ngoài. Tỷ lệ màn hình này giúp người dùng dễ sử dụng hơn so với màn hình dài 24,5:9 trên Z Fold4 (bên trái). Màn hình có tần số làm tươi 120 Hz, tuy nhiên, Xiaomi vẫn sử dụng kính Gorilla Glass Victus thế hệ đầu tiên cho model cao cấp của mình. Camera selfie trên màn hình ngoài có độ phân giải 20 megapixel.</p>
+								 <br>
+								  <img src="/img/mixfold2-8.jpg" style="width: 80%;">
+								  <br><br>
+								  <p>Cụm camera là nâng cấp lớn nhất của Mix Fold 2 so với thế hệ đầu tiên. Máy có camera chính sử dụng cảm biến Sony IMX766 độ phân giải 50 megapixel hỗ trợ OIS, camera góc siêu rộng 13 megapixel và camera tele 8 megapixel với zoom quang 2x. Tương tự Xiaomi 12S Ultra, Mix Fold 2 được tích hợp chế độ chụp ảnh Chân thực và Sống động, bên cạnh các bộ lọc màu của Leica.</p>
+								  <br>
+								  <p>Tuy nhiên, trong một số thử nghiệm ban đầu, ảnh chụp thử từ Mix Fold 2 không khác biệt đáng kể so với Z Fold4.</p>
+								  <br>
+								  <img src="/img/DES09150-1660933232.jpg" style="width: 80%;">
+								  <br><br>
+								  <p>Điện thoại của Xiaomi có pin 4.500 mAh cùng sạc nhanh 67W. Dung lượng pin tương tự nhưng Mix Fold 2 co công suất sạc tốt hơn Z Fold4 chỉ là 25 W.</p>
+								   <img src="/img/mixfold2-9.jpg" style="width: 80%;">
+								   <br><br>
+								   <p>Mix Fold2 chạy Android 12 với giao diện MIUI Fold 13. Về phần mềm, máy không được tùy biến tốt như Z Fold4. Ứng dụng Facebook, Instagram, web đều hiển thị như điện thoại thông thường phóng lớn trong khi TikTok, Youtube Short còn gặp hiện tượng bị cắt hình.</p>
+								 
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

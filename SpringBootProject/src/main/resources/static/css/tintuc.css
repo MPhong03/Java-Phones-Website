@@ -1,0 +1,29 @@
+
+.noidung{
+    font-size: 15px;
+}
+
+
+.tieudetieumuc{
+    font-size: 18px;
+}
+
+#first{
+    margin-top: 20px;
+}
+
+
+.bold{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.newsname{
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
+}
+
+.newsname:hover{
+	color: cornflowerblue;
+}

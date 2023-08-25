@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+								<p>Bộ đôi sản phẩm Galaxy Buds Pro x LANEIGE NEO Cushion sẽ là món quà đặc biệt, tôn lên nét đẹp và sự tự tin của người phụ nữ hiện đại.</p>
+								<br>
+								<img src="/img/Samsung-Galaxy-Buds-Pro-LANEIGE-Neo-Cushion-Edition-02.webp">
+								<br>
+								<br>
+								<p> Thương hiệu mỹ phẩm chăm sóc da cao cấp LANEIGE giới thiệu sản phẩm phấn nước NEO Cushion Phantom Violet phiên bản giới hạn hợp tác cùng hợp tác với Samsung’s Galaxy Buds Pro. Dự án này được khơi nguồn cảm hứng từ thiết kế hình vuông bo tròn của cả Samsung Galaxy Buds Pro và LANEIGE NEO Cushion.</p>
+								<p>Với sự hợp tác lần này, phấn nước bền và lì màu NEO Cushion Phantom Violet sẽ mang màu sắc của Galaxy Buds Pro. Cả hai sản phẩm sẽ có sự tương đồng về tính năng khi NEO Cushion có thể chống trôi, kiềm dầu và mồi hôi thì Galaxy Buds Pro có khả năng hạn chế âm thanh từ bên ngoài với tính năng khử tiếng ồn.</p>
+								<p>Galaxy Buds Pro được tích hợp cùng ANC (Công nghệ chống ồn chủ động) thông minh, với khả năng lọc tiếng ồn lên đến 99%. Galaxy Buds Pro được đánh giá là tai nghe ưu việt nhất đến nay của Samsung. Lấy cảm hứng từ hình dạng sáng tạo và mang tính biểu tượng của Samsung và khả năng Kháng nước IPX7, Galaxy Buds Pro được cải tiến giúp để trở nên khít tai hơn nhờ thiết kế công thái học cải tiến, thoải mái sử dụng trong mọi hoàn cảnh.</p>
+								<p>Trong khi đó LANEIGE NEO Cushion là sản phẩm phấn nước bám màu mềm mượt với lớp nền lì nhưng tự nhiên như làn da thật của bạn, thế nên sản phẩm đã nhanh chóng trở thành sản phẩm bán chạy mới nhất của LANEIGE. Thiết kế không viền độc đáo hòa quyện cùng sắc hồng và xanh bạc hà nhẹ dịu là điểm nổi bật của bao bì sản phẩm. Sản phẩm được biết đến với khả năng che phủ toàn diện, bền màu và chống trôi vượt trội.</p>
+								
+								<p>Về giá bán, bộ sản phẩm sẽ được bán ra tại thị trường Việt Nam kể từ ngày 20/7 tới đây với mức giá 4,990,000 đồng, tặng kèm ưu đãi 1 triệu đồng.</p>
+								
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

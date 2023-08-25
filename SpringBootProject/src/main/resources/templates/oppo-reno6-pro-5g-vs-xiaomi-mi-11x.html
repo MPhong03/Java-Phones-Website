@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+							 <p> Hôm qua, chúng ta đã có một bài so sánh giữa OPPO Reno6 Pro 5G và Realme GT Neo Flash với phần thắng thuộc về điện thoại của OPPO.</p>
+							 <br>
+							 <img src="/img/Can-canh-OPPO-Reno6-Pro-5G.webp">  
+							 <br>
+							 <br>
+							 <p>Vậy khi đối đầu với một đối thủ “nặng ký” khác trong phân khúc tầm trung là Xiaomi Mi 11X thì liệu Reno6 Pro 6G có đủ sức đánh bại? Hãy cùng tìm câu trả lời qua bài viết dưới đây.</p>
+							 <p> Thiết kế <br>Trong hai smartphone ngày hôm nay, OPPO Reno6 Pro 5G có ngoại hình bắt bắt hơn so với Xiaomi Mi 11X. Với lớp hoàn thiện Reno Glow cho mặt sau bằng kính, mẫu di động tầm trung của OPPO trông lộng lẫy hơn khá nhiều so với đối thủ. Đó là chưa kể điện thoại này còn sở hữu màn hình cong tràn cạnh ở mặt trước nên mặt trước của nó cũng trông cực kỳ sang trọng và bóng bẩy.</p>
+							 <p>Còn lại thì cả hai điện thoại này đều sở hữu ngôn ngữ thiết kế khá giống nhau. Chúng đều có màn hình đục lỗ bắt mắt ở mặt trước, nhưng vị trí camera selfie của Reno6 Pro 5G nằm ở góc trên cùng bên trái, trong khi máy ảnh trước của Mi 11X nằm ở chính giữa viền trên, trông đối xứng hơn.</p>
+							 <p>Ở mặt sau, bộ đôi điện thoại này đều sở hữu cụm máy ảnh hình chữ nhật khá lớn nằm ở góc trên cùng bên trái. Xiaomi Mi 11X dù có thiết kế kém hấp dẫn hơn, nhưng nó vẫn đi kèm với mặt lưng bằng kính và được bảo vệ bởi lớp kính cường lực Gorilla Glass 6 của Corning.</p>
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

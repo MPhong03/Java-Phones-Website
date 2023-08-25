@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title>Tin tức mới nhất</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="css/headerfooter.css">
+<link rel="stylesheet" href="css/tintuc.css">
+
+
+
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="background-color: #2C76F6; border-radius: 10px; text-align: center; color: white; margin-top: 20px;">
+                                <h3> Tin tức mới nhất</h3>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="display: flex; justify-content: center;">
+							 
+							 <table style="text-align: center;margin-top: 20px;width: 100%; margin-bottom: 20px;">
+								 <tr th:each="n : ${list}" style="border-bottom: solid white 20px;">
+									 <td> <img th:src="${n.thumbnail}" style="max-width: 200px;"> </td>
+									 <td> <a class="newsname" th:href="@{'/tintuc/' + ${n.filename}}" th:text ="${n.title}"> </a>  </td>
+								 </tr>
+								 
+							 </table>
+							
+								 
+							 
+						 </div>
+						 
+						  
+							   <div class="page" style="text-align: center; margin-bottom: 20px;">
+								  	<a class="btn btn-primary" onclick="pre()" role="button" th:if="${pre != 0}">Trước </a>
+								  	<a class="btn btn-primary"  onclick="next()" role="button">Sau</a>
+							  </div>
+						 
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+	
+	<script>
+		function pre(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var page =  parseInt(urlParams.get('page')) - 1;
+			
+			window.location.href = "/tintuc?page=" + page;
+		}
+		
+		function next(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var page =  parseInt(urlParams.get('page')) + 1;
+			
+			window.location.href = "/tintuc?page=" + page;
+		}
+	</script>
+	
+</body>
+
+
+
+</html>

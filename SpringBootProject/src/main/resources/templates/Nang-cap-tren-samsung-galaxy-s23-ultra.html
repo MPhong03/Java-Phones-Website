@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+							<p> Samsung có thể trang bị camera 200 MP mới và cải tiến cho Galaxy S23 Ultra. Đây là nâng cấp đáng giá giúp dòng smartphone cao cấp của Samsung cạnh tranh với iPhone 14 Pro.</p>
+							
+							<p>Theo nguồn tin rò rỉ của tài khoản Ice Universe (IU) trên Twitter, camera chính của Samsung Galaxy S23 Ultra dường như sở hữu một cảm biến khổng lồ. Cụ thể, tài khoản này khẳng định “gần như chắc chắn 100%” camera chính trên chiếc flagship sắp tới của Samsung sẽ được trang bị “cảm biến HP2 chưa được phát hành”.</p>
+							
+							<p>Cái tên này đề cập đến loạt cảm biến ISOCELL HP 200 MP do Samsung Semiconductor sản xuất.</p>
+							
+							<p>Trước đó, Samsung đã sản xuất cảm biến HP1 và HP3 cho các dòng smartphone cao cấp của mình. Bên cạnh đó, khi phản hồi tweet của người dùng, IU nói HP2 là cảm biến tốt nhất trong những phần cứng camera mà Samsung sản xuất cho smartphone.</p>
+							<br>
+							<img src="/img/anh_4.jpg">
+							<br>
+							<p style="font-style: italic;">Samsung có thể trang bị cảm biến khổng lồ cho Galaxy S23 Ultra, giúp công ty cạnh tranh tốt hơn với Apple. Ảnh: Android Central</p>
+							
+							<p>Galaxy S22 Ultra, giống như Galaxy S21 Ultra và Galaxy S20 Ultra trước đó, đều sử dụng camera với độ phân giải 108 MP. Đây là một trong những cảm biến có độ phân giải cao nhất dành cho điện thoại thông minh.</p>
+							
+							<p>Nếu Galaxy S23 Ultra được trang bị camera lên đến 200 MP, tác giả Richard Priday của Tom’s Guide nhận định máy sẽ cho phép ảnh chụp chi tiết hơn, đặc biệt trong điều kiện thiếu sáng.</p>
+							
+							<p>Trước đó, Samsung đưa ra công nghệ pixel-bining giúp nâng cao độ sáng của ảnh chụp. Công nghệ này sẽ kết hợp dữ liệu ánh sáng của các pixel với nhau để tạo ra tông màu tốt nhất.</p>
+							
+							<p>Để so sánh, iPhone 14 Pro và iPhone 14 Pro Max được cho sẽ có cảm biến chính 48 MP mới cùng khả năng hỗ trợ quay video 8K. Độ phân giải đó thấp hơn nhiều so với con số 200 MP mà Samsung có thể trang bị cho Galaxy S23 Ultra. Tất nhiên, việc có nhiều điểm ảnh hơn không đồng nghĩa với ảnh chụp ra tốt hơn.</p>
+							
+							<p>Tweet của IU còn gợi ý về việc cảm biến trên Galaxy S23 Ultra sẽ có điểm ảnh kích thước 0,6 micromet, nằm giữa con số 0,64 micromet của cảm biến HP1 và 0,54 micromet của cảm biến HP3. Mặc dù con số không có sự khác biệt lớn nhưng cảm biến HP2 được kỳ vọng giúp cân bằng mọi nguồn ánh sáng lọt vào cảm biến.</p>
+							<br>
+							<img  src="/img/anh_5.jpg" > 
+							<br>
+							<p style="font-style: italic;"> Samsung có thể sử dụng cảm biến HP2 với độ phân giải 200 MP mới nhất cho Galaxy S23 Ultra. Ảnh: SamMobile.</p>
+							<br>
+							<p>Ngoài ra, tác giả Richard Priday kỳ vọng Samsung có thể cải thiện những vấn đề thường gặp trên các dòng sản phẩm mới. Rõ ràng, Samsung đã rút kinh nghiệm đối với các flagship sở hữu camera 108MP gần đây và tình trạng lỗi không còn xảy ra nhiều.</p>
+							<p> Samsung Galaxy S23 Ultra chắc chắn sẽ bị so sánh với iPhone 14 Pro trong việc tính toán và xử lý hình ảnh. Hiện tại, tác giả Priday nhận định camera của Galaxy S22 Ultra không hoạt động tốt bằng iPhone 13 Pro Max. Flagship của Apple cho ra hình ảnh sắc nét và sáng hơn, đặc biệt khi người dùng chụp trong nhà và ảnh chân dung.</p>
+							
+							<p>Samsung nhiều khả năng trình làng dòng Galaxy S23 vào tháng 2/2023. Do đó, công ty vẫn còn thời gian để tối ưu các trang bị mới trên chiếc smartphone của mình.</p>
+								 
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+<title th:text="${title}"> </title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="/css/headerfooter.css">
+</head>
+
+<body>
+	<div th:replace="~{layouts/user/header:: header}"></div>
+	
+	<div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11">
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="margin-top: 30px;">
+                                <h3 th:text="${title}"></h3>
+                        </div>
+                        
+                        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+                               <p> Đăng ngày:  <span th:text="${date}" style="color: red;"> </span> bởi <span th:text="${name}" style="color: red;">  </span> </p>
+                        </div>
+                        
+                         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" >
+							<p> Theo như tin đồn trước đây, nhà sản xuất đến từ Trung Quốc đang trong quá trình phát triển Mi Mix 4 và Mi Pad 5 series. Hôm nay, Mi Mix 4, Mi Pad 5 series và Mi CC 11 đã xuất hiện trên cơ sở dữ liệu của cơ quan cấp giấy chứng nhận 3C.</p>
+							<br>
+							<img src="/img/Xiaomi-Mi-Mix-4-Mi-CC-11-va-Mi-Pad-5-Series.webp">
+							<br>
+							<br>
+							<p>Xiaomi Mi Mix 4 đã xuất hiện trên cơ sở dữ liệu 3C với mã sản phẩm là 2106118C. Thiết bị sẽ hỗ trợ sạc nhanh với công suất lên tới 120W. Cùng với Mi Mix 4, Mi CC 11 cũng đã được tìm thấy tại cơ sở dữ liệu 3C. Thiết bị có mã sản phẩm 2107119DC. Đây có thể là Mi CC 11 hoặc CC 11 Pro. Chiếc máy sẽ hỗ trợ sạc nhanh với công suất 33W.</p>
+							<p>Ngoài điện thoại thì dòng máy tính bảng Mi Pad 5 cũng xuất hiện trên cơ sở dữ liệu của cơ quan cấp giấy chứng nhận 3C. Dòng sản phẩm bao gồm 3 thiết bị là Mi Pad 5 Lite, Mi Pad 5 Plus và Mi Pad 5 Pro. Mi Pad 5 Lite có mã sản phẩm là 21051182C với code name K82, chiếc máy sẽ hỗ trợ sạc nhanh với công suất 33W. Tiếp theo, Mi Pad 5 Plus có mã sản phẩm là M2105K81AC với code name K81A, chiếc máy sẽ hỗ trợ sạc nhanh với công suất lên tới 67W. Cuối cùng là Mi Pad 5 Pro với mã sản phẩm là M2105K81C và code name K81, chiếc máy sẽ hỗ trợ sạc nhanh với công suất 67W</p>
+						 </div>
+
+                       
+
+                     </div>
+
+                </div>
+
+            </div>
+    </div>
+	
+	
+	
+
+	<div th:replace="~{layouts/user/footer:: footer}"></div>
+</body>
+
+</html>

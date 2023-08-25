@@ -28,10 +28,12 @@ import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Code;
 import com.cnjava.SpringBootProject.Model.Message;
+import com.cnjava.SpringBootProject.Model.News;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Repository.MessageRepository;
+import com.cnjava.SpringBootProject.Repository.NewsRepository;
 import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CartService;
@@ -70,6 +72,9 @@ public class UserController {
 	
 	@Autowired
 	private MessageRepository messageRepository;
+	
+	@Autowired
+	private NewsRepository newsRepository;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -689,5 +694,33 @@ public String buyNow(@PathVariable("id") int id, @RequestParam("color") String c
 		
 	}
 	
+	@GetMapping("/tintuc")
+	public String showTinTuc(@RequestParam("page") int page, Model model) {
+		
+		List<News> list = newsRepository.getList(page*5 - 5,5);
+		
+		if(list.size() == 0) {
+			model.addAttribute("message", "Không còn tin tức");
+			return "message";
+		}
+		
+		model.addAttribute("list", list);
+		model.addAttribute("pre", page - 1);
+		
+		return "tintuc";
+	}
+	
+	
+	@GetMapping("/tintuc/{title}")
+	public String showNoiDung(@PathVariable("title") String filename, Model model) {
+		
+		News n = newsRepository.getByFileName(filename);
+		
+		model.addAttribute("title", n.getTitle());
+		model.addAttribute("name", n.getUserid().getUserName());
+		model.addAttribute("date", n.getDate());
+		
+		return filename;
+	}
 	
 }
