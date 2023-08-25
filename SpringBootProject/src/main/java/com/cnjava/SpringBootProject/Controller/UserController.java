@@ -1,9 +1,11 @@
 package com.cnjava.SpringBootProject.Controller;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -25,9 +27,11 @@ import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Code;
+import com.cnjava.SpringBootProject.Model.Message;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
+import com.cnjava.SpringBootProject.Repository.MessageRepository;
 import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CartService;
@@ -63,6 +67,9 @@ public class UserController {
 	
 	@Autowired
 	private OrderDetailService orderDetailService;
+	
+	@Autowired
+	private MessageRepository messageRepository;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -657,6 +664,29 @@ public String buyNow(@PathVariable("id") int id, @RequestParam("color") String c
 	@GetMapping("/cuahang")
 	public String cuaHang() {
 		return "cuahang";
+	}
+	
+	@PostMapping("/savemes")
+	public String saveMes(@RequestParam("name") String name,@RequestParam("email") String email, @RequestParam("title") String title,@RequestParam("message") String message,RedirectAttributes redirectAttributes ) {
+		
+		Message mes = new Message();
+		
+		Date date = new Date();  
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy hh:mm:ss a");  
+		String strDate = formatter.format(date);
+		
+		mes.setName(name);
+		mes.setEmail(email);
+		mes.setTitle(title);
+		mes.setText(message);
+		mes.setDate(strDate);
+		
+		messageRepository.save(mes);
+		
+		redirectAttributes.addFlashAttribute("mes","Đã gửi tin nhắn");
+		
+		return "redirect:/lienhe";
+		
 	}
 	
 	

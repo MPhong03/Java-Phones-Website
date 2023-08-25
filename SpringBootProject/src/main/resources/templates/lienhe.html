@@ -29,7 +29,7 @@
                 <div class="col-lg-11 col-md-11 col-xs-11 col-sm-11" style="margin-top: 20px;">
                       <div class="row">
                         	<div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-								<form>
+								<form action="/savemes" method="post">
 								   <div class="mb-3">
 								      <label for="name" class="form-label">Tên</label>
 								      <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
@@ -47,6 +47,8 @@
 								      <br>
 								      <textarea id="message" name="message" rows="5" cols="80" required></textarea>
 								   </div>
+								   
+								   <p style="color: red;" th:text ="${mes}"> </p>
 								  
 								   <button type="submit" class="btn btn-primary">Gửi</button>
 								</form>
