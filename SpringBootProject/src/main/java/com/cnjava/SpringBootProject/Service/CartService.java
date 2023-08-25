@@ -37,4 +37,8 @@ public class CartService {
 	public void deleteByUserEmail(String email) {
 		cartRepository.deleteCart(email);
 	}
+	
+	public Cart getCart(String email, int id, String color) {
+		return cartRepository.getCart(email, id, color);
+	}
 }

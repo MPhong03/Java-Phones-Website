@@ -567,6 +567,97 @@ public class UserController {
 		return "login";
 	}
 	
+	@PostMapping("/addcart/{id}")
+	public String addCart(@PathVariable("id") int id, @RequestParam("color") String color,   RedirectAttributes redirectAttributes,HttpServletRequest request) {
+	
+		
+		HttpSession session = request.getSession(false);
+		
+		String email = (String) session.getAttribute("email");
+		
+		AppUser user = userService.getUserByEmail(email);
+		
+		Cart c = cartService.getCart(email, id,color);
+		
+		if(c != null) {
+			int old = c.getQuantity();
+			c.setQuantity(old + 1);
+			
+			c.setPrice(c.getProductid().getPrice() * (old + 1));
+			
+			cartService.saveCart(c);
+			
+			redirectAttributes.addFlashAttribute("message", c.getProductid().getProductName() +" đã được thêm vào giỏ hàng");
+			return "redirect:/product/"+id;
+		}
+		
+		Product pro = productService.getProductById(id);
+		
+		Cart newCart = new Cart();
+		newCart.setUserid(user);
+		newCart.setColor(color);
+		newCart.setQuantity(1);
+		newCart.setProductid(pro);
+		newCart.setPrice(pro.getPrice());
+		
+		cartService.saveCart(newCart);
+		
+		redirectAttributes.addFlashAttribute("message", newCart.getProductid().getProductName() +" đã được thêm vào giỏ hàng");
+		return "redirect:/product/"+id;
+	}
+	
+	
+	@PostMapping("/buynow/{id}")
+public String buyNow(@PathVariable("id") int id, @RequestParam("color") String color,   RedirectAttributes redirectAttributes,HttpServletRequest request) {
+	
+		
+		HttpSession session = request.getSession(false);
+		
+		String email = (String) session.getAttribute("email");
+		
+		AppUser user = userService.getUserByEmail(email);
+		
+		Cart c = cartService.getCart(email, id,color);
+		
+		if(c != null) {
+			int old = c.getQuantity();
+			c.setQuantity(old + 1);
+			
+			c.setPrice(c.getProductid().getPrice() * (old + 1));
+			
+			cartService.saveCart(c);
+		
+			return "redirect:/cart";
+		}
+		
+		Product pro = productService.getProductById(id);
+		
+		Cart newCart = new Cart();
+		newCart.setUserid(user);
+		newCart.setColor(color);
+		newCart.setQuantity(1);
+		newCart.setProductid(pro);
+		newCart.setPrice(pro.getPrice());
+		
+		cartService.saveCart(newCart);
+	
+		return "redirect:/cart";
+	}
+	
+	@GetMapping("/thucudoimoi")
+	public String thuCuDoiMoi() {
+		return "thucu";
+	}
+	
+	@GetMapping("/lienhe")
+	public String lienHe() {
+		return "lienhe";
+	}
+	
+	@GetMapping("/cuahang")
+	public String cuaHang() {
+		return "cuahang";
+	}
 	
 	
 }

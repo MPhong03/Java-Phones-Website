@@ -59,14 +59,16 @@
 									   <td></td>
 				                       <th>Tên</th>
 				                       <th>Giá</th>
+				                        <th>Màu</th>
 				                       <th>Số lượng</th>
 				                       
 				                       <tbody th:with="mycounter = ${counter.get()}">
 												 <tr th:with="mycounter=${counter.incrementAndGet()}"  th:each ="ord : ${list}" >
 													     <td th:text = "${mycounter}" ></td>
 													     <td> <img th:src = "${ord.productid.ImageLink}" style="width: 50%;"> </td>
-													     <td > <a href="#" th:text="${ord.productid.ProductName}" style="text-decoration: none; color: black;"> </a></td>
+													     <td > <a style="color: black; text-decoration: none;" th:href="@{'/product/' + ${cart.productid.ProductID}}"> <span th:text = "${cart.productid.ProductName}"> </span> </a></td>
 													     <td > <span id="giatien" th:text = "${ord.productid.price}"> </span></td>
+													      <td > <span th:text = "${ord.color}"> </span></td>
 													     <td th:text = "${ord.quantity}" ></td>
 												  </tr>	 
 									  </tbody>

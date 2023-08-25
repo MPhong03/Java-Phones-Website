@@ -39,6 +39,7 @@
                        <th>Tên</th>
                        <th>Số lượng</th>
                        <th>Giá</th>
+                       <th>Màu</th>
                        <th>*</th>
                        
                        <tbody th:with="mycounter = ${counter.get()}">
@@ -46,7 +47,7 @@
 							   <td th:text = "${mycounter}" ></td>
 							   <td> <img th:src = "${cart.productid.firstImageUrl}" style="width: 50%;"> </td>
 							   
-							   <td th:text = "${cart.productid.ProductName}">  </td>
+							   <td> <a style="color: black;" th:href="@{'/product/' + ${cart.productid.ProductID}}"> <span th:text = "${cart.productid.ProductName}"> </span> </a></td>
 							   <td>
 								    <form action="/updatequantity" method="post">
 										<input style="display: none;" type = "number" name="idcart" th:value = "${cart.cartID}"  readonly> 
@@ -57,6 +58,10 @@
 							   
 							   <td id="giatien" >
 								   <span th:text = "${cart.price}"> </span> 
+							   </td>
+							   
+							   <td>
+								   <span th:text = "${cart.color}"> </span> 
 							   </td>
 							        
 							   <td>

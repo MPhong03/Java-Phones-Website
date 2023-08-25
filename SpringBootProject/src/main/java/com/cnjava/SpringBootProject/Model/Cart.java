@@ -34,19 +34,23 @@ public class Cart {
 	
 	@Column(name = "price")
 	private int price;
+	
+	@Column(name = "color")
+	private String color;
 
 	public Cart() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cart(int cartID, AppUser userid, Product productid, int quantity, int price) {
+	public Cart(int cartID, AppUser userid, Product productid, int quantity, int price, String color) {
 		super();
 		this.cartID = cartID;
 		this.userid = userid;
 		this.productid = productid;
 		this.quantity = quantity;
 		this.price = price;
+		this.color = color;
 	}
 
 	public int getCartID() {
@@ -88,6 +92,14 @@ public class Cart {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	
 }

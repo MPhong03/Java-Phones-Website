@@ -26,6 +26,11 @@
 	<div th:replace="~{layouts/user/header :: header}"></div>
 	<div class="container mt-4">
 		<div class="row">
+			
+			<div class="col-12">
+				<p th:text="${message}" style="color: red;"> </p> 	
+			</div>
+			
 			<div class="col-12">
 				<h2 th:text="${product.ProductName}">Name</h2>
 			</div>
@@ -89,7 +94,7 @@
 				<h5>Màu sắc</h5>
 				<div class="row ">
 				    <div class="col-4" th:each="color : ${#strings.arraySplit(product.colors, ',')}">
-				        <input type="radio" class="btn-check" name="selectedColor" th:value="${color}" th:id="'color-' + ${color}" autocomplete="off">
+				        <input type="radio" onclick="setcolor()" class="btn-check" name="selectedColor" th:value="${color}" th:id="'color-' + ${color}" autocomplete="off">
 				        <label class="btn btn-outline-danger w-100" th:for="'color-' + ${color}">
 				        	<span th:text="${color}">Đen</span>
 				        </label>
@@ -102,19 +107,20 @@
 					<div class="card-header bg-danger text-light"><i class="bi bi-gift"></i> KHUYẾN MÃI</div>
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item">Tặng Gift Voucher 100k ( áp dụng cho lần mua sau).</li>
-						<li class="list-group-item">Thu cũ đổi mới (xem chi tiết).</li>
-						<li class="list-group-item">Trả góp 0% qua thẻ tín dụng cho hoá đơn trên 3.000.000đ (xem chi tiết).</li>
+						<li class="list-group-item">Thu cũ đổi mới <a href="/thucudoimoi" style="color: red;" > (Xem chi tiết) </a></li>
+						<li class="list-group-item">Trả góp 0% qua thẻ tín dụng cho hoá đơn trên 3.000.000đ  <a href="/tragop" style="color: red;" > (Xem chi tiết) </a></li>
 					</ul>
 			    </div>
 			    
 			    <div class="mt-3 d-flex justify-content-between">
-					<form class="" th:action="@{/cart/{id} (id = ${product.ProductID})}" method="post">
+					<form class="" th:action="@{/buynow/{id} (id = ${product.ProductID})}" method="post" id="formBuyNow">
+						    <input style="display: none;" type="text" id="setcolor1" name="color">	
 						 	<button type="submit" class="btn btn-danger">Mua ngay</button> 
 					</form>
 			   	
-			   		<form class="" th:action="@{/cart/{id} (id = ${product.ProductID})}" method="post">
-						
-						 <button type="submit" class="btn btn-outline-danger"><i class="bi bi-cart"></i> Thêm vào giỏ</button>
+			   		<form class="" th:action="@{/addcart/{id} (id = ${product.ProductID})}"  method="post" id="formAddCart">
+						 <input style="display: none;" type="text" id="setcolor2" name="color">				 
+						 <button type="submit" class="btn btn-outline-danger" ><i class="bi bi-cart"></i> Thêm vào giỏ</button>
 			   
 					</form>
 					
@@ -135,7 +141,7 @@
 							</li>
 							<li class="list-group-item">
 								<p class="fw-bold m-0"><i class="bi bi-shield-check"></i> Bảo hành</p>
-								<p>1 ĐỔI 1 trong vòng 15 ngày. Bảo hành chuẩn 6 tháng (xem chi tiết).</p>
+								<p>1 ĐỔI 1 trong vòng 15 ngày. Bảo hành chuẩn 6 tháng  <a href="/warranty" style="color: red;" > (Xem chi tiết) </a></p>
 							</li>
 						</ul>
 					</div>
@@ -287,5 +293,43 @@
 	<div th:replace="~{layouts/user/footer :: footer}"></div>
 
 	
+	<script>
+		
+		function setcolor(){
+			var x = document.getElementsByName("selectedColor");
+			
+			for (i = 0; i < x.length; i++) {
+                if (x[i].checked)
+                   document.getElementById("setcolor2").value = x[i].value;
+                   document.getElementById("setcolor1").value = x[i].value;
+            }
+			
+		}
+		
+		$( "#formAddCart" ).on( "submit", function( event ) {
+			var color = document.getElementById("setcolor2").value;
+			if(color == ""){
+				alert("Vui lòng chọn màu sắc");
+				 event.preventDefault();
+			}
+			
+		});
+		
+		
+		$( "#formBuyNow" ).on( "submit", function( event ) {
+			var color = document.getElementById("setcolor1").value;
+			if(color == ""){
+				alert("Vui lòng chọn màu sắc");
+				 event.preventDefault();
+			}
+			
+		});
+		
+		
+		
+		
+	</script>
+	
+</body>
 	
 </html>

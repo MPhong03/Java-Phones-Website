@@ -50,14 +50,14 @@ public class WebSecurityConfig {
 
         http.csrf((csrf) -> csrf.disable());       
         // Các trang không yêu cầu login
-        http.authorizeHttpRequests(authz -> authz.requestMatchers("/","/login","/loginfail","/logoutSuccessful").permitAll());
+        http.authorizeHttpRequests(authz -> authz.requestMatchers("/","/login","/loginfail","/logoutSuccessful","/product/*","/uploads/*","/category/*","/img/*").permitAll());
 
         // Trang chỉ dành cho ADMIN
 //        http.authorizeRequests().requestMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 
-//        http.authorizeHttpRequests(authz -> authz.requestMatchers("/productdetail/*","/product/all").permitAll());
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/thucudoimoi","/cuahang","/lienhe").permitAll());
 //        http.authorizeHttpRequests(authz -> authz.requestMatchers("/filter").permitAll());
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("/cart","/userinfo","/payment","/order").hasAnyRole("ADMIN","USER"));
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/cart","/userinfo","/payment","/order","/addcart/*","/buynow/*").hasAnyRole("ADMIN","USER"));
 //       
 //        http.authorizeHttpRequests(authz -> authz.requestMatchers("/admin/*","/admin/userdetail").hasRole("ADMIN"));
 //        http
