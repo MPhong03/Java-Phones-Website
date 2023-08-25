@@ -28,12 +28,14 @@ import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Category;
 import com.cnjava.SpringBootProject.Model.Code;
+import com.cnjava.SpringBootProject.Model.Comment;
 import com.cnjava.SpringBootProject.Model.Message;
 import com.cnjava.SpringBootProject.Model.News;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.UserRole;
+import com.cnjava.SpringBootProject.Repository.CommentRepository;
 import com.cnjava.SpringBootProject.Repository.MessageRepository;
 import com.cnjava.SpringBootProject.Repository.NewsRepository;
 import com.cnjava.SpringBootProject.Repository.RoleRepository;
@@ -86,6 +88,9 @@ public class UserController {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private CommentRepository commentRepository;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
@@ -753,6 +758,51 @@ public String buyNow(@PathVariable("id") int id, @RequestParam("color") String c
 		model.addAttribute("date", n.getDate());
 		
 		return filename;
+	}
+	
+	@GetMapping("/error")
+	public String showError(Model model) {
+		
+	
+		model.addAttribute("message","Đã xảy ra lỗi");
+		
+		return "message";
+	}
+	
+	@PostMapping("/deletecomment")
+	public String deleteComment(@RequestParam("commentid") int id,@RequestParam("productid") int proid,HttpServletRequest request) {
+	    HttpSession session = request.getSession(false);
+		
+		String email = (String) session.getAttribute("email");
+		
+		AppUser user = userService.getUserByEmail(email);
+		
+		Comment tmpcmt = commentRepository.checkComment(id, email);
+		
+		if(tmpcmt != null) {
+			commentRepository.deleteById(id);
+			return "redirect:/product/" + proid;
+		}
+		else {
+			boolean isadmin = false;
+			
+			List<String> role = userRoleRepository.getRoleNames(user.getUserID());
+			
+			for(String s : role) {
+				if(s.equals("ROLE_ADMIN")) {
+					isadmin = true;
+				}
+			}
+			
+			if(isadmin == true) {
+				commentRepository.deleteById(id);
+				return "redirect:/product/" + proid;
+			}
+			
+		}
+		
+		
+		return "redirect:/product/" + proid;
 	}
 	
 }

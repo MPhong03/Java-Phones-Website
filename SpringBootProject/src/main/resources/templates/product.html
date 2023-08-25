@@ -163,7 +163,7 @@
 					
 					<th:block th:each="comment : ${comments}">
 					
-						<div class="container w-100 bg-light pt-3 mb-3" style="height: 115px;">
+						<div class="container w-110 bg-light pt-3 mb-3" style="height: 130px;">
 							<div class="row">
 								<div class="col-2" style="width: 75px; height: 75px;">
 									<img alt="avatar" src="/img/temp-avatar.png">
@@ -179,16 +179,29 @@
 										</div>
 
 									</div>
+									
+									
 									<div class="col-12">
 										<p th:text="${comment.commenttext}">Good product!</p>
 									</div>
-								
+									
+										
 								</div>
+								
 								<div class="col-12 d-flex justify-content-end">
 									<span th:text="${comment.date}">01/01/2023</span>
+								    <form method="post" action="/deletecomment">
+										<input type="number" name="productid" th:value ="${product.ProductID}" style="display: none;">
+										<input type="number" name="commentid" th:value ="${comment.commentid}" style="display: none;">
+										<button class="btn btn-danger" style="margin-left: 10px;" th:if="${comment.user.Email} == ${email} or ${namerole} == ROLE_ADMIN"> Xóa </button>
+									</form>	 
+									
 								</div>
+								
+								
 							
 							</div>
+							
 						</div>
 						
 					</th:block>

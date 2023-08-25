@@ -51,21 +51,15 @@ public class WebSecurityConfig {
         http.csrf((csrf) -> csrf.disable());       
         // Các trang không yêu cầu login
         http.authorizeHttpRequests(authz -> authz.requestMatchers("/","/login","/loginfail","/logoutSuccessful","/product/*","/uploads/*","/category/*","/img/*").permitAll());
-
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/thucudoimoi","/cuahang","/lienhe","/savemes","/tintuc","/tintuc/*","/register","/addUser","/forgetPassword","/newPassword","/sendOTP","/updatePassword","/message","/home","/products","/brand/*","/searching","/error").permitAll());
+         
         // Trang chỉ dành cho ADMIN
 //        http.authorizeRequests().requestMatchers("/admin").access("hasRole('ROLE_ADMIN')");
 
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("/thucudoimoi","/cuahang","/lienhe","/savemes","/tintuc","/tintuc/*","/register","/addUser","/forgetPassword","/newPassword","/sendOTP","/updatePassword","/message","/home").permitAll());
-//        http.authorizeHttpRequests(authz -> authz.requestMatchers("/filter").permitAll());
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("/cart","/userinfo","/payment","/order","/addcart/*","/buynow/*","").hasAnyRole("ADMIN","USER"));
-//       
-//        http.authorizeHttpRequests(authz -> authz.requestMatchers("/admin/*","/admin/userdetail").hasRole("ADMIN"));
-//        http
-//        .authorizeHttpRequests((authorizeRequests) ->
-//                authorizeRequests
-//                        .requestMatchers("/user/cart","/user/billdetail/{id}").hasAnyRole("USER","ADMIN")
-//        );
-//        
+        
+         // Trang cho bat ky role
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/cart","/userinfo","/payment","/order","/addcart/*","/buynow/*","/submit-comment","/deletecomment").hasAnyRole("ADMIN","USER"));
+
         
         http.exceptionHandling((exceptionHandling)  ->  exceptionHandling.accessDeniedHandler(new CustomAccessDeniedHandler()));
         http.exceptionHandling((exceptionHandling)  ->  exceptionHandling.authenticationEntryPoint(new CustomHttp403ForbiddenEntryPoint()));

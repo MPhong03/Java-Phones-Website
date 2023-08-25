@@ -21,6 +21,7 @@ import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Model.Value;
 import com.cnjava.SpringBootProject.Repository.CommentRepository;
 import com.cnjava.SpringBootProject.Repository.UserRepository;
+import com.cnjava.SpringBootProject.Repository.UserRoleRepository;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.ValueService;
 
@@ -41,6 +42,9 @@ public class ProductController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private UserRoleRepository userRoleRepository;
 	
 	@GetMapping(value = {"/", "/home"})
 	public String index(Model model,Principal principal,HttpSession session) {
@@ -119,7 +123,9 @@ public class ProductController {
 		List<Value> values = valueService.getValuesByProductID(id);
 		List<Comment> comments = commentRepository.findAllCommentsByProductID(id);
 		
-		session.getAttribute("email");
+		String email = (String)session.getAttribute("email");
+		
+		AppUser user = userRepository.findByEmail(email);
 		
 		model.addAttribute("product", product);
 		model.addAttribute("performances", values);
@@ -129,7 +135,23 @@ public class ProductController {
 		List<String> imageLinks = Arrays.asList(product.getImageLink().split(";"));
 
 	    model.addAttribute("imageLinks", imageLinks);
-		
+	    
+	    if(user!= null) {
+		    List<String> role = userRoleRepository.getRoleNames(user.getUserID());
+		    
+		    String namerole = "ROLE_USER";
+			
+			for(String s : role) {
+				if(s.equals("ROLE_ADMIN")) {
+					namerole = "ROLE_ADMIN";
+				}
+			}
+	
+			model.addAttribute("namerole", namerole);
+	    }
+	    
+       
+	 
 		return "product";
 	}
 	
