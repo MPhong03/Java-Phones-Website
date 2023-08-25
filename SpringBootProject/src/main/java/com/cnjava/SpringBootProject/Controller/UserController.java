@@ -11,6 +11,7 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +33,11 @@ import com.cnjava.SpringBootProject.Model.News;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
+import com.cnjava.SpringBootProject.Model.UserRole;
 import com.cnjava.SpringBootProject.Repository.MessageRepository;
 import com.cnjava.SpringBootProject.Repository.NewsRepository;
+import com.cnjava.SpringBootProject.Repository.RoleRepository;
+import com.cnjava.SpringBootProject.Repository.UserRoleRepository;
 import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CartService;
@@ -44,6 +48,7 @@ import com.cnjava.SpringBootProject.Service.OrderDetailService;
 import com.cnjava.SpringBootProject.Service.OrderService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
+import com.cnjava.SpringBootProject.Config.AppConfig;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -76,6 +81,12 @@ public class UserController {
 	@Autowired
 	private NewsRepository newsRepository;
 	
+	@Autowired
+	private UserRoleRepository userRoleRepository;
+	
+	@Autowired
+	private RoleRepository roleRepository;
+	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
 		
@@ -105,6 +116,9 @@ public class UserController {
 	
 	@PostMapping(value = {"/addUser"})
 	public String addUser(@ModelAttribute AppUser user,RedirectAttributes attributes ) {
+		
+		 AppConfig appConfig = new AppConfig();
+		 PasswordEncoder passwordEncoder = appConfig.passwordEncoder();
 
 		AppUser usertmp = userService.getUserByEmail(user.getEmail());
 		
@@ -113,8 +127,21 @@ public class UserController {
 			return "redirect:/register";
 		}
 		
+		String pass = user.getPassword();
+		
+		String encode = passwordEncoder.encode(pass);
+		
+		user.setPassword(encode);
+		user.setEnable(true);
+		
 		userService.save(user);
-
+		
+		UserRole us = new UserRole();
+		us.setUser(userService.getUserByEmail(user.getEmail()));
+		us.setAppRole(roleRepository.findByName("ROLE_USER"));
+		
+		userRoleRepository.save(us);
+		
 		return "redirect:/login";
 	}
 	
@@ -186,7 +213,12 @@ public class UserController {
 			}
 		}
 		
-		userService.updatePassword(password, email);
+		 AppConfig appConfig = new AppConfig();
+		 PasswordEncoder passwordEncoder = appConfig.passwordEncoder();
+		 
+		 String encode = passwordEncoder.encode(password);
+		
+		userService.updatePassword(encode, email);
 		attributes.addFlashAttribute("message","Bạn đã thay đổi mật khẩu thành công");
 		
 		session.removeAttribute("emailFG");
