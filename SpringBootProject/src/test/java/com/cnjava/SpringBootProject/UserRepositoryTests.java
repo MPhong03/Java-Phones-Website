@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Repository.UserRepository;
  
 @DataJpaTest
@@ -26,7 +26,7 @@ public class UserRepositoryTests {
      
     @Test
     public void testCreateUser() {
-        User user = new User();
+        AppUser user = new AppUser();
         user.setUserName("mphong");
         user.setPassword("mphong");
         user.setAddress("TP HCM");
@@ -34,9 +34,9 @@ public class UserRepositoryTests {
         user.setEmail("mphong@gmail.com");
         user.setIsAdmin(false);
          
-        User savedUser = repo.save(user);
+        AppUser savedUser = repo.save(user);
          
-        User existUser = entityManager.find(User.class, savedUser.getUserID());
+        AppUser existUser = entityManager.find(AppUser.class, savedUser.getUserID());
          
         assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
          

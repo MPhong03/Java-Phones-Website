@@ -1,5 +1,6 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cnjava.SpringBootProject.Model.Comment;
 import com.cnjava.SpringBootProject.Model.Product;
-import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Model.Value;
 import com.cnjava.SpringBootProject.Repository.CommentRepository;
 import com.cnjava.SpringBootProject.Repository.UserRepository;
@@ -42,7 +43,19 @@ public class ProductController {
 	private UserRepository userRepository;
 	
 	@GetMapping(value = {"/", "/home"})
-	public String index(Model model) {
+	public String index(Model model,Principal principal,HttpSession session) {
+		
+		if(principal != null) {
+			 String email = principal.getName();
+			 
+			 System.out.println(email);
+			 
+			 AppUser user = userRepository.findByEmail(email);
+			 
+			 session.setAttribute("email", user.getEmail());
+			 session.setAttribute("username", user.getUserName());
+		}
+		
 		Page<Product> samsungProduct = productService.getTop5ProductsByBrand(1);
 		Page<Product> appleProduct = productService.getTop5ProductsByBrand(2);
 		
@@ -126,7 +139,7 @@ public class ProductController {
                                 @RequestParam("productId") int productId,
                                 HttpSession session) {
 		
-        User user = userRepository.findByEmail((String) session.getAttribute("email"));
+        AppUser user = userRepository.findByEmail((String) session.getAttribute("email"));
         Product product = productService.getProductById(productId);
 
         // Create a new Comment object and save it

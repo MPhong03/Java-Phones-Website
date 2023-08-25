@@ -1,5 +1,6 @@
 package com.cnjava.SpringBootProject.Controller;
 
+import java.security.Principal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +28,7 @@ import com.cnjava.SpringBootProject.Model.Code;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
 import com.cnjava.SpringBootProject.Model.Product;
-import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CartService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
@@ -65,6 +66,7 @@ public class UserController {
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
 	public String showLoginForm() {
+		
 		return "login";
 	}
 	
@@ -85,14 +87,14 @@ public class UserController {
 	
 	@GetMapping(value = {"/register"})
 	public String showRegisterForm(Model model) {
-		model.addAttribute("User", new User());
+		model.addAttribute("User", new AppUser());
 		return "register";
 	}
 	
 	@PostMapping(value = {"/addUser"})
-	public String addUser(@ModelAttribute User user,RedirectAttributes attributes ) {
+	public String addUser(@ModelAttribute AppUser user,RedirectAttributes attributes ) {
 
-		User usertmp = userService.getUserByEmail(user.getEmail());
+		AppUser usertmp = userService.getUserByEmail(user.getEmail());
 		
 		if(usertmp != null) {
 			 attributes.addFlashAttribute("error","Email đã tồn tại");
@@ -121,7 +123,7 @@ public class UserController {
 	public String sendOTP(@RequestParam String email, HttpSession session,RedirectAttributes attributes) {
 		
 		
-		User userTmp = userService.getUserByEmail(email);
+		AppUser userTmp = userService.getUserByEmail(email);
 		
 		if(userTmp == null) {
 			 attributes.addFlashAttribute("error","Tài khoản không tồn tại");
@@ -189,14 +191,14 @@ public class UserController {
 			return "redirect:/message";
 		}
 		
-		User user = userService.getUserByEmail(email);
+		AppUser user = userService.getUserByEmail(email);
 		
 		model.addAttribute("username", user.getUserName());
 		model.addAttribute("email", user.getEmail());
 		model.addAttribute("address", user.getAddress());
 		model.addAttribute("phone", user.getPhoneNumber());
 		
-		model.addAttribute("user", new User());
+		model.addAttribute("user", new AppUser());
 	
 		return "userinfo";
 	}
@@ -229,7 +231,7 @@ public class UserController {
 		 * return "redirect:/home"; } else { model.addAttribute("error",
 		 * "Invalid email or password."); return "login"; }
 		 */
-		User user = userService.getUserByEmail(email);
+		AppUser user = userService.getUserByEmail(email);
 
 	    if (user != null && user.getPassword().equals(password)) {
 	    	// Tạo phiên bằng session
@@ -243,16 +245,33 @@ public class UserController {
 	    }
 	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
-        HttpSession session = request.getSession(false); // Lấy phiên hiện tại, nếu không tồn tại thì không tạo mới
-
-        if (session != null) {
-            session.invalidate(); // Kết thúc phiên (invalidate session)
-        }
-
-        return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
-    }
+//	@GetMapping("/logout")
+//	public String logout(HttpServletRequest request) {
+//		
+//        HttpSession session = request.getSession(false); // Lấy phiên hiện tại, nếu không tồn tại thì không tạo mới
+//
+//        if (session != null) {
+//            session.invalidate(); // Kết thúc phiên (invalidate session)
+//        }
+//
+//        return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
+//    }
+	
+	@GetMapping(value={"/logoutSuccessful"})
+	public String logout(Model model, Principal principal,HttpServletRequest request) {
+		
+		 if(  principal == null) {
+			 return "redirect:/";
+		 }
+		
+	      HttpSession session = request.getSession(false); // Lấy phiên hiện tại, nếu không tồn tại thì không tạo mới
+	
+	      if (session != null) {
+	          session.invalidate(); // Kết thúc phiên (invalidate session)
+	      }
+	      return "redirect:/login"; // Chuyển hướng về trang đăng nhập sau khi logout
+	}
+	
 	
 	@GetMapping("/payment")  //doi sau
 	public String showPayment() {
@@ -274,7 +293,7 @@ public class UserController {
 		 int offset = page*n-n;
 		
 		 String email = (String) session.getAttribute("email");
-		 User user = userService.getUserByEmail(email);
+		 AppUser user = userService.getUserByEmail(email);
 		 
 		 List<Order> list = orderService.getListOrder(user.getUserID(), offset, n);
 		 
@@ -305,7 +324,7 @@ public class UserController {
 		 
 		 String email = (String) session.getAttribute("email");
 		 
-		 User user = userService.getUserByEmail(email);
+		 AppUser user = userService.getUserByEmail(email);
 		 
 		 List< Cart> list = cartService.getCartByEmail(email);
 		 
@@ -343,7 +362,7 @@ public class UserController {
 		 
 		 String email = (String) session.getAttribute("email");
 		 
-		 User user = userService.getUserByEmail(email);
+		 AppUser user = userService.getUserByEmail(email);
 		 
 		 Cart cart = new Cart();
 		 cart.setProductid(p);
@@ -414,7 +433,7 @@ public class UserController {
 		 
 	     String email = (String) session.getAttribute("email");
 		 
-		 User user = userService.getUserByEmail(email);
+		 AppUser user = userService.getUserByEmail(email);
 		 
 		 List< Cart> list = cartService.getCartByEmail(email);
 		
@@ -534,4 +553,20 @@ public class UserController {
 	public String showTraGop() {
 		return "tragop";
 	}
+	
+	
+	@GetMapping(value={"/loginfail"})
+	public String errorLogin(Model model, Principal principal) {
+		
+		
+		if(principal != null) {
+			return "redirect:/";
+		}
+		
+		model.addAttribute("error", "Sai username hoặc password");	
+		return "login";
+	}
+	
+	
+	
 }

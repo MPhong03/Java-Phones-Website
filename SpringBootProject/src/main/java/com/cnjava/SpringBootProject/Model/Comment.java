@@ -28,14 +28,14 @@ public class Comment {
 	
 	@ManyToOne
 	@JoinColumn(name = "userid")
-	private User user;
+	private AppUser user;
 
 	public Comment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int commentid, String commenttext, String date, int rate, Product product, User user) {
+	public Comment(int commentid, String commenttext, String date, int rate, Product product, AppUser user) {
 		super();
 		this.commentid = commentid;
 		this.commenttext = commenttext;
@@ -77,11 +77,11 @@ public class Comment {
 		this.product = product;
 	}
 
-	public User getUser() {
+	public AppUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(AppUser user) {
 		this.user = user;
 	}
 

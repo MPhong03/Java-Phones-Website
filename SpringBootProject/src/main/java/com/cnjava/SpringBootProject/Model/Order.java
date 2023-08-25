@@ -22,7 +22,7 @@ public class Order {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userid", nullable = false)
-	private User userid;
+	private AppUser userid;
 	
 	@Column(name = "date")
 	private String date;
@@ -64,7 +64,7 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Order(int orderid, User userid, String date, String discount, int total, int status, String fullname,
+	public Order(int orderid, AppUser userid, String date, String discount, int total, int status, String fullname,
 			String email, String phonenumber, String province, String address, String code) {
 		super();
 		this.orderid = orderid;
@@ -89,11 +89,11 @@ public class Order {
 		this.orderid = orderid;
 	}
 
-	public User getUserid() {
+	public AppUser getUserid() {
 		return userid;
 	}
 
-	public void setUserid(User userid) {
+	public void setUserid(AppUser userid) {
 		this.userid = userid;
 	}
 

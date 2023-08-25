@@ -1,39 +1,37 @@
 package com.cnjava.SpringBootProject.Model;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="roles")
+@Table(name = "role", //
+uniqueConstraints = { //
+        @UniqueConstraint(name = "ROLE_UK", columnNames = "name") })
 public class Role {
+		
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 	
-	@Column(nullable = false, unique = true)
+	@Column(name ="name")
 	private String name;
 
-	@ManyToMany(mappedBy = "roles")
-	private List<Admin> admins;
+	public Role(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 
 	public Role() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Role(int id, String name, List<Admin> admins) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.admins = admins;
 	}
 
 	public int getId() {
@@ -51,14 +49,7 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public List<Admin> getAdmins() {
-		return admins;
-	}
-
-	public void setAdmins(List<Admin> admins) {
-		this.admins = admins;
-	}
 	
 	
 }
+

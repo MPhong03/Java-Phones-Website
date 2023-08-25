@@ -19,7 +19,7 @@ import com.cnjava.SpringBootProject.Model.Cart;
 import com.cnjava.SpringBootProject.Model.Code;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.OrderDetail;
-import com.cnjava.SpringBootProject.Model.User;
+import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Repository.CardRepository;
 import com.cnjava.SpringBootProject.Service.CartService;
 import com.cnjava.SpringBootProject.Service.CodeService;
@@ -101,7 +101,7 @@ public class JsonResponse {
 				    String userEmail = (String) session.getAttribute("email");
 				    
 					 
-					User user = userService.getUserByEmail(userEmail);
+					AppUser user = userService.getUserByEmail(userEmail);
 					
 					Date date = new Date();  
 					SimpleDateFormat formatter = new SimpleDateFormat("dd-M-yyyy hh:mm:ss a");  

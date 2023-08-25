@@ -22,7 +22,7 @@ public class Cart {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "userid", nullable = false)
-	private User userid;
+	private AppUser userid;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -40,7 +40,7 @@ public class Cart {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cart(int cartID, User userid, Product productid, int quantity, int price) {
+	public Cart(int cartID, AppUser userid, Product productid, int quantity, int price) {
 		super();
 		this.cartID = cartID;
 		this.userid = userid;
@@ -57,11 +57,11 @@ public class Cart {
 		this.cartID = cartID;
 	}
 
-	public User getUserid() {
+	public AppUser getUserid() {
 		return userid;
 	}
 
-	public void setUserid(User userid) {
+	public void setUserid(AppUser userid) {
 		this.userid = userid;
 	}
 
