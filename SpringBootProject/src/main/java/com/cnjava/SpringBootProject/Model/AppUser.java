@@ -44,9 +44,6 @@ public class AppUser {
 	@Column(name = "phonenumber", length = 255)
 	private String PhoneNumber;
 	
-	@Column(name = "isadmin")
-	private boolean IsAdmin;
-	
 	@Column(name ="otp")
 	private String otp;
 	
@@ -63,8 +60,7 @@ public class AppUser {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public AppUser(int userID, String email, String userName, String password, String address, String phoneNumber,
-			boolean isAdmin, String otp, boolean enable, String otp_requested_time, List<Comment> comments) {
+	public AppUser(int userID, String email, String userName, String password, String address, String phoneNumber, String otp, boolean enable, String otp_requested_time, List<Comment> comments) {
 		super();
 		UserID = userID;
 		Email = email;
@@ -72,7 +68,6 @@ public class AppUser {
 		Password = password;
 		Address = address;
 		PhoneNumber = phoneNumber;
-		IsAdmin = isAdmin;
 		this.otp = otp;
 		this.enable = enable;
 		this.otp_requested_time = otp_requested_time;
@@ -108,12 +103,7 @@ public class AppUser {
 	public void setPhoneNumber(String phoneNumber) {
 		PhoneNumber = phoneNumber;
 	}
-	public boolean isIsAdmin() {
-		return IsAdmin;
-	}
-	public void setIsAdmin(boolean isAdmin) {
-		IsAdmin = isAdmin;
-	}
+
 	public String getOtp() {
 		return otp;
 	}
