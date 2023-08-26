@@ -45,7 +45,19 @@
                        <tbody th:with="mycounter = ${counter.get()}">
 						   <tr th:with="mycounter=${counter.incrementAndGet()}"  th:each ="cart : ${list}" >
 							   <td th:text = "${mycounter}" ></td>
-							   <td> <img th:src = "${cart.productid.firstImageUrl}" style="width: 50%;"> </td>
+							   <td style="width:15%">
+				                    <div  lass="carousel carousel-dark slide"
+										data-bs-ride="carousel">
+										
+										<div class="carousel-inner rounded">
+											<div th:each="image, imageIndex : ${#strings.arraySplit(cart.productid.ImageLink, ';')}"  class="carousel-item" th:classappend="${imageIndex.index == 0}? 'active' : ''">
+				                                <img class="img-thumbnail mx-auto" th:src="${image}" th:alt="${cart.productid.ProductName}">
+				                            </div>
+										</div>
+									
+										
+									</div>
+				                </td>
 							   
 							   <td> <a style="color: black;" th:href="@{'/product/' + ${cart.productid.ProductID}}"> <span th:text = "${cart.productid.ProductName}"> </span> </a></td>
 							   <td>

@@ -31,54 +31,77 @@ public class OrderDetail {
 	
 	@Column(name = "quantity")
 	private int quantity;
+	
+
+	@Column(name = "color")
+	private String color;
+
 
 	public OrderDetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public OrderDetail(int orderdetailID, Order orderid, Product productid, int quantity) {
+
+	public OrderDetail(int orderdetailID, Order orderid, Product productid, int quantity, String color) {
 		super();
 		this.orderdetailID = orderdetailID;
 		this.orderid = orderid;
 		this.productid = productid;
 		this.quantity = quantity;
+		this.color = color;
 	}
+
 
 	public int getOrderdetailID() {
 		return orderdetailID;
 	}
 
+
 	public void setOrderdetailID(int orderdetailID) {
 		this.orderdetailID = orderdetailID;
 	}
+
 
 	public Order getOrderid() {
 		return orderid;
 	}
 
+
 	public void setOrderid(Order orderid) {
 		this.orderid = orderid;
 	}
+
 
 	public Product getProductid() {
 		return productid;
 	}
 
+
 	public void setProductid(Product productid) {
 		this.productid = productid;
 	}
+
 
 	public int getQuantity() {
 		return quantity;
 	}
 
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
-	
+
+
+	public String getColor() {
+		return color;
+	}
+
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	
 	
 }

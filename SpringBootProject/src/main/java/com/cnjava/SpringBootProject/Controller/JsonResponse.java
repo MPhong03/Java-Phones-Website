@@ -140,6 +140,7 @@ public class JsonResponse {
 						od.setOrderid(tmpOrder);
 						od.setProductid(c.getProductid());
 						od.setQuantity(c.getQuantity());
+						od.setColor(c.getColor());
 						
 						orderDetailService.saveDetail(od);
 						
