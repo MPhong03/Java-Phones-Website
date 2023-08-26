@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>Lời nhắn</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+
+<style>
+	.date{
+		font-size: 20px;
+	}
+</style>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<div th:replace="~{layouts/admin/sidebar :: sidebar}"></div>
+
+			<!-- Main -->
+			<div class="col-sm p-3 min-vh-100" >
+				
+				<h2 class="text-center"> Lời nhắn</h2>
+				
+				<p style="color: red;" th:text="${message}">  </p>
+				
+				<hr>
+				
+				
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="table-dark">
+							<tr>
+								<th>STT</th>
+								<th>Họ tên</th>
+								<th>Ngày</th>
+								<th>Tiêu đề</th>
+								<th>*</th>
+								<th>**</th>
+							</tr>
+						</thead>
+						<tbody th:with="mycounter = ${counter.get()}">
+							<tr  th:with="mycounter=${counter.incrementAndGet()}"  th:each ="mes : ${list}" >
+								<td th:text = "${mycounter}"> </td>
+								<td th:text = "${mes.name}" > </td>
+								<td th:text = "${mes.date}" > </td>
+								<td th:text = "${mes.title}" > </td>
+								<td > <a th:href="@{'/admin/mesdetail?id=' + ${mes.mesid}}" style="text-decoration: none;"> Xem chi tiết </a></td>
+								<td> 
+									<form action="/deletemes" method="post">
+										<input type="hidden" name="page" th:value="${pre} + 1" >
+										<input type="hidden" name="mesid" th:value="${mes.mesid}" >
+										<button type="submit" class="btn btn-danger"> Xóa</button>
+									</form>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="page" style="text-align: center; margin-bottom: 20px;">
+								  	<a class="btn btn-primary" onclick="pre()" role="button" th:if="${pre != 0}">Trước </a>
+								  	<a class="btn btn-primary"  onclick="next()" role="button" th:if="${size!= 0}">Sau</a>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		
+		
+		function pre(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+		
+			var page =  parseInt(urlParams.get('page')) - 1;
+			
+			window.location.href = "/admin/messages?page=" + page ;
+		}
+		
+		function next(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var page =  parseInt(urlParams.get('page')) + 1;
+			
+		   window.location.href = "/admin/messages?page=" + page ;
+		}
+		
+		
+		
+	</script>
+
+</body>
+
+</html>

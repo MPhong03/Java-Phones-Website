@@ -27,10 +27,12 @@ import com.cnjava.SpringBootProject.Config.AppConfig;
 import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Category;
+import com.cnjava.SpringBootProject.Model.Message;
 import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.UserRole;
 import com.cnjava.SpringBootProject.Model.Value;
+import com.cnjava.SpringBootProject.Repository.MessageRepository;
 import com.cnjava.SpringBootProject.Repository.RoleRepository;
 import com.cnjava.SpringBootProject.Repository.UserRoleRepository;
 import com.cnjava.SpringBootProject.Service.BrandService;
@@ -66,6 +68,9 @@ public class AdminController {
     
     @Autowired
     private UserRoleRepository userRoleRepository;
+    
+    @Autowired
+    private MessageRepository mesRepository;
     
 //    @Autowired
 //    private AdminService adminService;
@@ -438,4 +443,36 @@ public class AdminController {
 		return "redirect:/admin/accountdetail?id=" + user.getUserID();
 		
 	}
+	
+	@GetMapping(value = {"/admin/messages"})
+	public String showMessage(@RequestParam("page") int page, Model model) {
+		
+		int n = 10;
+		
+		List<Message> list = mesRepository.getMessage(page*n-n, n);
+		
+		model.addAttribute("counter", new Counter());
+		model.addAttribute("list", list);
+		model.addAttribute("size", list.size());
+		model.addAttribute("pre", page - 1);
+		
+		return "admin/messagemanagement";
+	}
+	
+	@GetMapping(value = {"/admin/mesdetail"})
+	public String showMessageDetail(@RequestParam("id") int id, Model model) {
+		
+		Message m = mesRepository.getById(id);
+		model.addAttribute("mes",m);
+	
+		return "admin/mesdetail";
+	}
+	
+	@PostMapping("/deletemes")
+	public String deleteMes(@RequestParam("mesid") int mesid, @RequestParam("page") int page,RedirectAttributes redirectAttributes) {
+		mesRepository.deleteById(mesid);
+		redirectAttributes.addFlashAttribute("message","Đã xóa");
+		return "redirect:/admin/messages?page="+page;
+	}
+	
 }
