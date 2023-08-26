@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+<title>Quản lý đơn hàng</title>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<div th:replace="~{layouts/admin/sidebar :: sidebar}"></div>
+
+			<!-- Main -->
+			<div class="col-sm p-3 min-vh-100" >
+			
+				<form th:action="@{/admin/orders}" method="get" class="form-inline">
+				    <div class="row">
+				        <div class="form-group col-md-4">
+				            <select name="status" class="form-control">
+				                <option value="">Trạng thái</option>
+				                <option value="0">Đang xử lý</option>
+				                <option value="1">Đang giao hàng</option>
+				                <option value="2">Đã giao hàng</option>
+				            </select>
+				        </div>
+				        
+				        <div class="form-group col-md-4">
+				            <input type="text" name="keyword" placeholder="Nhập vào email, số điện thoại,..." class="form-control">
+				        </div>
+				        
+				        <div class="form-group col-md-4">
+				            <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+				        </div>
+				    </div>
+				</form>
+
+
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Email</th>
+							<th scope="col">Tên người dùng</th>
+							<th scope="col">Số điện thoại</th>
+							<th scope="col">Địa chỉ</th>
+							<th scope="col">Tĩnh</th>
+							<th scope="col">Mã đơn hàng</th>
+							<th scope="col">Mã giảm giá</th>
+							<th scope="col">Ngày đặt</th>
+							<th scope="col">Trạng thái</th>
+							<th scope="col">Tổng cộng</th>
+						</tr>
+					</thead>
+					
+					<tbody id="orderTableBody">
+						<th:block th:each="order : ${orders}">
+							<tr>
+								<th scope="row">1</th>
+								<td th:text="${order.email}"></td>
+								<td th:text="${order.fullname}"></td>
+								<td th:text="${order.phonenumber}"></td>
+								<td th:text="${order.address}"></td>
+								<td th:text="${order.province}"></td>
+								<td th:text="${order.code}"></td>
+								<td th:text="${order.discount}"></td>
+								<td th:text="${order.date}"></td>
+								<td>
+								    <form th:action="@{/admin/orders/update-status}" method="post">
+								        <input type="hidden" name="orderid" th:value="${order.orderid}">
+								        <select name="status" class="form-control" onchange="this.form.submit()">
+								            <option value="0" th:selected="${order.status == 0}">Đang xử lý</option>
+								            <option value="1" th:selected="${order.status == 1}">Đang giao hàng</option>
+								            <option value="2" th:selected="${order.status == 2}">Đã giao hàng</option>
+								        </select>
+								    </form>
+								</td>
+
+								<td th:text="${order.total} + ' VNĐ'"></td>
+							</tr>
+						
+						</th:block>
+					</tbody>
+				</table>
+				
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

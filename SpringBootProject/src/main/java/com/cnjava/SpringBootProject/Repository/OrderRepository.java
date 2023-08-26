@@ -22,4 +22,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query("SELECT or FROM Order or WHERE or.userid.Email= :mail and or.orderid= :id")
 	Order getOrderIdEmail(@Param("mail") String mail, @Param("id") int id);
+	
+	@Query("SELECT o FROM Order o WHERE o.status= :status")
+	List<Order> getOrdersByStatus(@Param("status") int status);
+	
+	@Query("SELECT o FROM Order o WHERE o.email LIKE %:keyword% OR o.phonenumber LIKE %:keyword%")
+	List<Order> searchOrders(@Param("keyword") String keyword);
 }

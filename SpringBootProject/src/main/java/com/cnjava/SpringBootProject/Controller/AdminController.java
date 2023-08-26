@@ -26,6 +26,7 @@ import com.cnjava.SpringBootProject.Config.AppConfig;
 import com.cnjava.SpringBootProject.Model.AppUser;
 import com.cnjava.SpringBootProject.Model.Brand;
 import com.cnjava.SpringBootProject.Model.Category;
+import com.cnjava.SpringBootProject.Model.Order;
 import com.cnjava.SpringBootProject.Model.Product;
 import com.cnjava.SpringBootProject.Model.UserRole;
 import com.cnjava.SpringBootProject.Model.Value;
@@ -33,6 +34,7 @@ import com.cnjava.SpringBootProject.Repository.RoleRepository;
 import com.cnjava.SpringBootProject.Repository.UserRoleRepository;
 import com.cnjava.SpringBootProject.Service.BrandService;
 import com.cnjava.SpringBootProject.Service.CategoryService;
+import com.cnjava.SpringBootProject.Service.OrderService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.UserService;
 import com.cnjava.SpringBootProject.Service.ValueService;
@@ -58,7 +60,8 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
     
-    
+    @Autowired
+    private OrderService orderService;
     
     @Autowired
     private UserRoleRepository userRoleRepository;
@@ -340,4 +343,33 @@ public class AdminController {
 		
 	}
 
+	@GetMapping(value = {"/admin/orders"})
+	public String ordersManagement(
+			@RequestParam(name = "status", required = false) Integer status,
+            @RequestParam(name = "keyword", required = false) String keyword,
+            Model model) {
+		
+		List<Order> orders;
+
+	    if (status != null) {
+	        orders = orderService.getOrdersByStatus(status);
+	    } else if (keyword != null) {
+	        orders = orderService.searchOrders(keyword);
+	    } else {
+	        orders = orderService.getAllOrders();
+	    }
+	    
+	    model.addAttribute("orders", orders);
+		
+		return "admin/ordersManagement";
+	}
+	
+	@PostMapping("/admin/orders/update-status")
+	public String updateOrderStatus(@RequestParam("orderid") int orderId,
+	                                @RequestParam("status") int status) {
+	    Order order = orderService.getOrderById(orderId);
+	    order.setStatus(status);
+	    orderService.saveOrder(order);
+	    return "redirect:/admin/orders";
+	}
 }

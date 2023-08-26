@@ -36,5 +36,16 @@ public class OrderService {
 	public Order getOrderIdMail(String email, int id) {
 		return orderRepository.getOrderIdEmail(email, id);
 	}
+
+	public List<Order> getAllOrders() {
+		return orderRepository.findAll();
+	}
 	
+	public List<Order> getOrdersByStatus(int status) {
+		return orderRepository.getOrdersByStatus(status);
+	}
+	
+	public List<Order> searchOrders(String keyword) {
+		return orderRepository.searchOrders(keyword);
+	}
 }
