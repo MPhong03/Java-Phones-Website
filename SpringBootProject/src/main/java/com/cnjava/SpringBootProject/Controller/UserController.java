@@ -93,7 +93,11 @@ public class UserController {
 	private CommentRepository commentRepository;
 	
 	@GetMapping(value = {"/login","/sendOTP","/updatePassword","/updateUser"})
-	public String showLoginForm() {
+	public String showLoginForm(Principal principal) {
+		
+//		if(principal != null) {
+//			return "redirect:/";
+//		}
 		
 		return "login";
 	}
@@ -147,7 +151,9 @@ public class UserController {
 		
 		userRoleRepository.save(us);
 		
-		return "redirect:/login";
+		
+		
+		return "redirect:/login?success";
 	}
 	
 	public String generateOTP(int length) {
