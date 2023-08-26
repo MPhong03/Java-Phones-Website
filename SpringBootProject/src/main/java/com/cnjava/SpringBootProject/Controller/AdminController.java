@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cnjava.SpringBootProject.Config.AppConfig;
 import com.cnjava.SpringBootProject.Model.AppUser;
@@ -345,6 +346,10 @@ public class AdminController {
 		return "admin/listaccount";
 		
 	}
+	
+	
+	
+	
 
 	@GetMapping(value = {"/admin/orders"})
 	public String ordersManagement(
@@ -374,5 +379,63 @@ public class AdminController {
 	    order.setStatus(status);
 	    orderService.saveOrder(order);
 	    return "redirect:/admin/orders";
+	}
+	
+	@GetMapping("/admin/accountdetail")
+	public String showAccountDetail(@RequestParam("id") int id, Model model) {
+		
+		
+		model.addAttribute("counter", new Counter());
+		
+		AppUser user  = userService.getUserById(id);
+		
+		List<UserRole> list = userRoleRepository.getRole(id);
+		
+		model.addAttribute("user", user);
+		model.addAttribute("list", list);
+		
+		return "admin/accountdetail";
+	}
+	
+	@PostMapping("/deleterole")
+	public String deleteRole(@RequestParam("userid") int userid,@RequestParam("roleid") int roleid , RedirectAttributes redirectAttributes) {
+		 userRoleRepository.deleteById(roleid);
+		 redirectAttributes.addFlashAttribute("message", "Đã xóa role thành công");
+		 return "redirect:/admin/accountdetail?id=" + userid;
+	}
+	
+	
+	@PostMapping("/addrole")
+	public String addRole(@RequestParam("userid") int userid,@RequestParam("type") int type , RedirectAttributes redirectAttributes) {
+		 
+		UserRole tmp = userRoleRepository.check(userid, type);
+		
+		if(tmp != null) {
+			 redirectAttributes.addFlashAttribute("message", "Role đã tồn tại");
+			 return "redirect:/admin/accountdetail?id=" + userid;
+		}
+		
+		UserRole newRole = new UserRole();
+		
+		newRole.setUser(userService.getUserById(userid));
+		newRole.setAppRole(roleRepository.findById(type));
+		
+		userRoleRepository.save(newRole);
+		 redirectAttributes.addFlashAttribute("message", "Đã cấp role thành công");
+		 return "redirect:/admin/accountdetail?id=" + userid;
+	}
+	
+	@PostMapping("/searchemail")
+	public String searchEmail(@RequestParam("email") String email, RedirectAttributes redirectAttributes) {
+		
+		AppUser user = userService.getUserByEmail(email);
+		
+		if(user == null) {
+			redirectAttributes.addFlashAttribute("message", "Không tìm thấy tài khoản");
+			return "redirect:/admin/listaccount?page=1&type=all";
+		}
+		
+		return "redirect:/admin/accountdetail?id=" + user.getUserID();
+		
 	}
 }

@@ -55,9 +55,10 @@
 				<form style="width: 20%; margin-bottom: 40px;" action="/searchemail" method="post">
 					 <div class="mb-3">
 					    <label for="exampleInputEmail1" class="form-label">Tìm kiếm tài khoản: </label>
-					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email" required>
+					    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email" required>
 					
 					  </div>
+					   <p style="color: red;" th:text="${message}">  </p>
 					 <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Tìm kiếm</button>
 				</form>
 				
@@ -81,7 +82,7 @@
 								<td th:text = "${acc.Email}" > </td>
 								<td th:text = "${acc.Address}" > </td>
 								<td th:text = "${acc.PhoneNumber}" > </td>
-								<td><a th:href="@{'/admin/accountdetail?id=' + ${acc.UserID}}"> Xem chi tiết</a></td>
+								<td><a th:href="@{'/admin/accountdetail?id=' + ${acc.UserID}}" style="text-decoration: none;"> Xem chi tiết</a></td>
 							</tr>
 							
 						</tbody>

@@ -21,4 +21,10 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 	
 	@Query(nativeQuery = true,value="Select * from userrole where roleid = 1 limit :page,:number")
 	List<UserRole> getLimitAdmin(@Param("page") int page, @Param("number") int n);
+	
+	@Query("SELECT ur FROM UserRole ur where ur.user.UserID=:id")
+	List<UserRole> getRole(@Param("id") int id);
+	
+	@Query("SELECT ur FROM UserRole ur WHERE ur.user.UserID=:userid and ur.appRole.id=:roleid")
+	UserRole check(@Param("userid") int userid, @Param("roleid") int roleid );
 }
