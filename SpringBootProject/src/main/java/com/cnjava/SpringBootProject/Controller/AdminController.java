@@ -286,7 +286,10 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin/listaccount")
-	public String showListAccount(@RequestParam("page") int page, Model model,@RequestParam("type") String type) {
+	public String showListAccount(
+			@RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "type", defaultValue = "all") String type,
+            Model model) {
 		
 		int n = 10;
 		
