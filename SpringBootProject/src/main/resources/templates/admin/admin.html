@@ -16,12 +16,19 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <title>Home</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 
 
 <title>Dashboard</title>
+
+<style>
+	.date{
+		font-size: 20px;
+	}
+</style>
 
 </head>
 
@@ -32,12 +39,54 @@
 			<div th:replace="~{layouts/admin/sidebar :: sidebar}"></div>
 
 			<!-- Main -->
-			<div class="col-sm p-3 min-vh-100">
+			<div class="col-sm p-3 min-vh-100" >
 			
-				<h1 class="text-center">WELCOME TO DASHBOARD!</h1>
+				<h1 class="text-center">Welcome <span th:text="${session.username}" > ABC </span> </h1>
+				
+				<h2 class="text-center"> Current Date</h2>
+				<div class="date" id="currentDate" style="text-align: center;"> </div>
+				<h2   class="text-center" >Current Time</h2>
+				<div class="date" id="currentTime" style="text-align: center;"> </div>
+				
+				<h2   class="text-center" >Current Date & Time</h2>
+				<div class="date" id="current" style="text-align: center;"> </div>
+					
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		var today = new Date();
+		var date = today.getDate() + ' / ' + (today.getMonth()+1) + ' / ' + today.getFullYear();
+		
+		document.getElementById("currentDate").innerHTML = date;
+		
+		function startTime(){
+			var today = new Date();
+			
+			var hours = today.getHours();
+			var minutes = today.getMinutes();
+			var seconds = today.getSeconds();
+			
+			
+			
+			if(minutes < 10){
+				minutes = '0'+minutes;
+			}
+			
+			if(seconds < 10){
+				seconds = '0'+seconds;
+			}
+			
+			var time = hours +' : ' + minutes +' : ' + seconds ;
+			
+			document.getElementById("currentTime").innerHTML = time;
+			
+			document.getElementById("current").innerHTML = today;
+		}
+		
+		setInterval(function(){startTime()},1000);
+	</script>
 
 </body>
 

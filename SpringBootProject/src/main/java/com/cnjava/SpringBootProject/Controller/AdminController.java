@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,8 @@ public class AdminController {
     @Autowired
     private RoleRepository roleRepository;
     
+    
+    
     @Autowired
     private UserRoleRepository userRoleRepository;
     
@@ -66,6 +69,8 @@ public class AdminController {
     
     @GetMapping("/admin")
     public String index() {
+    	
+    	
     	return "admin/admin";
     }
     
