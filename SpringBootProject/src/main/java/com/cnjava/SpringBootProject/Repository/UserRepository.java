@@ -1,6 +1,8 @@
 package com.cnjava.SpringBootProject.Repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -37,4 +39,9 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
 	@Query("Update AppUser u set u.UserName = :username, u.Address = :address, u.PhoneNumber = :phone  WHERE u.Email = :email")
 	int updateUser(@Param("username") String username,  @Param("address") String address,  @Param("phone") String phone,@Param("email") String email );
 	
+	
+	@Query(nativeQuery = true,value="Select * from user limit :page,:number")
+	List<AppUser> getLimitUser(@Param("page") int page, @Param("number") int n);
+	
+
 }

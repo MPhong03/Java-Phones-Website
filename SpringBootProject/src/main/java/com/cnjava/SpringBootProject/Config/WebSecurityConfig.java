@@ -55,7 +55,7 @@ public class WebSecurityConfig {
          
         // Trang chỉ dành cho ADMIN
 
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("/admin","/admin/register","/admin/register/save","/admin/products","/admin/brands","/admin/categories","/addProduct","/deleteProduct","/addBrand","/renameBrand","/deleteBrand","/addCategory","/renameCategory","/deleteCategory").hasRole("ADMIN"));
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/admin/listaccount","/filteraccount","/admin","/admin/register","/admin/register/save","/admin/products","/admin/brands","/admin/categories","/addProduct","/deleteProduct","/addBrand","/renameBrand","/deleteBrand","/addCategory","/renameCategory","/deleteCategory").hasRole("ADMIN"));
          // Trang cho bat ky role
          http.authorizeHttpRequests(authz -> authz.requestMatchers("/payment/saveorder","/cart","/userinfo","/updateUser","/payment","/order","/addcart/*","/buynow/*","/submit-comment","/deletecomment","/cart/*","/updatequantity","/getCode","/deletecart/*","/checkout","/orderdetail","/searchorder","/editorder").hasAnyRole("ADMIN","USER"));
 

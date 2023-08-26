@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -272,6 +273,71 @@ public class AdminController {
 	public String deleteCategory(@RequestParam int CategoryID) {
 		categoryService.deleteById(CategoryID);
 		return "redirect:/admin/categories";
+	}
+	
+	@PostMapping(value = {"/filteraccount"})
+	public String filterAccount(@RequestParam String type) {
+		
+		return "redirect:/admin/listaccount?page=1&type=" + type;
+	}
+	
+	
+	@GetMapping("/admin/listaccount")
+	public String showListAccount(@RequestParam("page") int page, Model model,@RequestParam("type") String type) {
+		
+		int n = 10;
+		
+		if(type.equals("all")) {
+			List<AppUser> list = userService.getLimit(page*n-n, n);
+		
+			model.addAttribute("list", list);
+			
+			model.addAttribute("pre", page-1);
+			model.addAttribute("size", list.size());
+			model.addAttribute("counter", new Counter());
+			model.addAttribute("title", "Tất cả tài khoản");
+			return "admin/listaccount";
+		}
+		else {
+			if(type.equals("user")) {
+				List<UserRole> l = userRoleRepository.getLimitUser(page*n-n, n);
+				
+				List<AppUser> list = new ArrayList<>();
+				
+				for(UserRole r : l) {
+					list.add(r.getUser());
+				}
+						
+				model.addAttribute("list", list);
+				
+				model.addAttribute("pre", page-1);
+				model.addAttribute("size", list.size());
+				model.addAttribute("counter", new Counter());
+				model.addAttribute("title", "Tài khoản User");
+				return "admin/listaccount";
+			}
+			
+			
+		}
+		
+		List<UserRole> l = userRoleRepository.getLimitAdmin(page*n-n, n);
+		
+		List<AppUser> list = new ArrayList<>();
+		
+		for(UserRole r : l) {
+			list.add(r.getUser());
+		}
+				
+		model.addAttribute("list", list);
+		
+		model.addAttribute("pre", page-1);
+		model.addAttribute("size", list.size());
+		model.addAttribute("counter", new Counter());
+		model.addAttribute("title", "Tài khoản Admin");
+		
+		
+		return "admin/listaccount";
+		
 	}
 
 }

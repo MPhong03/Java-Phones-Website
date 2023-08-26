@@ -53,4 +53,9 @@ public class UserService {
 		return userRepository.updateUser(username, address, phone, email);
 	}
 	
+	public List<AppUser> getLimit(int page, int n){
+		return userRepository.getLimitUser(page, n);
+	}
+	
+	
 }

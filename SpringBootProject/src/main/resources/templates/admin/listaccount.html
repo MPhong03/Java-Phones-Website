@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>Danh sách tài khoản</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+<title>Dashboard</title>
+
+<style>
+	.date{
+		font-size: 20px;
+	}
+</style>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<div th:replace="~{layouts/admin/sidebar :: sidebar}"></div>
+
+			<!-- Main -->
+			<div class="col-sm p-3 min-vh-100" >
+				
+				<h2 class="text-center" th:text="${title}"></h2>
+				
+				<form style="width: 20%; margin-bottom: 40px;" action="/filteraccount" method="post">
+					 <select class="form-select" aria-label="Default select example" name="type">
+					  <option value="all">Tất cả</option>
+					  <option value="user">User</option>
+					   <option value="admin">Admin</option>
+					</select>
+					 <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Lọc</button>
+				</form>
+				
+				<form style="width: 20%; margin-bottom: 40px;" action="/searchemail" method="post">
+					 <div class="mb-3">
+					    <label for="exampleInputEmail1" class="form-label">Tìm kiếm tài khoản: </label>
+					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập email" required>
+					
+					  </div>
+					 <button style="margin-top: 10px;" type="submit" class="btn btn-primary">Tìm kiếm</button>
+				</form>
+				
+				
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="table-dark">
+							<tr>
+								<th>STT</th>
+								<th>Username</th>
+								<th>Email</th>
+								<th>Địa chỉ</th>
+								<th>Số điện thoại</th>
+								<th>**</th>
+							</tr>
+						</thead>
+						<tbody th:with="mycounter = ${counter.get()}">
+							<tr  th:with="mycounter=${counter.incrementAndGet()}"  th:each ="acc : ${list}" >
+								<td th:text = "${mycounter}"> </td>
+								<td th:text = "${acc.UserName}" > </td>
+								<td th:text = "${acc.Email}" > </td>
+								<td th:text = "${acc.Address}" > </td>
+								<td th:text = "${acc.PhoneNumber}" > </td>
+								<td><a th:href="@{'/admin/accountdetail?id=' + ${acc.UserID}}"> Xem chi tiết</a></td>
+							</tr>
+							
+						</tbody>
+					</table>
+				</div>
+				<div class="page" style="text-align: center; margin-bottom: 20px;">
+								  	<a class="btn btn-primary" onclick="pre()" role="button" th:if="${pre != 0}">Trước </a>
+								  	<a class="btn btn-primary"  onclick="next()" role="button" th:if="${size!= 0}">Sau</a>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		
+		
+		function pre(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var type = urlParams.get('type');
+			var page =  parseInt(urlParams.get('page')) - 1;
+			
+			window.location.href = "/admin/listaccount?page=" + page +"&type=" + type;
+		}
+		
+		function next(){
+			const queryString = window.location.search;
+			const urlParams = new URLSearchParams(queryString);
+			
+			var type = urlParams.get('type');
+			var page =  parseInt(urlParams.get('page')) + 1;
+			
+			window.location.href = "/admin/listaccount?page=" + page +"&type=" + type;
+		}
+		
+		
+		
+	</script>
+
+</body>
+
+</html>
