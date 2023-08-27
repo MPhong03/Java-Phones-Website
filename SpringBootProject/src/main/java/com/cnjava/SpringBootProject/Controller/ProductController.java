@@ -123,6 +123,12 @@ public class ProductController {
 		List<Value> values = valueService.getValuesByProductID(id);
 		List<Comment> comments = commentRepository.findAllCommentsByProductID(id);
 		
+		Integer totalrate = 0;
+		
+		for(Comment comment: comments) {
+			totalrate += comment.getRate();
+		}
+		
 		String email = (String)session.getAttribute("email");
 		
 		AppUser user = userRepository.findByEmail(email);
@@ -131,6 +137,13 @@ public class ProductController {
 		model.addAttribute("performances", values);
 		model.addAttribute("comments", comments);
 		model.addAttribute("email", session.getAttribute("email"));
+		
+		if(comments.size() != 0) {
+			model.addAttribute("totalrate", Math.round(totalrate / comments.size()));
+		} else {
+			model.addAttribute("totalrate", 0);
+		}
+		
 		
 		List<String> imageLinks = Arrays.asList(product.getImageLink().split(";"));
 

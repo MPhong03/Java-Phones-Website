@@ -31,9 +31,19 @@
 				<p th:text="${message}" style="color: red;"> </p> 	
 			</div>
 			
-			<div class="col-12">
-				<h2 th:text="${product.ProductName}">Name</h2>
+			<div class="col-12 d-md-flex align-items-center">
+			    <h3 class="me-md-3 mb-3 mb-md-0" th:text="${product.ProductName}">Name</h3>
+			    <div class="rating ml-md-3">
+			        <span th:remove="tag" th:each="i : ${#numbers.sequence(1, 5)}">
+			            <i th:if="${i <= totalrate}" class="fa fa-star rating-color"></i>
+			            <i th:unless="${i <= totalrate}" class="fa fa-star"></i>
+			        </span>
+			    </div>
+			    <span class="ms-md-3 text-danger" th:text="${comments.size()} + ' đánh giá'"></span>
 			</div>
+
+
+
 			<div class="col-lg-3">
 				<div class="ecommerce-gallery">
 					<div class="row py-3 shadow-5">
@@ -93,7 +103,7 @@
 				<h2 id="price" class="text-danger" th:text="${product.price}"></h2>
 				<h5>Màu sắc</h5>
 				<div class="row ">
-				    <div class="col-4" th:each="color : ${#strings.arraySplit(product.colors, ',')}">
+				    <div class="col-4 mt-3" th:each="color : ${#strings.arraySplit(product.colors, ',')}">
 				        <input type="radio" onclick="setcolor()" class="btn-check" name="selectedColor" th:value="${color}" th:id="'color-' + ${color}" autocomplete="off">
 				        <label class="btn btn-outline-danger w-100" th:for="'color-' + ${color}">
 				        	<span th:text="${color}">Đen</span>
