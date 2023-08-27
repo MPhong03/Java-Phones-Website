@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 27, 2023 at 04:04 PM
+-- Generation Time: Aug 27, 2023 at 05:10 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -322,7 +322,20 @@ INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `
 (54, 'Điện thoại Xiaomi đang dần khẳng định chỗ đứng của mình trong phân khúc flagship bằng việc ra mắt Xiaomi 12 với bộ thông số ấn tượng, máy có một thiết kế gọn gàng, hiệu năng mạnh mẽ, màn hình hiển thị chi tiết cùng khả năng chụp ảnh sắc nét nhờ trang bị ống kính đến từ Sony.', '/uploads/Xiaomi-12-tim-thumb-mau-200x200.jpg;/uploads/Xiaomi-12-xanh-duong-thumb-mau-200x200.jpg;/uploads/Xiaomi-12-xam-thumb-mau-200x200.jpg;', 'Xiaomi 12 5G ', 'Xám,Xanh dương,Tím', 11990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 3, 1),
 (55, 'Xiaomi Redmi Note 12 Pro 5G mẫu điện thoại tầm trung được kỳ vọng sẽ trở thành sản phẩm quốc dân trong năm 2023, nhờ sở hữu khá nhiều sự nâng cấp với camera 50 MP, chip MediaTek mạnh mẽ cùng ngôn ngữ thiết kế mới vô cùng tối giản, hiện đại.', '/uploads/xiaomi-redmi-note-12-pro-den-thumb-200x200.jpg;/uploads/xiaomi-redmi-note-12-pro-trang-thumb-200x200.jpg;/uploads/xiaomi-redmi-note-12-pro-5g-momo-1-200x200.jpg;', 'Xiaomi Redmi Note 12 Pro 5G', 'Đen,Trắng,Xanh dương', 8790000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 3, 1),
 (56, 'Xiaomi Redmi Note 12 Pro 4G tiếp tục sẽ là mẫu điện thoại tầm trung được nhà Xiaomi giới thiệu đến thị trường Việt Nam trong năm 2023, máy nổi bật với camera 108 MP chất lượng, thiết kế viền mỏng cùng hiệu năng đột phá nhờ trang bị chip Snapdragon 732G.', '/uploads/xiaomi-redmi-12-pro-4g-thumb-200x200.jpg;/uploads/xiaomi-redmi-note-12-pro-4g-den-thumb-200x200.jpg;', 'Xiaomi Redmi Note 12 Pro 128GB', 'Xám,Xanh dương', 6590000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 3, 1),
-(57, 'Xiaomi Redmi Note 12S sẽ là chiếc điện thoại tiếp theo được nhà Xiaomi tung ra thị trường Việt Nam trong thời gian tới (05/2023). Điện thoại sở hữu một lối thiết kế hiện đại, màn hình hiển thị chi tiết đi cùng với đó là một hiệu năng mượt mà xử lý tốt các tác vụ.', '/uploads/xiaomi-redmi-12s-xanh-duong-thumb-200x200.jpg;/uploads/xiaomi-redmi-note12s-den-thumb-200x200.jpg;', 'Xiaomi Redmi Note 12S ', 'Đen,Xanh dương', 5890000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 3, 1);
+(57, 'Xiaomi Redmi Note 12S sẽ là chiếc điện thoại tiếp theo được nhà Xiaomi tung ra thị trường Việt Nam trong thời gian tới (05/2023). Điện thoại sở hữu một lối thiết kế hiện đại, màn hình hiển thị chi tiết đi cùng với đó là một hiệu năng mượt mà xử lý tốt các tác vụ.', '/uploads/xiaomi-redmi-12s-xanh-duong-thumb-200x200.jpg;/uploads/xiaomi-redmi-note12s-den-thumb-200x200.jpg;', 'Xiaomi Redmi Note 12S ', 'Đen,Xanh dương', 5890000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 3, 1),
+(58, 'Đến hẹn lại lên, hãng điện thoại OPPO tiếp tục cho ra mắt sản phẩm OPPO Reno10 5G 128GB tại thị trường Việt Nam trong năm 2023. Điện thoại mang trong mình lối thiết kế đẹp mắt, hiệu năng mượt mà xử lý tốt mọi tác vụ, đi cùng bộ ba camera mang đến những bức ảnh đẹp mắt.', '/uploads/oppo-reno10-blue-thumbnew-200x200.jpg;', 'OPPO Reno10 5G 128GB', 'Xanh dương', 9990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(59, 'OPPO Find N2 Flip 5G - chiếc điện thoại gập đầu tiên của OPPO đã được giới thiệu chính thức tại Việt Nam vào tháng 03/2023. Sở hữu cấu hình mạnh mẽ cùng thiết kế siêu nhỏ gọn giúp tối ưu kích thước, chiếc điện thoại sẽ cùng bạn nổi bật trong mọi không gian với vẻ ngoài đầy cá tính.', '/uploads/oppo-find-n2-flip-purple-thumb-1-600x600-1-200x200.jpg;/uploads/oppo-n2-flip-den-thumb-200x200.jpg;', 'OPPO Find N2 Flip 5G ', 'Đen,Tím', 19990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(60, 'Tiếp nối sự thành công rực rỡ đến từ các thế hệ trước đó thì chiếc OPPO Reno8 T 5G 256GB cuối cùng đã được giới thiệu chính thức tại Việt Nam, được định hình là dòng sản phẩm thuộc phân khúc tầm trung với camera 108 MP, con chip Snapdragon 695 cùng kiểu dáng thiết kế mặt lưng và màn hình bo cong hết sức nổi bật.', '/uploads/oppo-reno8t-den1-thumb-200x200.jpg;/uploads/oppo-reno8t-vang1-thumb-200x200.jpg;', 'OPPO Reno8 T 5G 256GB', 'Đen,Vàng đồng', 10690000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(61, 'OPPO Reno8 Pro 5G là chiếc điện thoại cao cấp được nhà OPPO ra mắt vào thời điểm 09/2022, máy hướng đến sự hoàn thiện cao cấp ở phần thiết kế cùng khả năng quay chụp chuyên nghiệp nhờ trang bị vi xử lý hình ảnh MariSilicon X chuyên dụng.', '/uploads/oppo-reno8-pro-thumb-den-200x200.jpg;/uploads/oppo-reno8-pro-thumb-xanh-1-200x200.jpg;', 'OPPO Reno8 Pro 5G', 'Đen,Xanh ngọc', 17490000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(62, 'OPPO Find X5 Pro 5G có lẽ là cái tên sáng giá được xướng tên trong danh sách điện thoại có thiết kế ấn tượng trong năm 2022. Máy được hãng cho ra mắt với một diện mạo độc lạ chưa từng có, cùng với đó là những nâng cấp về chất lượng ở camera nhờ sự hợp tác với nhà sản xuất máy ảnh Hasselblad. ', '/uploads/oppo-find-x5-pro-den-thumb-200x200.jpg;/uploads/oppo-find-x5-pro-trang-thumb-1-200x200.jpg;', 'OPPO Find X5 Pro 5G', 'Đen,Trắng', 19990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(63, 'Nối tiếp thành công từ thế hệ tiền nhiệm, OPPO Reno10 Pro+ 5G tiếp tục là sản phẩm có kiểu dáng đẹp mắt, cấu hình mạnh mẽ và máy ảnh hàng đầu, đáp ứng đầy đủ nhu cầu của người dùng về một chiếc điện thoại thiên về giải trí, chụp ảnh và làm việc.', '/uploads/oppo-reno-10-pro-plus-thumb-xam-200x200.jpg;/uploads/oppo-reno-10-pro-plus-tim-thumb-200x200.jpg;', 'OPPO Reno10 Pro+ 5G', 'Xám,Tím', 19990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(64, 'OPPO Reno6 Pro 5G - một sản phẩm thuộc dòng Reno6 của OPPO, thỏa mãn những gì người tiêu dùng đã trông đợi với cấu hình khủng cùng hệ thống camera cực ấn tượng và ngoại hình bắt mắt, thật hào hứng mong chờ để được trải nghiệm.', '/uploads/oppo-reno6-pro-grey-200x200.jpg;', 'OPPO Reno6 Pro 5G', 'Xám', 13990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(65, 'Những mẫu điện thoại OPPO cho ra mắt thời gian gần đây (2023) có vẻ ngoài đẹp mắt phù hợp với thị hiếu người tiêu dùng hiện nay. Trong đó OPPO A98 5G mẫu điện thoại mới của điện thoại OPPO A, với lối thiết kế hiện đại, màn hình hiển thị chi tiết thông tin cũng như một hiệu năng ổn định.', '/uploads/oppo-a98-5g-den-thumb-200x200.jpg;/uploads/oppo-a98-5g-xanh-thumb-1-200x200.jpg;', 'OPPO A98 5G', 'Xanh dương,Đen', 8990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(66, 'OPPO đã trình làng mẫu Reno7 Z 5G với thiết kế OPPO Glow độc quyền, camera mang hiệu ứng như máy DSLR chuyên nghiệp cùng viền sáng kép, máy có một cấu hình mạnh mẽ và đạt chứng nhận xếp hạng A về độ mượt.', '/uploads/oppo-reno7-z-5g-thumb-2-1-200x200.jpg;', 'OPPO Reno7 Z 5G', 'Đen', 7490000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(67, 'OPPO A96 là cái tên được nhắc đến khá nhiều trên các diễn đàn công nghệ hiện nay, nhờ sở hữu một ngoại hình hết sức bắt mắt cùng hàng loạt các thông số ấn tượng trong phân khúc giá như hiệu năng cao, camera chụp ảnh sắc nét.', '/uploads/oppo-a96-den-thumb-1-200x200.jpg;/uploads/oppo-a96-hong-thumb-1-200x200.jpg;', 'OPPO A96 ', 'Đen,Hồng', 6190000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(68, 'Nokia G22 là mẫu điện thoại giá rẻ được ra mắt chính thức vào tháng 03/2023 tại thị trường Việt Nam. Máy nổi bật với màn hình lớn, camera có độ phân giải 50 MP cùng một viên pin trâu cho thời gian sử dụng vô cùng ấn tượng.', '/uploads/nokia-g22-xam-thumb-200x200.jpg;/uploads/nokia-g22-xanh-thumb-1-2-200x200.jpg;', 'Nokia G22 ', 'Xám,Xanh dương', 3420000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
+(69, 'Nokia 8210 4G có lẽ là một lựa chọn phù hợp với những ai cần cho mình một chiếc điện thoại phổ thông phục vụ cho nhu cầu nghe gọi. Máy có giá thành rẻ và vừa có độ bền cao, giúp cho người dùng có thể tiết kiệm được kha khá số tiền bỏ ra ban đầu cũng như không cần quá lo lắng đến vấn đề hỏng hóc trong lúc sử dụng.', '/uploads/Nokia 8210-do-thumb-200x200.jpg;/uploads/Nokia 8210-trang-thumb-200x200.jpg;/uploads/Nokia 8210-xanh-thumb-200x200.jpg;', 'Nokia 8210 4G', 'Đỏ,Trắng,Xanh', 1590000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
+(70, '​Nokia 105 4G - Chiếc điện thoại phổ thông nổi bật với thiết kế sang trọng, khả năng nghe gọi bền bỉ trong thời gian dài, hỗ trợ công nghệ 4G cùng nhiều tiện ích giải trí hấp dẫn khác đến từ nhà Nokia.', '/uploads/nokia-105-4g-black-200x200.jpg;/uploads/nokia-105-4g-blue-200x200.jpg;/uploads/nokia-105-4g-red-200x200.jpg;', 'Nokia 105 4G ', 'Xanh ngọc,Đỏ,Đen', 650000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -644,7 +657,121 @@ INSERT INTO `productvalue` (`valueid`, `valueindex`, `valuename`, `productid`) V
 (304, '8 GB', 'RAM:', 57),
 (305, '256 GB', 'Dung lượng lưu trữ:', 57),
 (306, '2 Nano SIMHỗ trợ 4G', 'SIM:', 57),
-(307, '5000 mAh33 W', 'Pin, Sạc:', 57);
+(307, '5000 mAh33 W', 'Pin, Sạc:', 57),
+(308, 'AMOLED6.7\"Full HD+', 'Màn hình:', 58),
+(309, 'Android 13', 'Hệ điều hành:', 58),
+(310, 'Chính 64 MP & Phụ 32 MP, 8 MP', 'Camera sau:', 58),
+(311, '32 MP', 'Camera trước:', 58),
+(312, 'MediaTek Dimensity 7050 5G 8 nhân', 'Chip:', 58),
+(313, '8 GB', 'RAM:', 58),
+(314, '128 GB', 'Dung lượng lưu trữ:', 58),
+(315, '2 Nano SIM (SIM 2 chung khe thẻ nhớ)Hỗ trợ 5G', 'SIM:', 58),
+(316, '5000 mAh67 W', 'Pin, Sạc:', 58),
+(317, 'AMOLEDChính 6.8\" & Phụ 3.26\"Full HD+', 'Màn hình:', 59),
+(318, 'Android 13', 'Hệ điều hành:', 59),
+(319, 'Chính 50 MP & Phụ 8 MP', 'Camera sau:', 59),
+(320, '32 MP', 'Camera trước:', 59),
+(321, 'MediaTek Dimensity 9000+ 8 nhân', 'Chip:', 59),
+(322, '8 GB', 'RAM:', 59),
+(323, '256 GB', 'Dung lượng lưu trữ:', 59),
+(324, '2 Nano SIMHỗ trợ 5G', 'SIM:', 59),
+(325, '4300 mAh44 W', 'Pin, Sạc:', 59),
+(326, 'AMOLED6.7\"Full HD+', 'Màn hình:', 60),
+(327, 'Android 13', 'Hệ điều hành:', 60),
+(328, 'Chính 108 MP & Phụ 2 MP, 2 MP', 'Camera sau:', 60),
+(329, '32 MP', 'Camera trước:', 60),
+(330, 'Snapdragon 695 5G', 'Chip:', 60),
+(331, '8 GB', 'RAM:', 60),
+(332, '256 GB', 'Dung lượng lưu trữ:', 60),
+(333, '2 Nano SIM (SIM 2 chung khe thẻ nhớ)Hỗ trợ 5G', 'SIM:', 60),
+(334, '4800 mAh67 W', 'Pin, Sạc:', 60),
+(335, 'AMOLED6.7\"Full HD+', 'Màn hình:', 61),
+(336, 'Android 12', 'Hệ điều hành:', 61),
+(337, 'Chính 50 MP & Phụ 8 MP, 2 MP', 'Camera sau:', 61),
+(338, '32 MP', 'Camera trước:', 61),
+(339, 'MediaTek Dimensity 8100 Max 8 nhân', 'Chip:', 61),
+(340, '12 GB', 'RAM:', 61),
+(341, '256 GB', 'Dung lượng lưu trữ:', 61),
+(342, '2 Nano SIMHỗ trợ 5G', 'SIM:', 61),
+(343, '4500 mAh80 W', 'Pin, Sạc:', 61),
+(344, 'AMOLED6.7\"Quad HD+ (2K+)', 'Màn hình:', 62),
+(345, 'Android 12', 'Hệ điều hành:', 62),
+(346, 'Chính 50 MP & Phụ 50 MP, 13 MP', 'Camera sau:', 62),
+(347, '32 MP', 'Camera trước:', 62),
+(348, 'Snapdragon 8 Gen 1', 'Chip:', 62),
+(349, '12 GB', 'RAM:', 62),
+(350, '256 GB', 'Dung lượng lưu trữ:', 62),
+(351, '2 Nano SIM hoặc 1 Nano SIM + 1 eSIMHỗ trợ 5G', 'SIM:', 62),
+(352, '5000 mAh80 W', 'Pin, Sạc:', 62),
+(353, 'AMOLED6.7\"1.5K+', 'Màn hình:', 63),
+(354, 'Android 13', 'Hệ điều hành:', 63),
+(355, 'Chính 50 MP & Phụ 64 MP, 8 MP', 'Camera sau:', 63),
+(356, '32 MP', 'Camera trước:', 63),
+(357, 'Snapdragon 8+ Gen 1', 'Chip:', 63),
+(358, '12 GB', 'RAM:', 63),
+(359, '256 GB', 'Dung lượng lưu trữ:', 63),
+(360, '2 Nano SIMHỗ trợ 5G', 'SIM:', 63),
+(361, '4700 mAh100 W', 'Pin, Sạc:', 63),
+(362, 'AMOLED6.55\"Full HD+', 'Màn hình:', 64),
+(363, 'Android 11', 'Hệ điều hành:', 64),
+(364, 'Chính 50 MP & Phụ 16 MP, 13 MP, 2 MP', 'Camera sau:', 64),
+(365, '32 MP', 'Camera trước:', 64),
+(366, 'Snapdragon 870 5G', 'Chip:', 64),
+(367, '12 GB', 'RAM:', 64),
+(368, '256 GB', 'Dung lượng lưu trữ:', 64),
+(369, '2 Nano SIMHỗ trợ 5G', 'SIM:', 64),
+(370, '4500 mAh65 W', 'Pin, Sạc:', 64),
+(371, 'LTPS LCD 6.72\" Full HD+', 'Màn hình:', 65),
+(372, 'Android 13', 'Hệ điều hành:', 65),
+(373, 'Chính 64 MP & Phụ 2 MP, 2 MP', 'Camera sau:', 65),
+(374, '32 MP', 'Camera trước:', 65),
+(375, 'Snapdragon 695 5G', 'Chip:', 65),
+(376, '8 GB', 'RAM:', 65),
+(377, '256 GB', 'Dung lượng lưu trữ:', 65),
+(378, '2 Nano SIM (SIM 2 chung khe thẻ nhớ)Hỗ trợ 5G', 'SIM:', 65),
+(379, '5000 mAh67 W', 'Pin, Sạc:', 65),
+(380, 'AMOLED 6.43\" Full HD+', 'Màn hình:', 66),
+(381, 'Android 11', 'Hệ điều hành:', 66),
+(382, 'Chính 64 MP & Phụ 2 MP, 2 MP', 'Camera sau:', 66),
+(383, '16 MP', 'Camera trước:', 66),
+(384, 'Snapdragon 695 5G', 'Chip:', 66),
+(385, '8 GB', 'RAM:', 66),
+(386, '128 GB', 'Dung lượng lưu trữ:', 66),
+(387, '2 Nano SIM (SIM 2 chung khe thẻ nhớ)Hỗ trợ 5G', 'SIM:', 66),
+(388, '4500 mAh33 W', 'Pin, Sạc:', 66),
+(389, 'IPS LCD 6.59\" Full HD+', 'Màn hình:', 67),
+(390, 'Android 11', 'Hệ điều hành:', 67),
+(391, 'Chính 50 MP & Phụ 2 MP', 'Camera sau:', 67),
+(392, '16 MP', 'Camera trước:', 67),
+(393, 'Snapdragon 680', 'Chip:', 67),
+(394, '8 GB', 'RAM:', 67),
+(395, '128 GB', 'Dung lượng lưu trữ:', 67),
+(396, '2 Nano SIMHỗ trợ 4G', 'SIM:', 67),
+(397, '5000 mAh 33 W', 'Pin, Sạc:', 67),
+(398, 'LCD 6.52\" HD+', 'Màn hình:', 68),
+(399, 'Android 12', 'Hệ điều hành:', 68),
+(400, 'Chính 50 MP & Phụ 2 MP, 2 MP', 'Camera sau:', 68),
+(401, '8 MP', 'Camera trước:', 68),
+(402, '8 MP', 'Camera trước:', 68),
+(403, 'Unisoc T606', 'Chip:', 68),
+(404, '4 GB', 'RAM:', 68),
+(405, '128 GB', 'Dung lượng lưu trữ:', 68),
+(406, '2 Nano SIMHỗ trợ 4G', 'SIM:', 68),
+(407, '5050 mAh20 W', 'Pin, Sạc:', 68),
+(408, '2.8\"', 'Màn hình:', 69),
+(409, '2 Nano SIMHỗ trợ 4G', 'SIM:', 69),
+(410, '2000 số', 'Danh bạ:', 69),
+(411, 'MicroSD, hỗ trợ tối đa 32 GB', 'Thẻ nhớ:', 69),
+(412, '0.3 MP', 'Camera sau:', 69),
+(413, 'FM không cần tai nghe', 'Radio FM:', 69),
+(414, '3.5 mm', 'Jack cắm tai nghe:', 69),
+(415, '1450 mAh', 'Pin:', 69),
+(416, 'TFT LCD1.8\"65.536 màu', 'Màn hình:', 70),
+(417, '2 Nano SIMHỗ trợ 4G VoLTE', 'SIM:', 70),
+(418, '2000 số', 'Danh bạ:', 70),
+(419, 'FM không cần tai nghe', 'Radio FM:', 70),
+(420, '3.5 mm', 'Jack cắm tai nghe:', 70),
+(421, '1020 mAh', 'Pin:', 70);
 
 -- --------------------------------------------------------
 
@@ -896,13 +1023,13 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `productvalue`
 --
 ALTER TABLE `productvalue`
-  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=308;
+  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=422;
 
 --
 -- AUTO_INCREMENT for table `role`
