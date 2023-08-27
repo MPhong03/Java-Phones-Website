@@ -22,6 +22,8 @@ import com.cnjava.SpringBootProject.Model.Value;
 import com.cnjava.SpringBootProject.Repository.CommentRepository;
 import com.cnjava.SpringBootProject.Repository.UserRepository;
 import com.cnjava.SpringBootProject.Repository.UserRoleRepository;
+import com.cnjava.SpringBootProject.Service.BrandService;
+import com.cnjava.SpringBootProject.Service.CategoryService;
 import com.cnjava.SpringBootProject.Service.ProductService;
 import com.cnjava.SpringBootProject.Service.ValueService;
 
@@ -36,6 +38,12 @@ public class ProductController {
 	
 	@Autowired
 	private ValueService valueService;
+	
+	@Autowired
+	private BrandService brandService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Autowired
 	private CommentRepository commentRepository;
@@ -77,6 +85,7 @@ public class ProductController {
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
+        model.addAttribute("webtitle", "Tất cả sản phẩm");
 
         return "products";
     }
@@ -89,6 +98,7 @@ public class ProductController {
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
+        model.addAttribute("webtitle", brandService.getBrandById(brandId).getBrandName());
         
         return "products";
 	}
@@ -101,6 +111,7 @@ public class ProductController {
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
+        model.addAttribute("webtitle", categoryService.getCategoryById(categoryId).getCategoryName());
 
         return "products";
 	}
@@ -113,8 +124,9 @@ public class ProductController {
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
+        model.addAttribute("webtitle", keyword);
 		
-		return "/user/products";
+		return "products";
 	}
 	
 	@GetMapping("/product/{id}")
