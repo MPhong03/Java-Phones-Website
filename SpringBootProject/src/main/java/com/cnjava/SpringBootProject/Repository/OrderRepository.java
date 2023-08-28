@@ -28,4 +28,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	
 	@Query("SELECT o FROM Order o WHERE o.email LIKE %:keyword% OR o.phonenumber LIKE %:keyword%")
 	List<Order> searchOrders(@Param("keyword") String keyword);
+	
+	@Query("SELECT SUM(o.total) FROM Order o where o.status = 1 or o.status = 2")
+	long getTotal();
+	
+	@Query("Select count(o) FROM Order o")
+	long countOrder();
 }

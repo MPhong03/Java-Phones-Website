@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Add jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+	crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<title>Thống kê</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+
+<title>Dashboard</title>
+
+<style>
+	.danhmuc{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	
+	#money{
+		margin-left: 20px;
+		font-size: 25px;
+		color: red;
+		font-weight: bold;
+	}
+	
+	.noidung{
+		margin-left: 20px;
+		font-size: 25px;
+		font-weight: bold;
+	}
+	
+	
+	
+</style>
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Sidebar -->
+			<div th:replace="~{layouts/admin/sidebar :: sidebar}"></div>
+
+			<!-- Main -->
+			<div class="col-sm p-3 min-vh-100" >
+				
+				<h2 class="text-center">Thống kê</h2>
+				
+				<hr>
+				
+				<div class="row">
+					<div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12" > 
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Doanh thu </p>
+							<img src="/img/revenue11.png">  <span id="money" th:text="${doanhthu}" > 45000000</span>
+							
+						</div>
+						
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12" >
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Số lượng sản phẩm </p>
+							<img src="/img/box11.png">  <span class="noidung"  th:text="${soluongsp}"> 23</span>
+							
+						</div>
+					</div>
+					<div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12" >
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Số lượng danh mục sản phẩm </p>
+							<img src="/img/list11.png">  <span class="noidung" th:text="${danhmucsp}" > 23</span>
+							
+						</div>
+					</div>
+					<div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12"> 
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Số lượng đơn hàng</p>
+							<img src="/img/order11.png">  <span class="noidung" th:text="${soluongdonhang}" > 23</span>
+							
+						</div>
+					</div>
+					<div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Số lượng tài khoản</p>
+							<img src="/img/user11.png">  <span class="noidung" th:text="${soluonguser}" > 23</span>
+							
+						</div>
+					</div>
+					<div class=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
+						<div style="background-color: #EDEDED; border-radius: 5px;padding-left: 10px;padding-bottom: 10px;margin-top: 10px;">
+							<p class="danhmuc"> Số lượt truy cập hiện tại</p>
+							<img src="/img/remote-access11.png"> <span style="margin-left: 10px;">  <script id="_wau5i5">var _wau = _wau || []; _wau.push(["dynamic", "aexs66ocjz", "5i5", "c4302bffffff", "big"]);</script><script async src="//waust.at/d.js"></script> </span> 
+							
+						</div>
+					 </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		
+		 // Format the price as VND with the symbol "₫"
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceElements = document.querySelectorAll('#money');
+            priceElements.forEach(element => {
+                const price = element.textContent;
+                const formattedPrice = formatCurrencyVND(price);
+                element.textContent = formattedPrice;
+            });
+        });
+
+        // Function to format the price as VND
+        function formatCurrencyVND(price) {
+            const formatter = new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            return formatter.format(price);
+        }
+		
+		
+		
+	</script>
+
+</body>
+
+</html>

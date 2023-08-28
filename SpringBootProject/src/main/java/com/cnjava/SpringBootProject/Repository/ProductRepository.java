@@ -34,4 +34,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     @Query("SELECT p FROM Product p WHERE p.Category.CategoryName LIKE %:keyword% OR p.Brand.BrandName LIKE %:keyword% OR p.ProductName LIKE %:keyword%")
     Page<Product> getProductByKeyword(@Param("keyword") String keyword, Pageable pageable);
+    
+    @Query ("Select count(p) from Product p")
+    long countProduct();
 }

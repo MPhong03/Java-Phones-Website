@@ -58,4 +58,8 @@ public class UserService {
 	}
 	
 	
+	public long countUser() {
+		return userRepository.countUser();
+	}
+	
 }

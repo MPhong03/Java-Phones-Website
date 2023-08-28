@@ -43,5 +43,8 @@ public interface UserRepository extends JpaRepository<AppUser, Integer> {
 	@Query(nativeQuery = true,value="Select * from user limit :page,:number")
 	List<AppUser> getLimitUser(@Param("page") int page, @Param("number") int n);
 	
+	
+	@Query("SELECT count(u) from AppUser u")
+	long countUser();
 
 }

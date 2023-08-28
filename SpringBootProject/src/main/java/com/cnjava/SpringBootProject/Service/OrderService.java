@@ -48,4 +48,12 @@ public class OrderService {
 	public List<Order> searchOrders(String keyword) {
 		return orderRepository.searchOrders(keyword);
 	}
+	
+	public long getTotal() {
+		return orderRepository.getTotal();
+	}
+	
+	public long countOrder() {
+		return orderRepository.countOrder();
+	}
 }

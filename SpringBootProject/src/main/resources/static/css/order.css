@@ -2,6 +2,10 @@
 .title{
     margin-bottom: 5vh;
 }
+
+#logo{
+	width: 70%;
+}
 .card{
     margin: auto;
     max-width: 1200px;

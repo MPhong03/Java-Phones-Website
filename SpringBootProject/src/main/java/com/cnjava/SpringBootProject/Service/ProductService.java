@@ -138,4 +138,8 @@ public class ProductService {
 
     	return productRepository.getProductByKeyword(keyword, pageable);
     }
+	
+	public long countProduct() {
+		return productRepository.countProduct();
+	}
 }

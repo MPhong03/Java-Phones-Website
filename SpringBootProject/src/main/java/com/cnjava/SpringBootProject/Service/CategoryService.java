@@ -29,4 +29,8 @@ public class CategoryService {
 	public void deleteById(int id) {
 		categoryRepository.deleteById(id);
 	}
+	
+	public long countCategory() {
+		return categoryRepository.countCategory();
+	}
 }

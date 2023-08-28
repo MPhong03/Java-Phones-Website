@@ -475,4 +475,29 @@ public class AdminController {
 		return "redirect:/admin/messages?page="+page;
 	}
 	
+	@GetMapping("/admin/statistics")
+    public String statistics(Model model) {
+    	
+		long doanhthu = 0;
+		long soluongsp = 0;
+		long danhmucsp = 0;
+		long soluongdonhang = 0;
+		long soluonguser= 0 ;
+		
+		doanhthu = orderService.getTotal();
+		soluongsp = productService.countProduct();
+		danhmucsp = categoryService.countCategory();
+		soluongdonhang = orderService.countOrder();
+		soluonguser = userService.countUser();
+		
+		model.addAttribute("doanhthu", doanhthu);
+		model.addAttribute("soluongsp", soluongsp);
+		model.addAttribute("danhmucsp", danhmucsp);
+		model.addAttribute("soluongdonhang", soluongdonhang);
+		model.addAttribute("soluonguser", soluonguser);
+		
+    	
+    	return "admin/statistics";
+    }
+	
 }
