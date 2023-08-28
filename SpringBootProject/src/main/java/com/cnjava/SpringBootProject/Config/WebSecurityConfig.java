@@ -108,6 +108,7 @@ public class WebSecurityConfig {
         public void commence(HttpServletRequest request, HttpServletResponse response,
                 AuthenticationException authException) throws IOException, ServletException {
             response.getWriter().print("You need to login");
+            
         }
 
     }
@@ -117,7 +118,7 @@ public class WebSecurityConfig {
         @Override
         public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException arg2)
                 throws IOException, ServletException {
-            response.getWriter().print("You don't have role to access this page");
+            response.getWriter().print("You don't have role to access this page or URL is wrong.");
         }
 
     }
