@@ -64,7 +64,7 @@
 							     <td > <span id="giatien" th:text = "${order.total}"> </span></td>
 							     <td th:if = "${order.status == 0}" > Đang xử lý </td>
 							     <td th:if = "${order.status == 1}" > Đang giao hàng</td>
-							     <td th:if = "${order.status == 2}" > Đang giao hàng </td>
+							     <td th:if = "${order.status == 2}" > Đã giao hàng </td>
 							     <td> <a class="btn btn-success" th:href="@{'/orderdetail?id=' + ${order.orderid} }" role="button">Xem chi tiết</a></td>
 						  </tr>
 					 </tbody>

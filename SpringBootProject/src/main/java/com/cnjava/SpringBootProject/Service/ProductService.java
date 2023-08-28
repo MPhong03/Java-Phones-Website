@@ -37,7 +37,7 @@ public class ProductService {
 	
 	public Page<Product> getProductsPage(int page) {
         long totalProducts = productRepository.count();
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable = PageRequest.of(page, pageSize);
 
@@ -72,7 +72,7 @@ public class ProductService {
     
     public Page<Product> getProductByKeyword(String keyword, int page) {
     	long totalProducts = productRepository.countProductByKeyword(keyword);
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable = PageRequest.of(page, pageSize);
 
@@ -81,7 +81,7 @@ public class ProductService {
     
     public Page<Product> getProductsPageSorted(int page, String sortingOptions) {
     	long totalProducts = productRepository.count();
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable;
 
@@ -126,7 +126,7 @@ public class ProductService {
 
 	public Page<Product> getProductsPageSortedByKeyword(String keyword, int page, String sortingOptions) {
     	long totalProducts = productRepository.countProductByKeyword(keyword);
-        int pageSize = (int) Math.min(5, Math.max(1, totalProducts));
+        int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable;
 

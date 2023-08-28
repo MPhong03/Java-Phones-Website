@@ -41,7 +41,7 @@
 
                                                     <li><a  href="/lienhe">Liên hệ</a></li>
 
-                                                    <li><a  href="/admin/products">Quản trị viên</a></li>
+                                                    <li th:if="${#authorization.expression('hasRole(''ADMIN'')')}"><a  href="/admin/products">Quản trị viên</a></li>
 
                                                     <li><a th:if="${session.email != null}" href="/logout">Đăng xuất</a></li>
                                                   
