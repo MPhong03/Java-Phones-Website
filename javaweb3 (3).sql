@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 27, 2023 at 05:10 PM
+-- Generation Time: Aug 28, 2023 at 08:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -291,7 +291,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `colors`, `price`, `state`, `supples`, `brandid`, `categoryid`) VALUES
 (1, 'Bàn phím laptop được thiết kế khoa học với cấu trúc liền khối cùng hành trình phím ngắn. Nhờ vậy bạn có thể bấm phím thoải mái, dễ dàng không bị dính phím. đồng thời tiếng động gây ra từ bàn phím khá nhỏ không làm ồn đến người dùng cũng như môi trường xung quanh.', '/uploads/laptop-asus-vivobook-r564ja-uh51t-2.jpg;/uploads/laptop-asus-vivobook-r564ja-uh51t-3.jpg;/uploads/laptop-asus-vivobook-r564ja-uh51t-1.jpg;', 'Laptop ASUS VivoBook R564JA-UH31T', 'Đen', 11690000, 'Hàng mới chính hãng', 'Nguyên hộp, đầy đủ phụ kiện từ nhà sản xuất', 5, 2),
-(2, 'Samsung từng bước khẳng định thương hiệu của mình bằng việc cho ra đời những mẫu flagship ngày càng hiện đại với công nghệ tiến bộ. Điển hình là chiếc điện thoại Samsung Galaxy S21 Ultra 5G  tích hợp mọi tính năng gần như trở thành mẫu smartphone hoàn hảo nhất.', '/uploads/S21-ULTRA.jpg;/uploads/S21-ULTRA-TRANG.jpg', 'Samsung Galaxy S21 Ultra 5G Korea (Likenew)', 'Đen,Trắng', 9990000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
+(2, 'Samsung từng bước khẳng định thương hiệu của mình bằng việc cho ra đời những mẫu flagship ngày càng hiện đại với công nghệ tiến bộ. Điển hình là chiếc điện thoại Samsung Galaxy S21 Ultra 5G  tích hợp mọi tính năng gần như trở thành mẫu smartphone hoàn hảo nhất.', '/uploads/S21-ULTRA.jpg;/uploads/S21-ULTRA-TRANG.jpg', 'Samsung Galaxy S21 Ultra 5G Korea (Likenew)', 'Đen,Trắng', 9290000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
 (3, 'Hoàn toàn xứng đáng với những gì được mong chờ, phiên bản cao cấp nhất iPhone Xs Max 64 GB của Apple năm nay nổi bật với chip A12 Bionic mạnh mẽ, màn hình rộng đến 6.5 inch, cùng camera kép trí tuệ nhân tạo và Face ID được nâng cấp.', '/uploads/600_600_600_XSMAX_6_1.jpg;/uploads/600_600_600_xs_max_white_800x800_3_3.jpg;/uploads/600_iphone_xs_max_64gb_likenew.jpg', 'Apple iPhone Xs Max 256GB Quốc Tế (Likenew)', 'Vàng,Bạc,Đen', 8990000, 'Máy qua sử dụng', 'Thân máy', 2, 1),
 (4, 'Tai nghe Bluetooth AirPods Pro MagSafe Charge Apple MLWK3 trắng được chế tác với vẻ ngoài tinh giản, gam màu trắng trẻ trung, sáng đẹp, phối hợp tuyệt vời với mọi trang phục từ đời thường đến công sở, dự tiệc của bạn. ', '/uploads/TAI-NGHE-AIRPOD.jpg', 'Apple AirPods Pro 2021 Magsafe', 'Trắng', 4690000, 'Hàng mới chính hãng', 'Fullbox', 2, 6),
 (5, 'Black Shark 4 là điện thoại chơi game hàng đầu của Xiaomi trong năm 2021. Những điểm mạnh của Black Shark 4 là tương đối toàn diện. Thiết kế toàn màn hình cao cấp với tốc độ làm mới 144Hz/720Hz. Phần cứng là bộ vi xử lý Snapdragon 870 mạnh mẽ. Tản nhiệt cũng được nâng cấp mạnh mẽ giảm tới 18 độ cho CPU giúp chơi game cấu hình cao không nóng máy. Hơn nữa, Black Shark 4 đã xác lập kỷ lục với pin 4500mAh, hỗ trợ sạc 120W “nhanh nhất thế giới”,… Mang lại hiệu năng vượt trội về nhiều mặt.', '/uploads/black-shark-4-quoc-te-6.jpg;/uploads/black-shark-4-3-2.jpg;/uploads/black-shark-4-quoc-te-4.jpg;/uploads/black-shark4-4.jpg', 'Xiaomi Black Shark 4 (8GB/128GB) Likenew', 'Trắng,Đen', 5790000, 'Máy qua sử dụng', 'Thân máy', 3, 1),
@@ -300,7 +300,7 @@ INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `
 (32, 'Samsung Galaxy Fold không chỉ sở hữu một màn hình có thể uốn dẻo mà còn có một màn hình riêng, để có thể sử dụng độc lập khi gập máy lại.\r\nKhi mà những chiếc smartphone gần đây đang ngày càng có thiết kế giống nhau thì sự ra đời của Samsung Galaxy Fold thực sự tạo nên làn gió mới trên thị trường.\r\nBạn sẽ có một màn hình với kích thước 7.3 inch giúp bạn có thể sử dụng rất thoải mái như một chiếc máy tính bảng.\r\n\r\n', '/uploads/SAMSUNG-FOLD-1-NT-STORE.webp;/uploads/SAMSUNG-Z-FOLD-1-NTSTORE.webp;', 'Samsung Galaxy Fold Korea (Likenew)', 'Đen,Đa sắc', 7990000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
 (33, 'Có thể nói, Samsung Galaxy Note 10 Plus 5G  cũ là sự lựa chọn tuyệt vời cho người dùng đam mê công nghệ có nhu cầu sở hữu một chiếc điện thoại hoàn hảo về mọi mặt. Với Galaxy Note 10 Plus, Samsung đã thật sự mang đến một “chiến binh” có sức mạnh vượt trội, đáp ứng toàn diện các nhu cầu về làm việc và giải trí của người dùng.', '/uploads/NOTE-10-5G-DA-SẮC.webp;/uploads/NOTE-10-5G-DEN.webp;', 'Samsung Galaxy Note 10 Plus 5G Hàn Quốc (Like New)', 'Đen,Đa sắc', 6890000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
 (34, 'Galaxy Note 20 5G – một siêu phẩm đến từ nhà Samsung, sở hữu thiết kế nguyên khối thời trang, hiệu năng mạnh mẽ bởi CPU Snapdragon 865+ hàng đầu cùng cụm camera hỗ trợ quay phim 8K, chắc hẳn sẽ mang lại cho bạn những trải nghiệm thú vị và tuyệt vời.', '/uploads/600_galaxy-note-20-256gb-cu-xtmobile.webp;/uploads/600_note_20_xam_xtmobile_min.webp;/uploads/600_samsung_galaxy_note_20.webp;', 'Samsung Galaxy Note 20 5G (8G|256GB) Korea Likenew', 'Đen,Hồng,Xanh bạc hà', 5990000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
-(35, 'Sau Galaxy Note 20 thì Galaxy Note 20 Ultra là phiên bản tiếp theo cao cấp hơn thuộc dòng Note 20 Series của Samsung, với nhiều thay đổi, từ cụm camera hỗ trợ lấy nét laser AF cùng ống kính góc rộng mới, màn hình tràn viền lên đến 6.9 inch.', '/uploads/note-20-ultra-5G-3.webp;/uploads/note-20-ultra-5G-2.webp;/uploads/note-20-ultra-5G-1.webp;', 'Samsung Galaxy Note 20 Ultra 5G Korea (Like New)', 'Đen,Trắng,Vàng đồng', 9290000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
+(35, 'Sau Galaxy Note 20 thì Galaxy Note 20 Ultra là phiên bản tiếp theo cao cấp hơn thuộc dòng Note 20 Series của Samsung, với nhiều thay đổi, từ cụm camera hỗ trợ lấy nét laser AF cùng ống kính góc rộng mới, màn hình tràn viền lên đến 6.9 inch.', '/uploads/note-20-ultra-5G-3.webp;/uploads/note-20-ultra-5G-2.webp;/uploads/note-20-ultra-5G-1.webp;', 'Samsung Galaxy Note 20 Ultra 5G Korea (Like New)', 'Đen,Trắng,Vàng đồng', 8990000, 'Máy qua sử dụng', 'Thân máy', 1, 1),
 (36, 'Samsung Galaxy Z Fold5 là mẫu điện thoại cao cấp được ra mắt vào tháng 07/2023 với nhiều điểm đáng chú ý như thiết kế gập độc đáo, hiệu năng mạnh mẽ cùng camera quay chụp tốt, điều này giúp cho máy thu hút được nhiều sự quan tâm của đông đảo người dùng yêu công nghệ hiện nay.', '/uploads/samsung-galaxy-zfold5-xanh-256gb-1-1.jpg;/uploads/samsung-galaxy-zfold5-kem-256gb-1-1.jpg;/uploads/samsung-galaxy-zfold5-den-256gb-1.jpg;', 'Samsung Galaxy Z Fold5 5G 256GB', 'Đen,Trắng,Xanh da trời', 36990000, 'Hàng mới chính hãng', 'Thân máy', 1, 1),
 (37, 'Samsung tiếp tục chứng tỏ sự nỗ lực của mình trong việc cải thiện dòng sản phẩm phân khúc cấp thấp trong năm 2023 bằng việc ra mắt mẫu smartphone Samsung Galaxy A14 4G. Với thiết kế độc đáo và hiện đại, sản phẩm này đáp ứng đầy đủ tiêu chí \"ngon - bổ - rẻ\" với cấu hình ổn định và giá cả cực kỳ hợp lý.', '/uploads/samsung-galaxy-a14-4g-tim-1.jpg;/uploads/samsung-galaxy-a14-tim-1.jpg;', 'Samsung Galaxy A14 6GB ', 'Đỏ đô,Bạc', 4340000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 1, 1),
 (38, 'Samsung Galaxy Z Flip5 đã chính thức ra mắt vào ngày 26 tháng 7. Đây là một chiếc điện thoại thông minh có thiết kế độc đáo với màn hình gập, được trang bị bộ vi xử lý cao cấp Snapdragon 8 Gen 2 for Galaxy, RAM 8 GB, bộ nhớ trong 256 GB, camera kép 12 MP và pin 3700 mAh.\r\n', '/uploads/samsung-galaxy-zflip-5-kem-512gb-1.jpg;/uploads/samsung-galaxy-zflip5-xanh-256gb-1-1.jpg;/uploads/samsung-galaxy-zflip-5-xam-256gb-1.jpg;/uploads/samsung-galaxy-zflip-5-tim-256gb-1.jpg;', 'Samsung Galaxy Z Flip5 5G 256GB ', 'Kem,Xám,Tím,Xanh', 21990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 1, 1),
@@ -335,7 +335,8 @@ INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `
 (67, 'OPPO A96 là cái tên được nhắc đến khá nhiều trên các diễn đàn công nghệ hiện nay, nhờ sở hữu một ngoại hình hết sức bắt mắt cùng hàng loạt các thông số ấn tượng trong phân khúc giá như hiệu năng cao, camera chụp ảnh sắc nét.', '/uploads/oppo-a96-den-thumb-1-200x200.jpg;/uploads/oppo-a96-hong-thumb-1-200x200.jpg;', 'OPPO A96 ', 'Đen,Hồng', 6190000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
 (68, 'Nokia G22 là mẫu điện thoại giá rẻ được ra mắt chính thức vào tháng 03/2023 tại thị trường Việt Nam. Máy nổi bật với màn hình lớn, camera có độ phân giải 50 MP cùng một viên pin trâu cho thời gian sử dụng vô cùng ấn tượng.', '/uploads/nokia-g22-xam-thumb-200x200.jpg;/uploads/nokia-g22-xanh-thumb-1-2-200x200.jpg;', 'Nokia G22 ', 'Xám,Xanh dương', 3420000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
 (69, 'Nokia 8210 4G có lẽ là một lựa chọn phù hợp với những ai cần cho mình một chiếc điện thoại phổ thông phục vụ cho nhu cầu nghe gọi. Máy có giá thành rẻ và vừa có độ bền cao, giúp cho người dùng có thể tiết kiệm được kha khá số tiền bỏ ra ban đầu cũng như không cần quá lo lắng đến vấn đề hỏng hóc trong lúc sử dụng.', '/uploads/Nokia 8210-do-thumb-200x200.jpg;/uploads/Nokia 8210-trang-thumb-200x200.jpg;/uploads/Nokia 8210-xanh-thumb-200x200.jpg;', 'Nokia 8210 4G', 'Đỏ,Trắng,Xanh', 1590000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
-(70, '​Nokia 105 4G - Chiếc điện thoại phổ thông nổi bật với thiết kế sang trọng, khả năng nghe gọi bền bỉ trong thời gian dài, hỗ trợ công nghệ 4G cùng nhiều tiện ích giải trí hấp dẫn khác đến từ nhà Nokia.', '/uploads/nokia-105-4g-black-200x200.jpg;/uploads/nokia-105-4g-blue-200x200.jpg;/uploads/nokia-105-4g-red-200x200.jpg;', 'Nokia 105 4G ', 'Xanh ngọc,Đỏ,Đen', 650000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1);
+(70, '​Nokia 105 4G - Chiếc điện thoại phổ thông nổi bật với thiết kế sang trọng, khả năng nghe gọi bền bỉ trong thời gian dài, hỗ trợ công nghệ 4G cùng nhiều tiện ích giải trí hấp dẫn khác đến từ nhà Nokia.', '/uploads/nokia-105-4g-black-200x200.jpg;/uploads/nokia-105-4g-blue-200x200.jpg;/uploads/nokia-105-4g-red-200x200.jpg;', 'Nokia 105 4G ', 'Xanh ngọc,Đỏ,Đen', 650000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
+(71, 'OPPO A78 một sản phẩm được nhà OPPO cho ra mắt với thiết kế trẻ trung, thiết bị này được đánh giá có hiệu năng ổn định, màn hình sắc nét và viên pin có dung lượng lớn, phù hợp cho người dùng sử dụng lâu dài.', '/uploads/oppo-a78-den-thumb-1-2-200x200.jpg;/uploads/oppo-a78-xanh-thumb-1-200x200.jpg;', 'OPPO A78', 'Xanh,Đen', 6990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -771,7 +772,16 @@ INSERT INTO `productvalue` (`valueid`, `valueindex`, `valuename`, `productid`) V
 (418, '2000 số', 'Danh bạ:', 70),
 (419, 'FM không cần tai nghe', 'Radio FM:', 70),
 (420, '3.5 mm', 'Jack cắm tai nghe:', 70),
-(421, '1020 mAh', 'Pin:', 70);
+(421, '1020 mAh', 'Pin:', 70),
+(422, 'AMOLED 6.43\" Full HD+', 'Màn hình:', 71),
+(423, 'Android 13', 'Hệ điều hành:', 71),
+(424, 'Chính 50 MP & Phụ 2 MP', 'Camera sau:', 71),
+(425, '8 MP', 'Camera trước:', 71),
+(426, 'Snapdragon 680', 'Chip:', 71),
+(427, '8 GB', 'RAM:', 71),
+(428, '256 GB', 'Dung lượng lưu trữ:', 71),
+(429, '2 Nano SIMHỗ trợ 4G', 'SIM:', 71),
+(430, '5000 mAh67 W', 'Pin, Sạc:', 71);
 
 -- --------------------------------------------------------
 
@@ -1023,13 +1033,13 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `productvalue`
 --
 ALTER TABLE `productvalue`
-  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=422;
+  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
 
 --
 -- AUTO_INCREMENT for table `role`
