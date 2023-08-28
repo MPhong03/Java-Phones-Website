@@ -70,9 +70,13 @@ public class ProductController {
 		
 		Page<Product> samsungProduct = productService.getTop5ProductsByBrand(1);
 		Page<Product> appleProduct = productService.getTop5ProductsByBrand(2);
+		Page<Product> newPhone = productService.getTop5ProductsByCategory(1);
+		Page<Product> newLaptop = productService.getTop5ProductsByCategory(2);
 		
 		model.addAttribute("samsung", samsungProduct.getContent());
 		model.addAttribute("apple", appleProduct.getContent());
+		model.addAttribute("newphone", newPhone.getContent());
+		model.addAttribute("newlaptop", newLaptop.getContent());
 		
 		return "index.html";
 	}

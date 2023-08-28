@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 28, 2023 at 08:34 AM
+-- Generation Time: Aug 28, 2023 at 04:53 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -44,7 +44,9 @@ INSERT INTO `brand` (`brandid`, `brandname`) VALUES
 (5, 'Asus'),
 (9, 'Nokia'),
 (10, 'Acer'),
-(14, 'Microsoft');
+(14, 'Microsoft'),
+(15, 'Dell'),
+(16, 'HP');
 
 -- --------------------------------------------------------
 
@@ -94,7 +96,8 @@ INSERT INTO `cart` (`cartid`, `price`, `quantity`, `productid`, `userid`, `color
 (3, 14900000, 1, 6, 1, 'Xanh Dương'),
 (4, 19980000, 2, 2, 1, 'Trắng'),
 (5, 4690000, 1, 4, 1, 'Trắng'),
-(9, 9990000, 1, 2, 2, 'Trắng');
+(9, 9990000, 1, 2, 2, 'Trắng'),
+(10, 6990000, 1, 39, 1, 'Trắng');
 
 -- --------------------------------------------------------
 
@@ -116,11 +119,9 @@ INSERT INTO `category` (`categoryid`, `categoryname`) VALUES
 (2, 'Laptop'),
 (3, 'PC'),
 (4, 'Phụ kiện'),
-(5, 'Tivi'),
 (6, 'Âm thanh'),
 (7, 'Máy ảnh'),
-(8, 'Tablet'),
-(10, 'Tủ lạnh');
+(8, 'Tablet');
 
 -- --------------------------------------------------------
 
@@ -241,7 +242,7 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`orderid`, `address`, `code`, `date`, `discount`, `email`, `fullname`, `phonenumber`, `province`, `status`, `total`, `userid`) VALUES
 (1, 'cho lach, ben tre', '26-8-2023 01:32:07 PM*admin01@gmail.com', '26-8-2023 01:32:07 PM', ' Không có', 'tranhuuloc@gmail.com', 'huu loc', '0777099046', 'Bến Tre', 1, 39790000, 2),
-(2, 'cho lach, ben tre', '26-8-2023 01:43:30 PM*admin01@gmail.com', '26-8-2023 01:43:30 PM', ' Không có', 'tranhuuloc@gmail.com', 'huu loc', '0398761257', 'Bến Tre', 0, 4690000, 2);
+(2, 'cho lach, ben tre', '26-8-2023 01:43:30 PM*admin01@gmail.com', '26-8-2023 01:43:30 PM', ' Không có', 'tranhuuloc@gmail.com', 'huu loc', '0398761257', 'Bến Tre', 1, 4690000, 2);
 
 -- --------------------------------------------------------
 
@@ -336,7 +337,20 @@ INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `
 (68, 'Nokia G22 là mẫu điện thoại giá rẻ được ra mắt chính thức vào tháng 03/2023 tại thị trường Việt Nam. Máy nổi bật với màn hình lớn, camera có độ phân giải 50 MP cùng một viên pin trâu cho thời gian sử dụng vô cùng ấn tượng.', '/uploads/nokia-g22-xam-thumb-200x200.jpg;/uploads/nokia-g22-xanh-thumb-1-2-200x200.jpg;', 'Nokia G22 ', 'Xám,Xanh dương', 3420000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
 (69, 'Nokia 8210 4G có lẽ là một lựa chọn phù hợp với những ai cần cho mình một chiếc điện thoại phổ thông phục vụ cho nhu cầu nghe gọi. Máy có giá thành rẻ và vừa có độ bền cao, giúp cho người dùng có thể tiết kiệm được kha khá số tiền bỏ ra ban đầu cũng như không cần quá lo lắng đến vấn đề hỏng hóc trong lúc sử dụng.', '/uploads/Nokia 8210-do-thumb-200x200.jpg;/uploads/Nokia 8210-trang-thumb-200x200.jpg;/uploads/Nokia 8210-xanh-thumb-200x200.jpg;', 'Nokia 8210 4G', 'Đỏ,Trắng,Xanh', 1590000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
 (70, '​Nokia 105 4G - Chiếc điện thoại phổ thông nổi bật với thiết kế sang trọng, khả năng nghe gọi bền bỉ trong thời gian dài, hỗ trợ công nghệ 4G cùng nhiều tiện ích giải trí hấp dẫn khác đến từ nhà Nokia.', '/uploads/nokia-105-4g-black-200x200.jpg;/uploads/nokia-105-4g-blue-200x200.jpg;/uploads/nokia-105-4g-red-200x200.jpg;', 'Nokia 105 4G ', 'Xanh ngọc,Đỏ,Đen', 650000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 9, 1),
-(71, 'OPPO A78 một sản phẩm được nhà OPPO cho ra mắt với thiết kế trẻ trung, thiết bị này được đánh giá có hiệu năng ổn định, màn hình sắc nét và viên pin có dung lượng lớn, phù hợp cho người dùng sử dụng lâu dài.', '/uploads/oppo-a78-den-thumb-1-2-200x200.jpg;/uploads/oppo-a78-xanh-thumb-1-200x200.jpg;', 'OPPO A78', 'Xanh,Đen', 6990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1);
+(71, 'OPPO A78 một sản phẩm được nhà OPPO cho ra mắt với thiết kế trẻ trung, thiết bị này được đánh giá có hiệu năng ổn định, màn hình sắc nét và viên pin có dung lượng lớn, phù hợp cho người dùng sử dụng lâu dài.', '/uploads/oppo-a78-den-thumb-1-2-200x200.jpg;/uploads/oppo-a78-xanh-thumb-1-200x200.jpg;', 'OPPO A78', 'Xanh,Đen', 6990000, 'Hàng mới chính hãng', 'Thân máy và đầy đủ phụ kiện', 4, 1),
+(72, 'Với bộ vi xử lý Intel Core i5 dòng H mạnh mẽ và card đồ họa rời NVIDIA GeForce RTX 2050 4 GB, laptop Asus TUF Gaming F15 FX506HF là một trong những lựa chọn tuyệt vời cho các game thủ và những người dùng làm việc đa tác vụ hoặc liên quan đến đồ họa, kỹ thuật.', '/uploads/asus-tuf-gaming-f15-fx506hf-i5-hn014w-1.jpg;/uploads/asus-tuf-gaming-f15-fx506hf-i5-hn014w-2.jpg;/uploads/asus-tuf-gaming-f15-fx506hf-i5-hn014w-3.jpg;', 'Asus TUF Gaming F15 FX506HF i5 11400H (HN014W)', 'Đen', 16990000, 'Hàng mới chính hãng', 'Sách hướng dẫn, Thùng máy, Sạc Laptop Asus ( 150W ', 5, 2),
+(73, 'Laptop Asus Vivobook X515EA i3 1115G4 (EJ3948W) là một trong những mẫu laptop học tập - văn phòng đáng để bạn cân nhắc chọn mua nhờ sở hữu lối thiết kế thanh lịch, hiệu năng ổn định và bộ nhớ lưu trữ đủ dùng.', '/uploads/asus-vivobook-x515ea-i3-ej3948w-1.jpg;/uploads/asus-vivobook-x515ea-i3-ej3948w-2.jpg;/uploads/asus-vivobook-x515ea-i3-ej3948w-3.jpg;', 'Asus Vivobook X515EA i3 1115G4 (EJ3948W)', 'Bạc', 9790000, 'Hàng mới chính hãng', 'Thùng máy, Sạc Laptop Asus ( 45W ), Sách hướng dẫn', 5, 2),
+(74, 'Với hiệu năng vượt trội, màn hình OLED sắc nét và thiết kế thời thượng, laptop Asus Vivobook 15 OLED A1505VA i5 13500H (L1052W) là một trong những lựa chọn hàng đầu cho những ai đang tìm kiếm một chiếc laptop học tập - văn phòng chất lượng cao, có thể đáp ứng hoàn hảo nhu cầu công việc, học tập cũng như giải trí thường ngày.', '/uploads/asus-vivobook-15-oled-a1505va-i5-l1052w-glr-abc-def-1.jpg;/uploads/asus-vivobook-15-oled-a1505va-i5-l1052w-glr-abc-def-2.jpg;/uploads/asus-vivobook-15-oled-a1505va-i5-l1052w-glr-abc-def-3.jpg;', 'Asus Vivobook 15 OLED A1505VA i5 13500H (L1052W)', 'Đen', 16990000, 'Hàng mới chính hãng', 'Sách hướng dẫn, Thùng máy, Sạc Laptop Asus ( 65W )', 5, 2),
+(76, 'Laptop Asus Gaming ROG Strix G15 G513IH R7 (HN015W) là một trợ thủ đắc lực cho mọi game thủ chuyên nghiệp với phong cách thiết kế vô cùng độc đáo, ấn tượng chuẩn gaming cùng bộ cấu hình đầy mạnh mẽ.', '/uploads/asus-rog-strix-gaming-g513ih-r7-hn015w-1-1.jpg;/uploads/asus-rog-strix-gaming-g513ih-r7-hn015w-2-1.jpg;/uploads/asus-rog-strix-gaming-g513ih-r7-hn015w-3-1.jpg;', 'Asus Gaming ROG Strix G15 G513IH R7 4800H (HN015W)', 'Đen', 17990000, 'Hàng mới chính hãng', 'Dây nguồn, Sách hướng dẫn, Thùng máy, Sạc Laptop Asus', 5, 2),
+(77, 'Một dòng laptop gaming được cải tiến hoàn toàn mới đến từ nhà Acer, Aspire 7 Gaming 2023 mang ngoại hình tối giản, đẹp mắt cùng những thông số cấu hình mạnh mẽ, vừa đáp ứng được việc chiến game, vừa xử lý hiệu quả mọi tác vụ thường ngày. Laptop Acer Aspire 7 Gaming A715 76G 5132 i5 12450H (NH.QMESV.002) chắc chắn sẽ là sự lựa chọn hoàn hảo dành cho bạn.', '/uploads/acer-aspire-7-gaming-a715-76g-5132-i5-nhqmesv002-glr-1.jpg;/uploads/acer-aspire-7-gaming-a715-76g-5132-i5-nhqmesv002-glr-2.jpg;/uploads/acer-aspire-7-gaming-a715-76g-5132-i5-nhqmesv002-glr-3.jpg;', 'Acer Aspire 7 Gaming A715 76G 5132 i5 12450H', 'Đen', 15990000, 'Hàng mới chính hãng', 'Sách hướng dẫn, Thùng máy, Sạc Laptop Acer ( 135W )', 10, 2),
+(78, 'Nếu đang tìm kiếm một chiếc laptop học tập - văn phòng sở hữu thiết kế thanh lịch, hiện đại cùng thông số cấu hình đủ mạnh để vận hành mượt mà các tác vụ công việc thì laptop Acer Aspire 3 A315 58 54XF i5 (NX.AM0SV.007) là sự lựa chọn lý tưởng dành cho bạn.', '/uploads/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-03.jpg;/uploads/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-1.jpg;/uploads/acer-aspire-3-a315-58-54xf-i5-nxam0sv007-ab-2.jpg;', 'Acer Aspire 3 A315 58 54XF i5 1135G7 (NX.AM0SV.007)', 'Vàng', 12990000, 'Hàng mới chính hãng', 'Sách hướng dẫn, Thùng máy, Sạc Laptop Acer ', 10, 2),
+(79, 'Laptop Acer Gaming Nitro 5 AN515 57 53F9 i5 11400H (NH.QENSV.008) sở hữu diện mạo hầm hố đậm chất gaming kết hợp cũng card đồ họa RTX 30 series mang hiệu năng mạnh mẽ. Chiếc laptop gaming này sẽ là người bạn đồng hành tuyệt vời giúp bạn chinh phục mọi chiến trường ảo.', '/uploads/acer-gaming-nitro-5-an515-57-53f9-i5-nhqensv008-glr-1.jpg;/uploads/acer-gaming-nitro-5-an515-57-53f9-i5-nhqensv008-glr-2.jpg;/uploads/acer-gaming-nitro-5-an515-57-53f9-i5-nhqensv008-glr-3.jpg;', 'Acer Gaming Nitro 5 AN515 57 53F9 i5 11400H', 'Đen', 19990000, 'Hàng mới chính hãng', 'Sách hướng dẫn, Thùng máy, Sạc Laptop Acer', 10, 2),
+(80, 'Laptop Dell Vostro 15 3520 i5 1235U (5M2TT2) mới nhất đến từ nhà Dell sẽ khiến bạn thực sự ấn tượng với kiểu dáng hiện đại, sở hữu những thông số kỹ thuật mạnh mẽ có thể chạy mượt những tác vụ học tập, văn phòng.', '/uploads/dell-vostro-15-3520-i5-5m2tt2-glr-1.jpg;/uploads/dell-vostro-15-3520-i5-5m2tt2-glr-2.jpg;/uploads/dell-vostro-15-3520-i5-5m2tt2-glr-3-1.jpg;', 'Dell Vostro 15 3520 i5 1235U (5M2TT2)', 'Xám', 16790000, 'Hàng mới chính hãng', 'Thùng máy, Sạc Laptop Dell, Sách hướng dẫn', 15, 2),
+(82, 'Laptop Dell Inspiron 16 5620 i5 (P1WKN) là tân binh tiếp theo thuộc dòng laptop học tập - văn phòng vừa được mở bán tại Thế Giới Di Động, không chỉ sở hữu ngoại hình bắt mắt mà còn mang trong mình những thông số kỹ thuật tân tiến.', '/uploads/dell-inspiron-16-5620-i5-p1wkn-1.jpg;/uploads/dell-inspiron-16-5620-i5-p1wkn-2.jpg;/uploads/dell-inspiron-16-5620-i5-p1wkn-3.jpg;', 'Dell Inspiron 16 5620 i5 1235U (P1WKN)', 'Bạc', 16990000, 'Hàng mới chính hãng', 'Laptop Dell Inspiron 16 5620 i5 (P1WKN) là tân binh tiếp theo thuộc dòng laptop học tập - văn phòng vừa được mở bán tại Thế Giới Di Động, không chỉ sở hữu ngoại hình bắt mắt mà còn mang trong mình những thông số kỹ thuật tân tiến.', 15, 2),
+(83, 'Không những mang đến cho người dùng hiệu năng ấn tượng nhờ con chip Intel thế hệ 11 tân tiến cùng card rời RTX 30 series, laptop Dell Gaming G15 5511 i5 11400H (70266676) còn sở hữu thiết kế thời thượng, lôi cuốn, hứa hẹn sẽ là người cộng sự lý tưởng cùng bạn chinh phục mọi chiến trường.', '/uploads/dell-gaming-g15-5511-i5-70266676-1-1.jpg;/uploads/dell-gaming-g15-5511-i5-70266676-2-2.jpg;/uploads/dell-gaming-g15-5511-i5-70266676-3-1.jpg;', 'Dell Gaming G15 5511 i5 11400H (70266676)', 'Đen', 19990000, 'Hàng mới chính hãng', ' Dây nguồn, Sách hướng dẫn, Thùng máy, Sạc Laptop Dell', 15, 2),
+(84, 'Nếu bạn đang tìm kiếm một chiếc laptop học tập - văn phòng có thể đáp ứng tất tần tật mọi nhu cầu sử dụng hàng ngày từ học tập, làm việc văn phòng đến thiết kế đồ họa cơ bản, còn chần chừ gì nữa mà không tham khảo ngay laptop HP 15s fq2716TU i3 (7C0X3PA).', '/uploads/hp-15s-fq2716tu-i3-7c0x3pa-glr-1.jpg;/uploads/hp-15s-fq2716tu-i3-7c0x3pa-glr-2.jpg;/uploads/hp-15s-fq2716tu-i3-7c0x3pa-glr-3.jpg;', 'HP 15s fq2716TU i3 1115G4 (7C0X3PA)', 'Bạc', 10290000, 'Hàng mới chính hãng', ' Sách hướng dẫn, Thùng máy, Sạc Laptop HP ', 16, 2),
+(85, 'Laptop HP VICTUS 15 fa0155TX i5 12450H (81P00PA) hứa hẹn mang đến trải nghiệm làm việc và giải trí tuyệt vời nhờ bộ vi xử lý Intel thế hệ 12 mạnh mẽ, card đồ họa NVIDIA RTX 30-series và màn hình 144 Hz siêu mượt mà.', '/uploads/hp-victus-15-fa0155tx-i5-81p00pa-glr-1-1.jpg;/uploads/hp-victus-15-fa0155tx-i5-81p00pa-glr-2-1.jpg;/uploads/hp-victus-15-fa0155tx-i5-81p00pa-glr-3-1.jpg;', 'HP Gaming VICTUS 15 fa0155TX i5 12450H (81P00PA)', 'Đen', 20990000, 'Hàng mới chính hãng', 'Thùng máy, Sạc Laptop HP ( 200W ), Sách hướng dẫn', 16, 2),
+(86, 'Với sức mạnh hiệu năng vượt trội đến từ con chip Intel Gen 13 tân tiến, vẻ ngoài đơn giản mà hiện đại cùng lối thiết kế độc đáo, laptop HP Pavilion X360 14 ek1049TU i5 1335U (80R27PA) sẽ là sự lựa chọn hoàn hảo đáp ứng tốt các tác vụ học tập, làm việc cũng như xem phim, chơi game giải trí.', '/uploads/hp-pavilion-x360-14-ek1049tu-i5-80r27pa-glr-abc-1.jpg;/uploads/hp-pavilion-x360-14-ek1049tu-i5-80r27pa-glr-abc-2.jpg;/uploads/hp-pavilion-x360-14-ek1049tu-i5-80r27pa-glr-abc-3.jpg;', 'HP Pavilion X360 14 ek1049TU i5 1335U (80R27PA)', 'Vàng', 21990000, 'Hàng mới chính hãng', 'Thùng máy, Sạc Laptop HP ( 65W ), Bút cảm ứng, Sách hướng dẫn', 16, 2);
 
 -- --------------------------------------------------------
 
@@ -781,7 +795,144 @@ INSERT INTO `productvalue` (`valueid`, `valueindex`, `valuename`, `productid`) V
 (427, '8 GB', 'RAM:', 71),
 (428, '256 GB', 'Dung lượng lưu trữ:', 71),
 (429, '2 Nano SIMHỗ trợ 4G', 'SIM:', 71),
-(430, '5000 mAh67 W', 'Pin, Sạc:', 71);
+(430, '5000 mAh67 W', 'Pin, Sạc:', 71),
+(431, 'i5,11400H, 2.7GHz', 'CPU:', 72),
+(432, '8 GBDDR4 2 khe (1 khe 8 GB + 1 khe rời)3200 MHz', 'RAM:', 72),
+(433, 'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB)512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', 'Ổ cứng:', 72),
+(434, '15.6\"Full HD (1920 x 1080) 144Hz', 'Màn hình:', 72),
+(435, 'Card rờiRTX 2050 4GB', 'Card màn hình:', 72),
+(436, '1 x Thunderbolt 4 (hỗ trợ DisplayPort)HDMILAN (RJ45) 3 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 72),
+(437, 'Có đèn bàn phím', 'Đặc biệt:', 72),
+(438, 'Windows 11 Home SL', 'Hệ điều hành:', 72),
+(439, 'Vỏ nhựa - nắp lưng bằng kim loại', 'Thiết kế:', 72),
+(440, 'Dài 359 mm - Rộng 256 mm - Dày 22.8 ~ 24.5 mm - Nặng 2.3 kg', 'Kích thước, khối lượng:', 72),
+(441, '2023', 'Thời điểm ra mắt:', 72),
+(442, 'i3, 1115G4, 3GHz', 'CPU:', 73),
+(443, '8 GB DDR4 2 khe (1 khe 8 GB onboard + 1 khe trống) 3200 MHz', 'RAM:', 73),
+(444, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 73),
+(445, '15.6\" Full HD (1920 x 1080)', 'Màn hình:', 73),
+(446, 'Card tích hợp Intel UHD', 'Card màn hình:', 73),
+(447, 'HDMI, 2 x USB 2.0USB Type-C, 1 x USB 3.2, Jack tai nghe 3.5 mm', 'Cổng kết nối:', 73),
+(448, 'Windows 11 Home SL', 'Hệ điều hành:', 73),
+(449, 'Vỏ nhựa', 'Thiết kế:', 73),
+(450, 'Dài 360 mm - Rộng 235 mm - Dày 19.9 mm - Nặng 1.8 kg', 'Kích thước, khối lượng:', 73),
+(451, '2022', 'Thời điểm ra mắt:', 73),
+(452, 'i5, 13500H, 2.6GHz', 'CPU:', 74),
+(453, '8 GB, DDR4 2 khe (1 khe 8 GB onboard + 1 khe trống), 3200 MHz', 'RAM:', 74),
+(454, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 74),
+(455, '15.6\"Full HD (1920 x 1080) OLED', 'Màn hình:', 74),
+(456, 'Card tích hợp, Intel UHD', 'Card màn hình:', 74),
+(457, '1 x USB Type-C 3.2 (hỗ trợ Power Delivery), HDMI1 x USB 2.0, 2 x USB 3.2, Jack tai nghe 3.5 mm', 'Cổng kết nối:', 74),
+(458, 'Windows 11 Home SL', 'Hệ điều hành:', 74),
+(459, 'Vỏ nhựa', 'Thiết kế:', 74),
+(460, 'Dài 356.8 mm - Rộng 227.6 mm - Dày 19.9 mm - Nặng 1.7 kg', 'Kích thước, khối lượng:', 74),
+(461, '2023', 'Thời điểm ra mắt:', 74),
+(466, 'Ryzen 74800H 2.9GHz', 'CPU:', 76),
+(467, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 76),
+(468, 'Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 1 TB)512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)', 'Ổ cứng:', 76),
+(469, '15.6\" Full HD (1920 x 1080) 144Hz', 'Màn hình:', 76),
+(470, 'Card rời, GTX 1650 4GB', 'Card màn hình:', 76),
+(471, 'USB Type-C (hỗ trợ Power Delivery và DisplayPort)HDMILAN (RJ45)Jack tai nghe 3.5 mm3x Type-A USB 3.2 Gen 1', 'Cổng kết nối:', 76),
+(472, 'Có đèn bàn phím', 'Đặc biệt:', 76),
+(473, 'Windows 11 Home SL', 'Hệ điều hành:', 76),
+(474, 'Vỏ nhựa - nắp lưng bằng kim loại', 'Thiết kế:', 76),
+(475, 'Dài 354 mm - Rộng 259 mm - Dày 20.6 mm - Nặng 2.1 kg', 'Kích thước, khối lượng:', 76),
+(476, '2021', 'Thời điểm ra mắt:', 76),
+(477, 'i5 12450H 2GHz', 'CPU:', 77),
+(478, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 77),
+(479, '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB)Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)', 'Ổ cứng:', 77),
+(480, '15.6\" Full HD (1920 x 1080) 144Hz', 'Màn hình:', 77),
+(481, 'Card rời GTX 1650 4GB', 'Card màn hình:', 77),
+(482, '1 x USB Type-C (hỗ trợ USB, DisplayPort, Thunderbolt 4)HDMILAN (RJ45)3 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 77),
+(483, 'Có đèn bàn phím', 'Đặc biệt:', 77),
+(484, 'Windows 11 Home SL', 'Hệ điều hành:', 77),
+(485, 'Vỏ nhựa - nắp lưng bằng kim loại', 'Thiết kế:', 77),
+(486, 'Dài 362.3 mm - Rộng 237.4 mm - Dày 19.9 mm - Nặng 2.1 kg', 'Kích thước, khối lượng:', 77),
+(487, '2023', 'Thời điểm ra mắt:', 77),
+(488, 'i5 1135G7 2.4GHz', 'CPU:', 78),
+(489, '8 GB DDR4 (Onboard 4 GB + 1 khe 4 GB)Từ 2400 MHz (Hãng công bố)', 'RAM:', 78),
+(490, '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB)Hỗ trợ khe cắm HDD SATA (nâng cấp tối đa 2 TB)', 'Ổ cứng:', 78),
+(491, '15.6\" Full HD (1920 x 1080)', 'Màn hình:', 78),
+(492, 'Card tích hợp Intel Iris Xe', 'Card màn hình:', 78),
+(493, 'HDMI LAN (RJ45)1 x USB 2.02 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 78),
+(494, 'Windows 11 Home SL', 'Hệ điều hành:', 78),
+(495, 'Vỏ nhựa', 'Thiết kế:', 78),
+(496, 'Dài 363.4 mm - Rộng 238.4 mm - Dày 19.9 mm - Nặng 1.7 kg', 'Kích thước, khối lượng:', 78),
+(497, '2021', 'Thời điểm ra mắt:', 78),
+(498, 'i5 11400H 2.7GHz', 'CPU:', 79),
+(499, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 79),
+(500, '512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB)Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB)Hỗ trợ khe cắm HDD SATA 2.5 inch mở rộng (nâng cấp tối đa 2 TB)', 'Ổ cứng:', 79),
+(501, '15.6\" Full HD (1920 x 1080) 144Hz', 'Màn hình:', 79),
+(502, 'Card rời RTX 3050 4GB', 'Card màn hình:', 79),
+(503, '1 x USB Type-C (hỗ trợ USB 3.2, DisplayPort)HDMILAN (RJ45)3 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 79),
+(504, 'Có đèn bàn phím', 'Đặc biệt:', 79),
+(505, 'Windows 11 Home SL', 'Hệ điều hành:', 79),
+(506, 'Vỏ nhựa', 'Thiết kế:', 79),
+(507, 'Dài 363.4 mm - Rộng 255 mm - Dày 23.9 mm - Nặng 2.2 kg', 'Kích thước, khối lượng:', 79),
+(508, '2021', 'Thời điểm ra mắt:', 79),
+(509, 'i5 1235U 1.3GHz', 'CPU:', 80),
+(510, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 80),
+(511, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 80),
+(512, '15.6\" Full HD (1920 x 1080) 120Hz', 'Màn hình:', 80),
+(513, 'Card tích hợp Intel UHD', 'Card màn hình:', 80),
+(514, 'HDMI LAN (RJ45)1 x USB 2.02 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 80),
+(515, 'Windows 11 Home SL + Office Home & Student vĩnh viễn', 'Hệ điều hành:', 80),
+(516, 'Vỏ nhựa', 'Thiết kế:', 80),
+(517, 'Dài 358.5 mm - Rộng 235.56 mm - Dày 19 mm - Nặng 1.67 kg', 'Kích thước, khối lượng:', 80),
+(518, '2022', 'Thời điểm ra mắt:', 80),
+(519, 'i5 1235U 1.3GHz', 'CPU:', 82),
+(520, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 82),
+(521, '256 GB SSD NVMe PCIe', 'Ổ cứng:', 82),
+(522, '16\" Full HD (1920 x 1080)', 'Màn hình:', 82),
+(523, 'Card tích hợp Intel UHD', 'Card màn hình:', 82),
+(524, '1 x USB Type-C 3.2 (hỗ trợ Power Delivery và DisplayPort)HDMI2 x USB 3.2Jack tai nghe 3.5 mm', 'Cổng kết nối:', 82),
+(525, 'Windows 11 Home SL + Office Home & Student vĩnh viễn', 'Hệ điều hành:', 82),
+(526, 'Vỏ kim loại', 'Thiết kế:', 82),
+(527, 'Dài 356.7 mm - Rộng 251.9 mm - Dày 17.95 mm - Nặng 1.87 kg', 'Kích thước, khối lượng:', 82),
+(528, '2022', 'Thời điểm ra mắt:', 82),
+(529, 'i5 11400H 2.7GHz', 'CPU:', 83),
+(530, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 83),
+(531, '256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 2 TB (2280) / 512 GB (2230))', 'Ổ cứng:', 83),
+(532, '15.6\" Full HD (1920 x 1080) 120Hz', 'Màn hình:', 83),
+(533, 'Card rời RTX 3050 4GB', 'Card màn hình:', 83),
+(534, 'HDMI LAN (RJ45)USB Type-C3 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 83),
+(535, 'Có đèn bàn phím', 'Đặc biệt:', 83),
+(536, 'Windows 11 Home SL + Office Home & Student vĩnh viễn', 'Hệ điều hành:', 83),
+(537, 'Vỏ nhựa', 'Thiết kế:', 83),
+(538, 'Dài 357 mm - Rộng 272 mm - Dày 25 mm - Nặng 2.81 kg', 'Kích thước, khối lượng:', 83),
+(539, '2021', 'Thời điểm ra mắt:', 83),
+(540, 'i3 1115G4 3GHz', 'CPU:', 84),
+(541, '8 GB DDR4 2 khe (1 khe 8 GB + 1 khe rời) 3200 MHz', 'RAM:', 84),
+(542, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 84),
+(543, '15.6\" Full HD (1920 x 1080)', 'Màn hình:', 84),
+(544, 'Card tích hợp Intel UHD', 'Card màn hình:', 84),
+(545, 'HDM I2x SuperSpeed USB AJack tai nghe 3.5 mm1x SuperSpeed USB Type-C', 'Cổng kết nối:', 84),
+(546, 'Windows 11 Home SL', 'Hệ điều hành:', 84),
+(547, 'Vỏ nhựa', 'Thiết kế:', 84),
+(548, 'Dài 358.5 mm - Rộng 242 mm - Dày 17.9 mm - Nặng 1.7 kg', 'Kích thước, khối lượng:', 84),
+(549, '2022', 'Thời điểm ra mắt:', 84),
+(550, 'i5 12450H 2GHz', 'CPU:', 85),
+(551, '16 GB DDR4 2 khe (1 khe 8 GB + 1 khe 8 GB) 3200 MHz', 'RAM:', 85),
+(552, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 85),
+(553, '15.6\" Full HD (1920 x 1080) 144Hz', 'Màn hình:', 85),
+(554, 'Card rời RTX 3050 4GB', 'Card màn hình:', 85),
+(555, '1 x USB Type-C 3.2 (hỗ trợ DisplayPort)HDMILAN (RJ45)2 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 85),
+(556, 'Có đèn bàn phím', 'Đặc biệt:', 85),
+(557, 'Windows 11 Home SL', 'Hệ điều hành:', 85),
+(558, 'Vỏ nhựa', 'Thiết kế:', 85),
+(559, 'Dài 357.9 mm - Rộng 255 mm - Dày 23.5 mm - Nặng 2.31 kg', 'Kích thước, khối lượng:', 85),
+(560, '2023', 'Thời điểm ra mắt:', 85),
+(561, 'i5 1335U 1.3GHz', 'CPU:', 86),
+(562, '16 GB DDR4 (Onboard) 3200 MHz', 'RAM:', 86),
+(563, '512 GB SSD NVMe PCIe', 'Ổ cứng:', 86),
+(564, '14\" Full HD (1920 x 1080)', 'Màn hình:', 86),
+(565, 'Card tích hợp Intel Iris Xe', 'Card màn hình:', 86),
+(566, '1 x USB Type-C 3.2 (hỗ trợ Power Delivery và DisplayPort)HDMI2 x USB 3.2 Jack tai nghe 3.5 mm', 'Cổng kết nối:', 86),
+(567, 'Có màn hình cảm ứng, Có đèn bàn phím', 'Đặc biệt:', 86),
+(568, 'Windows 11 Home SL', 'Hệ điều hành:', 86),
+(569, 'Vỏ kim loại - Nắp lưng bằng nhựa', 'Thiết kế:', 86),
+(570, 'Dài 322 mm - Rộng 210 mm - Dày 19.9 mm - Nặng 1.53 kg', 'Kích thước, khối lượng:', 86),
+(571, '2023', 'Thời điểm ra mắt:', 86);
 
 -- --------------------------------------------------------
 
@@ -973,7 +1124,7 @@ ALTER TABLE `userrole`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `card`
@@ -985,7 +1136,7 @@ ALTER TABLE `card`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1033,13 +1184,13 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `productvalue`
 --
 ALTER TABLE `productvalue`
-  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=431;
+  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=572;
 
 --
 -- AUTO_INCREMENT for table `role`
