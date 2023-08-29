@@ -54,7 +54,27 @@
 		        <label class="btn btn-outline-primary" for="increasing">
 		            <i class="bi bi-sort-up"></i> Tăng
 		        </label>
+		        
+		     
 		    </div>
+		     <form style="margin-top: 10px;" method="post" th:action="@{${action}}" th:unless="${page} == 'brand'">
+			        <input type="hidden" th:value="${id}" name="id1"> 
+					<select name="id2">
+						    <option value="0"> Tất cả </option>
+							<option  th:each="b:${list}" th:value="${b.BrandID}" th:text="${b.BrandName}"> </option>
+					</select>
+					<button type="submit" class="btn btn-primary"> Lọc</button>
+			</form>
+			
+			 <form style="margin-top: 10px;" method="post" th:action="@{${action}}" th:if="${page} == 'brand'">
+			        <input type="hidden" th:value="${id}" name="id1"> 
+					<select name="id2">
+						    <option value="0"> Tất cả </option>
+							<option  th:each="b:${list}" th:value="${b.CategoryID}" th:text="${b.CategoryName}"> </option>
+					</select>
+					<button type="submit" class="btn btn-primary"> Lọc</button>
+			</form>
+		        
 						
 
 		</div>
@@ -68,6 +88,7 @@
 	                    th:alt="${product.ProductName}" style="object-fit: cover;">
 	                <div class="card-body d-flex flex-column">
 	                    <h5 class="card-title font-weight-bold flex-grow-1 fs-6" th:text="${product.productName}"></h5>
+	                     <p style="color: red;" th:if="${product.status == 0}"> Hết hàng </p>
 	                    <p id="price" class="card-text text-danger fs-5" th:text="${product.price}"></p>
 	                </div>
 	            </div>
@@ -81,21 +102,25 @@
 		<nav aria-label="Page navigation">
 		    <ul class="pagination justify-content-center">
 		        <li th:if="${currentPage > 0}" class="page-item">
-		            <a class="page-link" th:href="@{/products(page=0, sortingOptions=${sortingOptions})}">&laquo;</a>
+		           
+		               <a class="page-link" th:href="@{'/' + ${page} +'/' + ${id} +'?page=0&type=' +${type} + '&sortingOptions=' +${sortingOptions}}">&laquo;</a>
 		        </li>
 		        <li th:if="${currentPage > 0}" class="page-item">
-		            <a class="page-link" th:href="@{/products(page=${currentPage - 1}, sortingOptions=${sortingOptions})}"
-		                th:text="${currentPage}"></a>
+
+		                <a class="page-link" th:href="@{'/' + ${page} +'/' + ${id} +'?page='+${currentPage-1}+'&type=' +${type} + '&sortingOptions=' +${sortingOptions}}"  th:text="${currentPage}"></a>
 		        </li>
 		        <li th:if="${currentPage + 1 < totalPages}" class="page-item">
-		            <a class="page-link" th:href="@{/products(page=${currentPage + 1}, sortingOptions=${sortingOptions})}"
-		                th:text="${currentPage + 2}"></a>
+
+		               <a class="page-link" th:href="@{'/' + ${page} +'/' + ${id} +'?page='+${currentPage+1}+'&type=' +${type} + '&sortingOptions=' +${sortingOptions}}"  th:text="${currentPage + 2}"></a>   
+		                
 		        </li>
 		        <li th:if="${currentPage + 1 < totalPages}" class="page-item">
-		            <a class="page-link" th:href="@{/products(page=${totalPages.intValue() - 1}, sortingOptions=${sortingOptions})}">&raquo;</a>
+		        
+		             <a class="page-link" th:href="@{'/' + ${page} +'/' + ${id} +'?page='+${totalPages.intValue() - 1}+'&type=' +${type} + '&sortingOptions=' +${sortingOptions}}"  >&raquo;</a>   
 		        </li>
 		    </ul>
 		</nav>
+
 	</div>
 
 	<script>
@@ -122,7 +147,12 @@
         
         sortingOptions.forEach(option => {
             option.addEventListener('change', function() {
-                window.location.href = window.location.href.split('?')[0] + '?sortingOptions=' + this.id;
+				const queryString = window.location.search;
+			     const urlParams = new URLSearchParams(queryString);
+			     var page =  parseInt(urlParams.get('page'));
+			     var type =  parseInt(urlParams.get('type'));
+			     
+                window.location.href = window.location.href.split('?')[0] +'?' +"page="+page+"&type="+type +'&sortingOptions=' + this.id;
             });
         });
     </script>

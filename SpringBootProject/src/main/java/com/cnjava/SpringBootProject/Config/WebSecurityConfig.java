@@ -51,11 +51,11 @@ public class WebSecurityConfig {
         http.csrf((csrf) -> csrf.disable());       
         // Các trang không yêu cầu login
         http.authorizeHttpRequests(authz -> authz.requestMatchers("/","/login","/loginfail","/logoutSuccessful","/admin/register","/admin/register/save","/product/*","/uploads/*","/category/*","/img/*").permitAll());
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("","/thucudoimoi","/cuahang","/lienhe","/savemes","/tintuc","/tintuc/*","/register","/addUser","/forgetPassword","/newPassword","/sendOTP","/updatePassword","/message","/home","/products","/brand/*","/searching","/error","/warranty","/security","/delivery","/pay","/tragop").permitAll());
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/filterCategory","/filterBrand","","/thucudoimoi","/cuahang","/lienhe","/savemes","/tintuc","/tintuc/*","/register","/addUser","/forgetPassword","/newPassword","/sendOTP","/updatePassword","/message","/home","/products","/brand/*","/searching","/error","/warranty","/security","/delivery","/pay","/tragop").permitAll());
          
         // Trang chỉ dành cho ADMIN
 
-         http.authorizeHttpRequests(authz -> authz.requestMatchers("/admin/statistics","/deletemes","/admin/mesdetail","/admin/messages","/searchemail","/addrole","/deleterole","/admin/accountdetail","/admin/listaccount","/filteraccount","/admin","/admin/products","/admin/brands","/admin/categories", "/admin/orders", "/admin/orders/update-status","/addProduct","/deleteProduct","/addBrand","/renameBrand","/deleteBrand","/addCategory","/renameCategory","/deleteCategory").hasRole("ADMIN"));
+         http.authorizeHttpRequests(authz -> authz.requestMatchers("/updateStatusProduct","/admin/statistics","/deletemes","/admin/mesdetail","/admin/messages","/searchemail","/addrole","/deleterole","/admin/accountdetail","/admin/listaccount","/filteraccount","/admin","/admin/products","/admin/brands","/admin/categories", "/admin/orders", "/admin/orders/update-status","/addProduct","/deleteProduct","/addBrand","/renameBrand","/deleteBrand","/addCategory","/renameCategory","/deleteCategory").hasRole("ADMIN"));
          // Trang cho bat ky role
          http.authorizeHttpRequests(authz -> authz.requestMatchers("/payment/saveorder","/cart","/userinfo","/updateUser","/payment","/order","/addcart/*","/buynow/*","/submit-comment","/deletecomment","/cart/*","/updatequantity","/getCode","/deletecart/*","/checkout","/orderdetail","/searchorder","/editorder").hasAnyRole("ADMIN","USER"));
 

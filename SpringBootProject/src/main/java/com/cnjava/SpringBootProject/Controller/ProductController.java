@@ -95,27 +95,38 @@ public class ProductController {
     }
 	
 	@GetMapping("/brand/{brandid}")
-	public String getProductsPageByBrand(@PathVariable("brandid") int brandId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model) {
-		Page<Product> productPage = productService.getProductsPageSortedByBrand(brandId, page, sortingOptions);
+	public String getProductsPageByBrand(@PathVariable("brandid") int brandId, @RequestParam("page") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model,@RequestParam("type") int type) {
+		Page<Product> productPage = productService.getProductsPageSortedByBrand(brandId, page,type, sortingOptions);
 
 		model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
         model.addAttribute("webtitle", brandService.getBrandById(brandId).getBrandName());
+        model.addAttribute("list", categoryService.getAllCategory());
+        model.addAttribute("id", brandId);
+        model.addAttribute("page","brand");
+        model.addAttribute("type",type);
+        model.addAttribute("action","/filterCategory");
+        
         
         return "products";
 	}
 	
 	@GetMapping("/category/{categoryid}")
-	public String getProductsPageByCategory(@PathVariable("categoryid") int categoryId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model) {
-		Page<Product> productPage = productService.getProductsPageSortedByCategory(categoryId, page, sortingOptions);
+	public String getProductsPageByCategory(@PathVariable("categoryid") int categoryId, @RequestParam("page") int page, @RequestParam(defaultValue = "none") String sortingOptions, Model model,@RequestParam("type") int type) {
+		Page<Product> productPage = productService.getProductsPageSortedByCategory(categoryId, page, type, sortingOptions);
 
 		model.addAttribute("products", productPage.getContent());
         model.addAttribute("currentPage", productPage.getNumber());
         model.addAttribute("totalPages", productPage.getTotalPages());
         model.addAttribute("sortingOptions", sortingOptions);
         model.addAttribute("webtitle", categoryService.getCategoryById(categoryId).getCategoryName());
+        model.addAttribute("list", brandService.getAllBrand());
+        model.addAttribute("id", categoryId);
+        model.addAttribute("page","category");
+        model.addAttribute("type",type);
+        model.addAttribute("action","/filterBrand");
 
         return "products";
 	}
@@ -204,4 +215,14 @@ public class ProductController {
 
         return "redirect:/product/" + productId;
     }
+	
+	@PostMapping("/filterBrand")
+	public String filterBrand(@RequestParam("id1") int id1,@RequestParam("id2") int id2 ) {
+		return "redirect:/category/"+id1+"?page=0&type=" + id2;
+	}
+	
+	@PostMapping("/filterCategory")
+	public String filterCategory(@RequestParam("id1") int id1,@RequestParam("id2") int id2 ) {
+		return "redirect:/brand/"+id1+"?page=0&type=" + id2;
+	}
 }

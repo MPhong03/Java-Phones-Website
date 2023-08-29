@@ -115,7 +115,7 @@
                                 <a href="#">Danh mục</a>
                                 <ul>
 						            <li th:each="category : ${categories}">
-						                <a th:href="@{'/category/' + ${category.CategoryID}}" th:text="${category.CategoryName}"></a>
+						                <a th:href="@{'/category/' + ${category.CategoryID} + '?page=0&type=0'}" th:text="${category.CategoryName}"></a>
 						            </li>
 						        </ul>
                             </li>
@@ -123,7 +123,7 @@
                                 <a href="#">Nhãn hiệu</a>
                                 <ul>
 						            <li th:each="brand : ${brands}">
-						                <a th:href="@{'/brand/' + ${brand.BrandID}}" th:text="${brand.BrandName}"></a>
+						                <a th:href="@{'/brand/' + ${brand.BrandID} +'?page=0&type=0'}" th:text="${brand.BrandName}"></a>
 						            </li>
 						        </ul>
                             </li>

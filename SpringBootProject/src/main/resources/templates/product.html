@@ -122,7 +122,7 @@
 					</ul>
 			    </div>
 			    
-			    <div class="mt-3 d-flex justify-content-between">
+			    <div class="mt-3 d-flex justify-content-between" th:unless="${product.status == 0}">
 					<form class="" th:action="@{/buynow/{id} (id = ${product.ProductID})}" method="post" id="formBuyNow">
 						    <input style="display: none;" type="text" id="setcolor1" name="color">	
 						 	<button type="submit" class="btn btn-danger">Mua ngay</button> 
@@ -134,6 +134,10 @@
 			   
 					</form>
 					
+			    
+			    </div>
+			     <div class="mt-3 d-flex justify-content-between" th:if="${product.status == 0}">
+						<h2 class="text-danger"> HẾT HÀNG </h2>
 			    
 			    </div>
 			</div>

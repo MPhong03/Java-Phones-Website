@@ -197,6 +197,7 @@ public class AdminController {
 		    product.setColors(productColors);
 		    product.setState(productState);
 		    product.setSupples(productSupples);
+		    product.setStatus(1);
 
 		    productService.save(product);
 
@@ -499,5 +500,15 @@ public class AdminController {
     	
     	return "admin/statistics";
     }
+	
+	@PostMapping("/updateStatusProduct")
+	public String updateStatusProduct(@RequestParam("ProductID") int proId, @RequestParam("status") int status) {
+		
+		Product pro = productService.getProductById(proId);
+		pro.setStatus(status);
+		productService.save(pro);
+		
+		return "redirect:/admin/products";
+	}
 	
 }

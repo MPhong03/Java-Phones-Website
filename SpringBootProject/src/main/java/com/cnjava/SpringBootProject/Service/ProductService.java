@@ -94,8 +94,18 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
     
-    public Page<Product> getProductsPageSortedByBrand(int brandid, int page, String sortingOptions) {
-        long totalProducts = productRepository.countByBrand(brandid);
+    public Page<Product> getProductsPageSortedByBrand(int brandid, int page,int type, String sortingOptions) {
+        long totalProducts = 0;
+        
+        if(type == 0) {
+        	totalProducts =  productRepository.countByBrand(brandid);
+        }
+        else {
+        	totalProducts =  productRepository.countByBrandCategory(brandid,type);
+        }
+        
+        
+        
         int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable;
@@ -105,12 +115,26 @@ public class ProductService {
         } else {
             pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Order.desc("price")));
         }
+        
+        if(type == 0) {
+        	return productRepository.findByBrand(brandid, pageable);
+        }
 
-        return productRepository.findByBrand(brandid, pageable);
+        return productRepository.findByBrandCategory(brandid, type,pageable);
     }
 	
-	public Page<Product> getProductsPageSortedByCategory(int categoryid, int page, String sortingOptions) {
-        long totalProducts = productRepository.countByCategory(categoryid);
+	public Page<Product> getProductsPageSortedByCategory(int categoryid, int page,int type ,String sortingOptions) {
+		
+		
+        long totalProducts = 0;
+        
+        if(type == 0) {
+        	totalProducts = productRepository.countByCategory(categoryid);
+        }
+        else {
+        	totalProducts = productRepository.countByCategoryBrand(categoryid,type);
+        }
+        
         int pageSize = (int) Math.min(20, Math.max(1, totalProducts));
 
         Pageable pageable;
@@ -120,8 +144,12 @@ public class ProductService {
         } else {
             pageable = PageRequest.of(page, pageSize, Sort.by(Sort.Order.desc("price")));
         }
+        
+        if(type != 0) {
+        	  return productRepository.findByCategoryBrand(categoryid,type ,pageable);
+        }
 
-        return productRepository.findByCategory(categoryid, pageable);
+        return productRepository.findByCategory(categoryid ,pageable);
     }
 
 	public Page<Product> getProductsPageSortedByKeyword(String keyword, int page, String sortingOptions) {
