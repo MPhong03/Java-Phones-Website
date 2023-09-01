@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -511,4 +513,106 @@ public class AdminController {
 		return "redirect:/admin/products";
 	}
 	
+	@GetMapping("/admin/product/{id}")
+	public String productDetails(@PathVariable("id") int productId, Model model) {
+        model.addAttribute("product", productService.getProductById(productId));
+        model.addAttribute("performance", valueService.getValuesByProductID(productId));
+        model.addAttribute("brands", brandService.getAllBrand());
+		model.addAttribute("categories", categoryService.getAllCategory());
+		
+		return "admin/editProduct";
+	}
+	
+	@PostMapping("/editProduct/{id}")
+	public String updateProductInfo(
+		    @PathVariable("id") int productId,
+		    @ModelAttribute("product") Product updatedProduct,
+		    @RequestParam("imageFiles") List<MultipartFile> imageFiles,
+		    @RequestParam(value = "deleteImages", required = false) List<String> deleteImages) throws Exception {
+      
+	    Product productToUpdate = productService.getProductById(productId);
+		
+        productToUpdate.setProductName(updatedProduct.getProductName());
+        productToUpdate.setDescription(updatedProduct.getDescription());
+        productToUpdate.setPrice(updatedProduct.getPrice());
+        productToUpdate.setState(updatedProduct.getState());
+        productToUpdate.setColors(updatedProduct.getColors());
+        productToUpdate.setSupples(updatedProduct.getSupples());
+        
+        Brand selectedBrand = brandService.getBrandById(updatedProduct.getBrand().getBrandID());
+        productToUpdate.setBrand(selectedBrand);
+        
+        Category selectedCategory = categoryService.getCategoryById(updatedProduct.getCategory().getCategoryID());
+        productToUpdate.setCategory(selectedCategory);
+        
+        // Thêm hình ảnh
+        String imageUrls = productToUpdate.getImageLink();
+
+        for (MultipartFile file : imageFiles) {
+            if (!file.isEmpty()) {
+                String originalFilename = file.getOriginalFilename();
+                String filename = originalFilename;
+                
+                File staticFolder = ResourceUtils.getFile("classpath:" + uploadDirectory);
+    		    String absolutePath = staticFolder.getAbsolutePath();
+
+                String fullPath = absolutePath + File.separator + filename;
+                Path uploadPath = Paths.get(fullPath);
+
+                if (Files.exists(uploadPath)) {
+                    FileCopyUtils.copy(file.getBytes(), uploadPath.toFile());
+                } else {
+                    Files.write(uploadPath, file.getBytes());
+                }
+
+                String imageUrl = ";/uploads/" + filename;
+                imageUrls += imageUrl;
+            }
+        }
+
+
+        // Xóa hình ảnh được đánh dấu
+        if (deleteImages != null && !deleteImages.isEmpty()) {
+        	
+        	String[] imageUrlsArray = imageUrls.split(";");
+            List<String> updatedImageUrls = new ArrayList<>();
+            
+            for (String url : imageUrlsArray) {
+                if (!deleteImages.contains(url)) {
+                    updatedImageUrls.add(url);
+                    System.out.println("[" + url + "]");
+                }
+            }
+            
+            imageUrls = String.join(";", updatedImageUrls);
+            System.out.println("[" + imageUrls + "]");
+        }
+
+        productToUpdate.setImageLink(imageUrls);
+        
+        productService.save(productToUpdate);
+                
+        return "redirect:/admin/product/{id}";
+    }
+	
+	@PostMapping("/addPerformance")
+	public String addPerformance(@RequestParam int id, @RequestParam("name") String name, @RequestParam("value") String value) {
+		Product product = productService.getProductById(id);
+		
+		Value newValue = new Value();
+		
+		newValue.setValueName(name);
+		newValue.setValueIndex(value);
+		newValue.setProduct(product);
+		
+		valueService.save(newValue);
+		
+		return "redirect:/admin/product/" + id;
+	}
+	
+	@PostMapping("/deleteValue")
+	public String deleteValue(@RequestParam("ValueID") int valueId, @RequestParam("ProductID") int productId) {
+		valueService.deleteById(valueId);
+		return "redirect:/admin/product/" + productId;
+	}
 }

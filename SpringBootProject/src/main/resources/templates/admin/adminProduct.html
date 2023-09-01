@@ -152,6 +152,7 @@
 					<table class="table table-striped">
 						<thead class="table-dark">
 							<tr>
+								<th>STT</th>
 								<th>Hình ảnh</th>
 								<th>Tên sản phẩm</th>
 								<th>Giá sản phẩm</th>
@@ -165,7 +166,8 @@
 						</thead>
 						<tbody>
 							<!-- Loop through the list of products and display them in table rows -->
-							<tr th:each="product, productIndex : ${products}">
+							<tr th:each="product, productIndex : ${products}" class="product-row">
+								<td th:text="${product.ProductID}"></td>
 								<td style="width:15%">
 				                    <div th:id="'product-image-carousel-' + ${productIndex.index}" class="carousel carousel-dark slide"
 										data-bs-ride="carousel">
@@ -198,11 +200,11 @@
 											th:value="${product.ProductID}">
 										<button type="submit" class="btn btn-danger">Xóa</button>
 									</form>
-									<br>
+								
 									<form th:action="@{/updateStatusProduct}" method="POST">
 										<input type="hidden" th:name="ProductID"
 											th:value="${product.ProductID}">
-										<select name="status">
+										<select name="status" class="form-control mt-1">
 											<option value="1" selected th:if="${product.status} == 1"> Còn hàng </option>
 											<option value="1" th:unless="${product.status} == 1"> Còn hàng </option>
 											<option value="0" selected th:if="${product.status} == 0"> Hết hàng </option>
@@ -211,10 +213,43 @@
 										<button type="submit" class="btn btn-primary"> Cập nhật</button>
 									</form>
 									
+									<a th:href="@{'/admin/product/' + ${product.ProductID}}" class="btn btn-primary mt-1" role="button">Chỉnh sửa</a>
+									
 								</td>
 							</tr>
+							
+							<tr id="loadMoreRow">
+					            <td colspan="9" class="text-center">
+					                <button id="loadMoreButton" class="btn btn-primary">Xem thêm</button>
+					            </td>
+					        </tr>
 						</tbody>
 					</table>
+										
+					<script>
+					    $(document).ready(function () {
+					        var initialCount = 10;
+					        var incrementCount = 10;
+					        var $productRows = $('.product-row');
+					        var $loadMoreRow = $('#loadMoreRow');
+					
+					        // Ẩn tất cả các hàng sản phẩm, chỉ hiển thị số lượng ban đầu
+					        $productRows.slice(initialCount).hide();
+					
+					        // Xử lý sự kiện khi nhấn nút "Xem thêm"
+					        $('#loadMoreButton').click(function () {
+					            $productRows.slice(initialCount, initialCount + incrementCount).show();
+					            initialCount += incrementCount;
+					
+					            // Nếu đã hiển thị hết sản phẩm, ẩn nút "Xem thêm"
+					            if (initialCount >= $productRows.length) {
+					                $loadMoreRow.hide();
+					            }
+					        });
+					    });
+					</script>
+
+					
 				</div>
 
 

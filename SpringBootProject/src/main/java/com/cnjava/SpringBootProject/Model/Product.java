@@ -1,5 +1,6 @@
 package com.cnjava.SpringBootProject.Model;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -139,11 +140,11 @@ public class Product {
 		Brand = brand;
 	}
 	
-	public void addImageUrl(String imageUrl) {
+	public void addImageUrls(List<String> newImageUrls) {
         if (this.ImageLink == null || this.ImageLink.isEmpty()) {
-            this.ImageLink = imageUrl;
+            this.ImageLink = String.join(";", newImageUrls);
         } else {
-            this.ImageLink += ";" + imageUrl;
+            this.ImageLink += ";" + String.join(";", newImageUrls);
         }
     }
 	
