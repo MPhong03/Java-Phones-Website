@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Aug 29, 2023 at 04:09 PM
+-- Host: 127.0.0.1
+-- Generation Time: Sep 05, 2023 at 02:24 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `javaweb3`
+-- Database: `javaweb`
 --
 
 -- --------------------------------------------------------
@@ -44,10 +44,11 @@ INSERT INTO `brand` (`brandid`, `brandname`) VALUES
 (5, 'Asus'),
 (9, 'Nokia'),
 (10, 'Acer'),
-(14, 'Microsoft'),
+(14, 'Canon'),
 (15, 'Dell'),
 (16, 'HP'),
-(17, 'MSI');
+(17, 'MSI'),
+(18, 'Sony');
 
 -- --------------------------------------------------------
 
@@ -98,7 +99,8 @@ INSERT INTO `cart` (`cartid`, `price`, `quantity`, `productid`, `userid`, `color
 (4, 19980000, 2, 2, 1, 'Trắng'),
 (5, 4690000, 1, 4, 1, 'Trắng'),
 (9, 9990000, 1, 2, 2, 'Trắng'),
-(10, 6990000, 1, 39, 1, 'Trắng');
+(10, 6990000, 1, 39, 1, 'Trắng'),
+(11, 3790000, 1, 102, 7, 'Tím');
 
 -- --------------------------------------------------------
 
@@ -293,11 +295,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `colors`, `price`, `state`, `supples`, `brandid`, `categoryid`, `status`) VALUES
-(1, 'Bàn phím laptop được thiết kế khoa học với cấu trúc liền khối cùng hành trình phím ngắn. Nhờ vậy bạn có thể bấm phím thoải mái, dễ dàng không bị dính phím. đồng thời tiếng động gây ra từ bàn phím khá nhỏ không làm ồn đến người dùng cũng như môi trường xung quanh.', '/uploads/laptop-asus-vivobook-r564ja-uh51t-2.jpg;/uploads/laptop-asus-vivobook-r564ja-uh51t-3.jpg;/uploads/laptop-asus-vivobook-r564ja-uh51t-1.jpg;', 'Laptop ASUS VivoBook R564JA-UH31T', 'Đen', 11690000, 'Hàng mới chính hãng', 'Nguyên hộp, đầy đủ phụ kiện từ nhà sản xuất', 5, 2, 1),
+(1, 'Bàn phím laptop được thiết kế khoa học với cấu trúc liền khối cùng hành trình phím ngắn. Nhờ vậy bạn có thể bấm phím thoải mái, dễ dàng không bị dính phím. đồng thời tiếng động gây ra từ bàn phím khá nhỏ không làm ồn đến người dùng cũng như môi trường xung quanh.', '/uploads/laptop-asus-vivobook-r564ja-uh51t-2.jpg;/uploads/laptop-asus-vivobook-r564ja-uh51t-3.jpg;', 'Laptop ASUS VivoBook R564JA-UH31T', 'Đen,Đỏ', 21690000, 'Hàng mới chính hãng', 'Nguyên hộp, đầy đủ phụ kiện từ nhà sản xuất', 5, 2, 1),
 (2, 'Samsung từng bước khẳng định thương hiệu của mình bằng việc cho ra đời những mẫu flagship ngày càng hiện đại với công nghệ tiến bộ. Điển hình là chiếc điện thoại Samsung Galaxy S21 Ultra 5G  tích hợp mọi tính năng gần như trở thành mẫu smartphone hoàn hảo nhất.', '/uploads/S21-ULTRA.jpg;/uploads/S21-ULTRA-TRANG.jpg', 'Samsung Galaxy S21 Ultra 5G Korea (Likenew)', 'Đen,Trắng', 9290000, 'Máy qua sử dụng', 'Thân máy', 1, 1, 1),
 (3, 'Hoàn toàn xứng đáng với những gì được mong chờ, phiên bản cao cấp nhất iPhone Xs Max 64 GB của Apple năm nay nổi bật với chip A12 Bionic mạnh mẽ, màn hình rộng đến 6.5 inch, cùng camera kép trí tuệ nhân tạo và Face ID được nâng cấp.', '/uploads/600_600_600_XSMAX_6_1.jpg;/uploads/600_600_600_xs_max_white_800x800_3_3.jpg;/uploads/600_iphone_xs_max_64gb_likenew.jpg', 'Apple iPhone Xs Max 256GB Quốc Tế (Likenew)', 'Vàng,Bạc,Đen', 8990000, 'Máy qua sử dụng', 'Thân máy', 2, 1, 1),
 (4, 'Tai nghe Bluetooth AirPods Pro MagSafe Charge Apple MLWK3 trắng được chế tác với vẻ ngoài tinh giản, gam màu trắng trẻ trung, sáng đẹp, phối hợp tuyệt vời với mọi trang phục từ đời thường đến công sở, dự tiệc của bạn. ', '/uploads/TAI-NGHE-AIRPOD.jpg', 'Apple AirPods Pro 2021 Magsafe', 'Trắng', 4690000, 'Hàng mới chính hãng', 'Fullbox', 2, 6, 1),
-(5, 'Black Shark 4 là điện thoại chơi game hàng đầu của Xiaomi trong năm 2021. Những điểm mạnh của Black Shark 4 là tương đối toàn diện. Thiết kế toàn màn hình cao cấp với tốc độ làm mới 144Hz/720Hz. Phần cứng là bộ vi xử lý Snapdragon 870 mạnh mẽ. Tản nhiệt cũng được nâng cấp mạnh mẽ giảm tới 18 độ cho CPU giúp chơi game cấu hình cao không nóng máy. Hơn nữa, Black Shark 4 đã xác lập kỷ lục với pin 4500mAh, hỗ trợ sạc 120W “nhanh nhất thế giới”,… Mang lại hiệu năng vượt trội về nhiều mặt.', '/uploads/black-shark-4-quoc-te-6.jpg;/uploads/black-shark-4-3-2.jpg;/uploads/black-shark-4-quoc-te-4.jpg;/uploads/black-shark4-4.jpg', 'Xiaomi Black Shark 4 (8GB/128GB) Likenew', 'Trắng,Đen', 5790000, 'Máy qua sử dụng', 'Thân máy', 3, 1, 1),
+(5, 'Black Shark 4 là điện thoại chơi game hàng đầu của Xiaomi trong năm 2021. Những điểm mạnh của Black Shark 4 là tương đối toàn diện. Thiết kế toàn màn hình cao cấp với tốc độ làm mới 144Hz/720Hz. Phần cứng là bộ vi xử lý Snapdragon 870 mạnh mẽ. Tản nhiệt cũng được nâng cấp mạnh mẽ giảm tới 18 độ cho CPU giúp chơi game cấu hình cao không nóng máy. Hơn nữa, Black Shark 4 đã xác lập kỷ lục với pin 4500mAh, hỗ trợ sạc 120W “nhanh nhất thế giới”,… Mang lại hiệu năng vượt trội về nhiều mặt.', '/uploads/black-shark-4-quoc-te-6.jpg;/uploads/black-shark-4-3-2.jpg;/uploads/black-shark-4-quoc-te-4.jpg', 'Xiaomi Black Shark 4 (8GB/128GB) Likenew', 'Trắng,Đen', 5790000, 'Máy qua sử dụng', 'Thân máy', 3, 1, 1),
 (6, 'iPad Air 4 2020 – Chip A14 mạnh mẽ cho trải nghiệm hoàn hảo\r\nApple luôn khiến cho cộng đồng công nghệ đứng ngồi không yên mỗi khi cho giới thiệu sản phẩm mới. iPad Air 4 được ra mắt tại sự kiện mà các tín đồ công nghệ nghĩ rằng Apple sẽ trình làng dòng điện thoại iPhone 12 2020, nhưng chiếc tablet này mới chính là nhân vật chính. iPad Air thế hệ 2020 mang những thay đổi về mặt thiết kế cũng như những tính năng mới được tích hợp để tối ưu hóa về hiệu năng, mang đến cho người dùng những trải nghiệm tốt hơn.', '/uploads/IPAD-AIR-4-TRẮNG.jpg;/uploads/IPAD-AIR-4-XÁM.jpg;/uploads/IPAD-AIR-4-XANH-DƯƠNG.jpg;/uploads/IPAD-AIR-4-XANH-LÁ.jpg;', 'iPad Air 10.9 2020 WiFi 64GB I Chính hãng Apple Việt Nam', 'Bạc,Xám,Xanh Dương,Xanh lá', 14900000, 'Hàng mới chính hãng', 'Thân máy', 2, 8, 1),
 (31, 'Galaxy A31 là mẫu smartphone tầm trung được ra mắt đầu năm 2020 của Samsung. Thiết bị gây ấn tượng mạnh với ngoại hình thời trang, cụm 4 camera đa chức năng, vân tay dưới màn hình và viên pin khủng lên đến 5000 mAh.\r\n', '/uploads/SS-A31-BLACK-NT-STORE.webp;/uploads/SS-A31-BLUE-NT-STORE.webp;', 'Samsung Galaxy A31 (6GB|128GB) Korea Likenew', 'Đen,Xanh', 2990000, 'Máy qua sử dụng', 'Thân máy', 1, 1, 1),
 (32, 'Samsung Galaxy Fold không chỉ sở hữu một màn hình có thể uốn dẻo mà còn có một màn hình riêng, để có thể sử dụng độc lập khi gập máy lại.\r\nKhi mà những chiếc smartphone gần đây đang ngày càng có thiết kế giống nhau thì sự ra đời của Samsung Galaxy Fold thực sự tạo nên làn gió mới trên thị trường.\r\nBạn sẽ có một màn hình với kích thước 7.3 inch giúp bạn có thể sử dụng rất thoải mái như một chiếc máy tính bảng.\r\n\r\n', '/uploads/SAMSUNG-FOLD-1-NT-STORE.webp;/uploads/SAMSUNG-Z-FOLD-1-NTSTORE.webp;', 'Samsung Galaxy Fold Korea (Likenew)', 'Đen,Đa sắc', 7990000, 'Máy qua sử dụng', 'Thân máy', 1, 1, 1),
@@ -357,7 +359,22 @@ INSERT INTO `product` (`productid`, `description`, `imagelink`, `productname`, `
 (89, 'PC MSI Creator P50 11SI i5 11400 (058XVN) sở hữu thân hình nhỏ gọn tinh tế, được thiết kế dành cho những nhà sáng tạo nội dung có thể làm việc đa tác vụ chuyên nghiệp, hỗ trợ mình biến hóa những ý tưởng trở thành hiện thực.', '/uploads/msi-creator-p50-11si-i5-058xvn-2-1.jpg;/uploads/msi-creator-p50-11si-i5-058xvn-3-1.jpg;/uploads/msi-creator-p50-11si-i5-058xvn-4-1.jpg;/uploads/msi-creator-p50-11si-i5-058xvn-5-1.jpg;', 'MSI Creator P50 11SI i5 11400 (058XVN)', 'Trắng', 24990000, 'Hàng mới chính hãng', 'Dây nguồn, Sách hướng dẫn', 17, 3, 1),
 (90, 'Mac Mini 2020 M1(MGNT3SA/A) gây ấn tượng cho người dùng với thiết kế nhỏ gọn, tiện lợi cùng sức mạnh vượt trội đến từ con chip M1 mạnh mẽ, đáp ứng mọi nhu cầu văn phòng, đồ họa chuyên nghiệp.', '/uploads/mac-mini-2020-m1-mgnt3saa-ab-1.jpg;/uploads/mac-mini-2020-m1-mgnt3saa-ab-3.jpg;/uploads/mac-mini-2020-m1-mgnt3saa-ab-4.jpg;', 'Mac mini M1 2020 Silver (MGNT3SA/A)', 'Bạc', 13990000, 'Hàng mới chính hãng', 'Dây nguồn', 2, 3, 1),
 (91, 'Laptop MSI Gaming GF63 Thin 11UC i7 11800H (1228VN) được trang bị bộ vi xử lý Intel Core i7 dòng H hiệu năng cao và card đồ họa NVIDIA mạnh mẽ, đáp ứng mọi nhu cầu của game thủ và người dùng làm trong ngành sáng tạo nội dung.', '/uploads/msi-gaming-gf63-thin-11uc-i7-1228vn-1.jpg;/uploads/msi-gaming-gf63-thin-11uc-i7-1228vn-2.jpg;/uploads/msi-gaming-gf63-thin-11uc-i7-1228vn-3.jpg;', 'MSI Gaming GF63 Thin 11UC i7 11800H (1228VN)', 'Đen', 18590000, 'Hàng mới chính hãng', ' Thùng máy, Sạc Laptop MSI ( 120W ), Sách hướng dẫn ', 17, 2, 1),
-(92, 'Laptop MSI Modern 15 B12MO i5 1235U (625VN) mang đam mê của bạn bắt nhịp với lối sống năng động hiện đại. Dù là bạn đang bận rộn trong văn phòng hay làm việc trên giảng đường, vi xử lý Intel Core Alder lake thế hệ mới cũng sẽ đáp ứng mọi nhu cầu của bạn.', '/uploads/msi-modern-15-b12mo-i5-625vn-glr-1.jpg;/uploads/msi-modern-15-b12mo-i5-625vn-glr-2.jpg;/uploads/msi-modern-15-b12mo-i5-625vn-glr-3.jpg;', 'MSI Modern 15 B12MO i5 1235U (625VN)', 'Đen', 11990000, 'Hàng mới chính hãng', ' Thùng máy, Sạc Laptop MSI ( 65W ), Sách hướng dẫn', 17, 2, 1);
+(92, 'Laptop MSI Modern 15 B12MO i5 1235U (625VN) mang đam mê của bạn bắt nhịp với lối sống năng động hiện đại. Dù là bạn đang bận rộn trong văn phòng hay làm việc trên giảng đường, vi xử lý Intel Core Alder lake thế hệ mới cũng sẽ đáp ứng mọi nhu cầu của bạn.', '/uploads/msi-modern-15-b12mo-i5-625vn-glr-1.jpg;/uploads/msi-modern-15-b12mo-i5-625vn-glr-2.jpg;/uploads/msi-modern-15-b12mo-i5-625vn-glr-3.jpg;', 'MSI Modern 15 B12MO i5 1235U (625VN)', 'Đen', 11990000, 'Hàng mới chính hãng', ' Thùng máy, Sạc Laptop MSI ( 65W ), Sách hướng dẫn', 17, 2, 1),
+(93, 'Tai nghe True Wireless Samsung Galaxy Buds Pro là dòng sản phẩm tai nghe không dây thế hệ mới nhất từ Samsung. Với phiên bản lần này được lột xác hoàn toàn về thiết kế cũng như chất âm xứng đáng là lựa chọn hàng đầu cho người dùng đang mong muốn tìm cho mình một chiếc tai nghe không dây cao cấp để đồng hành cùng mình trong công việc và giải trí.', '/uploads/buds-pro_1.png;/uploads/samsung-galaxy-buds-pro-4_1.png;/uploads/samsung-galaxy-buds-pro-6_1.png;', 'Tai nghe Bluetooth Samsung Galaxy Buds Pro', 'Đen,Tím', 4990000, 'Hàng mới chính hãng', 'Fullbox', 1, 6, 1),
+(94, 'Nếu bạn đang băn khoăn và chưa biết nên lựa chọn dòng thiết bị âm thanh nào cho dàn tivi của mình thì loa Samsung HW-C400 sẽ là lựa chọn hoàn hảo mà bạn có thể tham khảo thêm. Mẫu loa Samsung này thu hút với thiết kế độc đáo cùng chất lượng âm thanh sâu lắng, mê hoặc người dùng trong từng giai điệu. Dưới này là một vài ưu điểm nổi trội của loa thanh HW-C400 mà bạn có thể xem xét thêm nhé!', '/uploads/vn-essential-b-series-soundbar-h_2_.png;/uploads/vn-essential-b-series-soundbar-h_1_.png;/uploads/vn-essential-b-series-soundbar-h.png;', 'Loa thanh Samsung HW-C400', 'Đen', 1490000, 'Hàng mới chính hãng', 'Loa, Remote, Sách hướng dẫn', 1, 6, 1),
+(95, 'Thưởng thức âm thanh chất lượng huẩn studio. Tai nghe Samsung Type-C có khả năng phân tách tín hiệu trái và phải tốt hơn tới 10 lần so với tai nghe 3,5 mm. Cộng thêm DAC tích hợp nâng cao chất lượng âm thanh để mọi ca khúc bạn yêu trở nên sống động bất ngờ.', '/uploads/eo-ic100bwegru_2_2.png;/uploads/2003248594_2.png;/uploads/eo-ic100bbegru_2_2.png;/uploads/2003248588_2.png;', 'Tai nghe Samsung AKG Type C', 'Đen,Trắng', 350000, 'Hàng mới chính hãng', 'Tai nghe, Nút tai nghe cao su.', 1, 6, 1),
+(97, 'Xiaomi là thương hiệu vốn nổi tiếng với nhiều người tiêu dùng không chỉ bởi những chiếc điện thoại chất lượng, cấu hình cao giá rẻ mà còn những phụ kiện pin dự phòng cũng được nhiều người tin dùng. Dung lượng 20000mAh, cùng với khả năng sạc nhanh 18W thì pin sạc dự phòng Xiaomi Redmi 20000mAh sạc nhanh 18W là một lựa chọn hợp lý và hấp dẫn.', '/uploads/pin-sac-du-phong-xiaomi-redmi-20000mah-sac-nhanh-18w_2_.webp;/uploads/8ade31fdccf8711816a5714db0a4f034-removebg-preview.webp;/uploads/e3e503071fe06b5800fc264f95fddbca-removebg-preview_1.webp;/uploads/xiao-mi-sac-nhanh.webp;', 'Pin sạc dự phòng Xiaomi Redmi 20000mAh sạc nhanh 18W', 'Đen,Trắng', 580000, 'Hàng mới chính hãng', '1 x Pin dự phòng Sách HDSD 1 x Cáp sạc', 3, 4, 1),
+(98, 'Người dùng Mac hẳn không còn xa lạ với bàn phím Apple Magic Keyboard, vốn mang vẻ ngoài sang trọng cùng độ gõ phím êm tay. Nếu bạn muốn nâng cấp bàn phím nhằm phục vụ công việc hiệu quả hơn, bàn phím không dây bluetooth Apple Magic Keyboard 2 kèm phím số sẽ là phụ kiện hoàn hảo.', '/uploads/magic-keyboard-2-phim-so-12.webp;/uploads/magic-keyboard-2-phim-so-7.webp;/uploads/magic-keyboard-2-phim-so-6.webp;/uploads/magic-keyboard-2-phim-so-1.webp;', 'Bàn phím Apple Magic Keyboard 2 Kèm Phím Số | Chính hãng Apple Việt Nam', 'Xám,Trắng', 2790000, 'Hàng mới chính hãng', 'Fullbox', 2, 4, 1),
+(99, 'Router WiFi 6 Asus RT-AX55 AX1800 sở hữu tốc độ không dây lên đến 574Mbps trên băng tần 2.4GHz và tốc độ 1.201Mbps trên băng tần 5GHz. Việc chia làm hai băng tần hoạt động độc lập vô cùng có lợi cho việc trải nghiệm mượt mà, ổn định ngay khi nhiều người cùng kết nối vào chung một wifi.', '/uploads/router-wifi-6-asus-rt-ax55-ax1800-8.webp;/uploads/router-wifi-6-asus-rt-ax55-ax1800-2_1.webp;/uploads/router-wifi-6-asus-rt-ax55-ax1800-6.webp;/uploads/4.2.webp;', 'Router WiFi 6 Asus RT-AX55 AX1800', 'Đen,Trắng', 1890000, 'Hàng mới chính hãng', 'RT-AX55 RJ45 x1 Bộ sạc x1 QSG x1 Thẻ bảo hành x1', 5, 4, 1),
+(100, 'Thiết kế bằng khung kim loại hiện đại, mỏng nhẹ đem lại cảm giác sang trọng và cao cấp\r\nToàn bộ thân chuột sử dụng cảm ứng hoàn toàn hỗ trợ thao tác nhỏ như cuộn trang, đa nhiệm màn hình,…\r\nSử dụng pin sạc thông qua cổng Lightning với khả năng sạc 2 tiếng có thể sử dụng được trong 1 tháng\r\nKhả năng kết nối không dây thông qua Bluetooth khoảng cách lên tới 10m mà không cần đến đầu thu USB\r\nĐộ phân giải của cảm biến là 1300 DPI, giúp thao tác rê chuột mượt mà hơn', '/uploads/chuot-apple-magic-mouse-2021-4_2_2_2.webp;/uploads/chuot-apple-magic-mouse-2021_1_1_2.webp;', 'Chuột Apple Magic Mouse 2021 MK2E3 - Cũ trầy xước', 'Trắng', 1200000, 'Máy qua sử dụng', 'Dây sạc', 2, 4, 1),
+(101, 'Đồng hồ thông minh Xiaomi Redmi Watch 3 Active được làm với kiểu dáng khá giống với Apple Watch. Với dạng mặt chữ nhật cùng nhiều tính năng hiện đại mới, hứa hẹn sẽ là chọn lựa của nhiều người dùng đó nhé!', '/uploads/text_ng_n_28__27.webp;/uploads/xiaomi_1_7.png;', 'Đồng hồ thông minh Xiaomi Redmi Watch 3 Active', 'Đen,Xám', 1290000, 'Hàng mới chính hãng', 'Đầy đủ phụ kiện từ nhà sản xuất', 3, 4, 1),
+(102, 'Tai nghe true Wireless của Samsung có sự phát triển khá vượt trội so với những đối thủ khác, và hãng đã phát triển và chuẩn bị cho ra mắt sản phẩm mới mang tên Samsung Galaxy Buds2 Pronày. Nếu bạn quan tâm tới thiết bị này, thì có thể tham khảo thêm thông tin chi tiết ở phía dưới đây nhé.', '/uploads/8_128.webp;/uploads/1_444.webp;/uploads/9_87.webp;', 'Tai nghe không dây Samsung Galaxy Buds2 Pro', 'Đen,Tím', 3790000, 'Hàng mới chính hãng', 'Tai nghe và hộp sạc, Cáp sạc Type-C, Đệm tai nghe, Sách hướng dẫn', 1, 6, 1),
+(103, 'Máy ảnh Sony ZV-1 với nhiều tính năng quay chụp như tua chậm, tua nhanh màn lại những thước phim đậm chất điện ảnh. Cụ thể thì máy ảnh Sony giá rẻ với khả năng ghi lại những khoảnh khắc một cách chớp nhoáng và phát chậm với tốc độ giảm 40 lần so với thời gian thực.', '/uploads/may-anh-sony-zv-1_8.webp;/uploads/may-anh-sony-zv-110.webp;/uploads/may-anh-sony-zv-1_11.webp;', 'Máy ảnh kỹ thuật số Sony ZV-1', 'Đen', 17990000, 'Hàng mới chính hãng', 'Sony ZV-1, 01 Pin Sony NP-BX1/M8, Cáp Micro-USB, Wind Screen,, Wind Screen Adapter', 18, 7, 1),
+(104, 'Máy ảnh Canon EOS 3000D Kit EF-S 18-55 III tích hợp Cảm biến hình ảnh CMOS APS-C 18 megapixel giúp bắt đủ ánh sáng và chi tiết, chụp hình đẹp ở mọi hoàn cảnh. Ngoài ra, máy ảnh còn đi kèm thêm bộ xử lý hình ảnh DIGIC 4+ mạnh mẽ xử lý để cho ra những bức ảnh có màu sắc chuẩn xác, giàu tương phản và độ đậm nét chính xác, ít nhiễu ngay cả trong điều kiện ánh sáng kém.', '/uploads/10036326-may-anh-canon-eos-3000d-kit-ef-s-18-55mm-den-4_56ru-oy.jpg;/uploads/10036326-may-anh-canon-eos-3000d-kit-ef-s-18-55mm-den-2_yh32-my.jpg;/uploads/10036326-may-anh-canon-eos-3000d-kit-ef-s-18-55mm-den-1.jpg;', 'Máy ảnh Canon EOS 3000D (Kit EF-S 18-55 III)', 'Đen', 12990000, 'Hàng mới chính hãng', 'Fullbox', 14, 7, 1),
+(105, 'iPad Pro 11 inch 2021 sở hữu ngoại hình mang nhiều điểm tương tự về ngoại hình với chiếc iPad Pro trước đó. Apple iPad Pro 2021 sử dụng màn hình kích thước 11 inch và sử dụng màn hình LCD truyền thống.  Màn hình trên iPad Pro 2021 này với công nghệ màu ProMotion cùng độ phân giải cao 264 pixel mỗi inch. Màn hình này cũng được trang bị lớp phủ chống bám vân tay và chống phản xạ, nâng cao trải nghiệm cho người dùng.', '/uploads/photo-3-16218735459051861985463.jpg;/uploads/ipad-pro-11-2021_2.jpg;/uploads/ipad-pro-11-2021-2_1.jpg;', 'Apple iPad Pro 11 2021 M1 WiFi 128GB I Chính hãng Apple Việt Nam', 'Bạc,Xám', 21900000, 'Hàng mới chính hãng', 'Máy, Sách hướng dẫn, Cáp Type C – Type C, Củ sạc nhanh rời đầu Type C', 2, 8, 1),
+(106, 'Mẫu máy tính bảng Samsung Galaxy Tab S8 Wifi với màn hình kích thước lớn 11 inches giúp người dùng có những trải nghiệm hình ảnh rõ nét. Bên cạnh đó, tablet được trang bị con chip Snapdragon 8 Gen 1 siêu mạnh cùng cụm camera 13MP + 6MP thỏa sức sáng tạo.', '/uploads/galaxy_tab_s8_graphite_r30-002_3.webp;/uploads/galaxy_tab_s8__silver_001_2.webp;/uploads/series_tab_s8001_3.webp;/uploads/tab_s8_2.webp;', 'Samsung Galaxy Tab S8 WIFI', 'Bạc,Xám', 11690000, 'Hàng mới chính hãng', 'Fullbox', 1, 8, 1),
+(107, 'Nokia T21 là một cái tên đã không còn quá xa lạ với những tín đồ đam mê công nghệ. Được phát triển từ phiên bản đời trước là Nokia T20, T21 đã có những bước đột phá về thiết kế bên ngoài và cấu hình bên trong, mang tới cho người dùng một trải nghiệm cực kỳ thú vị và mới lạ.', '/uploads/_44rrrr3d.jpg;/uploads/_d_1_1.jpg;/uploads/nokia-t21.png;', 'Nokia T21 4GB 128GB', 'Xám', 5750000, 'Hàng mới chính hãng', 'Fullbox', 9, 8, 1),
+(108, 'OPPO Pad Air tuy chỉ mới được ra mắt trong thời gian gần đây nhưng đã thu hút được rất nhiều sự quan tâm từ phía người tiêu dùng và được cho là sản phẩm tốt nhất trong phân khúc giá. Chiếc máy tính bảng OPPO gây ấn tượng bởi thiết kế mỏng nhẹ, dung lượng pin lớn, cùng hiệu năng hoạt động ổn định và nhanh chóng.', '/uploads/6_135.webp;/uploads/3_177.webp;/uploads/okcscsfd.webp;', 'OPPO Pad Air', 'Xám', 6690000, 'Hàng mới chính hãng', 'Máy tính bảng OPPO Pad Air x 1 Cáp sạc USB x 1 Bộ sạc x 1 Hướng dẫn sử dụng x 1 Thẻ bảo hành x 1', 4, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -976,7 +993,119 @@ INSERT INTO `productvalue` (`valueid`, `valueindex`, `valuename`, `productid`) V
 (615, 'Windows 11 Home SL', 'Hệ điều hành:', 92),
 (616, 'Vỏ nhựa', 'Thiết kế:', 92),
 (617, 'Dài 359 mm - Rộng 241 mm - Dày 19.9 mm - Nặng 1.7 kg', 'Kích thước, khối lượng:', 92),
-(618, '2023', 'Thời điểm ra mắt:', 92);
+(618, '2023', 'Thời điểm ra mắt:', 92),
+(626, 'Bật ANC: 5 giờ Tắt ANC : 8 giờ', 'Thời lượng pin', 93),
+(627, '1 giờ', 'Thời gian sạc', 93),
+(628, 'IPX7 (Chống nước 1m trong 30 phút)', 'Chống nước', 93),
+(629, 'Chống ồn chủ động', 'Công nghệ âm thanh', 93),
+(630, 'Mic đàm thoại chống ồn', 'Micro', 93),
+(631, 'Android,Windows,iOS', 'Tương thích', 93),
+(632, '11mm', 'Kích thước driver', 93),
+(633, '69ms', 'Độ trễ', 93),
+(634, '20 W', 'Công suất', 94),
+(635, 'Dolby Âm thanh vòm mở rộng', 'Công nghệ âm thanh', 94),
+(636, 'Tính năng Night Mode Tính năng Voice Enhance Q-Symphony Tap Sound', 'Tính năng khác', 94),
+(637, '10 m', 'Phạm vi kết nối', 94),
+(638, 'Samsung Chính hãng', 'Hãng sản xuất', 94),
+(639, '928 x 120 x 155 mm', 'Kích thước', 94),
+(640, '2.8 kg', 'Trọng lượng', 94),
+(641, 'Type C', 'Cổng kết nối', 95),
+(642, 'USB Type C', 'Cổng giao tiếp', 95),
+(643, '18,35 G', 'Trọng lượng', 95),
+(644, 'Samsung chính hãng', 'Hãng sản xuất', 95),
+(646, '18W (Max)', 'Công suất đầu ra', 97),
+(647, 'Micro-USB / USB-C', 'Cổng sạc vào', 97),
+(648, '2 × USB-A', 'Cổng sạc ra', 97),
+(649, 'Lithium-ion Polymer', 'Lõi pin', 97),
+(650, '20000mAh', 'Dung lượng Pin', 97),
+(651, '18W', 'Công suất', 97),
+(652, 'Xiaomi', 'Hãng sản xuất', 97),
+(653, 'Micro-USB & Type-C: 5V/2.1A, 9V/2.1A, 12V/1.5A', 'Dòng điện vào', 97),
+(654, 'Li-ion', 'Lõi pin', 98),
+(655, 'Apple Chính hãng', 'Hãng sản xuất', 98),
+(656, 'MacOS', 'Tương thích', 98),
+(657, 'Bluetooth, Cổng Lightning', 'Cách kết nối', 98),
+(658, '10m', 'Độ dài dây / Khoảng cách kết nối', 98),
+(659, 'Fullsize', 'Kích thước bàn phím', 98),
+(660, 'RJ45 Gigabits WAN x 1 RJ45 Gigabits LAN x 4', 'Cổng giao tiếp', 99),
+(661, 'Asus', 'Hãng sản xuất', 99),
+(662, 'Wi-Fi 6 (802.11ax)', 'Chuẩn Wi-Fi', 99),
+(663, '574 Mbps (2.4 Ghz) 1201 Mbp (5GHz)', 'Độ mạnh của sóng (các thiết bị mạng)', 99),
+(664, '2.4GHz & 5GHz', 'Băng tần sóng', 99),
+(665, '4 Ăng-ten ngoài', 'Số Ăng ten', 99),
+(666, 'Ứng dụng ASUS Router', 'Kết nối và điều khiển', 99),
+(667, 'Apple Chính hãng', 'Hãng sản xuất', 100),
+(668, 'MacOS, PadOS', 'Tương thích', 100),
+(669, 'Bluetooth', 'Cách kết nối', 100),
+(670, '10m', 'Độ dài dây / Khoảng cách kết nối', 100),
+(671, 'LCD', 'Công nghệ màn hình', 101),
+(672, '1.83 inch', 'Kích thước màn hình', 101),
+(673, 'Từ 13.5 - 20 cm', 'Kích thước cổ tay phù hợp', 101),
+(674, 'Điện thoại chạy Android 6.0 trở lên iPhone chạy iOS 12.0 trở lên', 'Tương thích', 101),
+(675, 'Nghe gọi qua Bluetooth', 'Nghe,gọi', 101),
+(676, 'Chế độ luyện tập, Theo dõi giấc ngủ, Đo nhịp tim, Đo lượng oxy trong máu', 'Tiện ích sức khoẻ', 101),
+(677, 'Chế độ thông minh: 12 ngày Sử dụng liên tục: 8 ngày', 'Thời lượng pin', 101),
+(678, 'Xiaomi', 'Hãng sản xuất', 101),
+(679, 'Tai nghe: Dùng 8 giờ Hộp sạc: Dùng 29 giờ', 'Thời lượng pin', 102),
+(680, 'IPX7', 'Chống nước', 102),
+(681, 'Active Noise Cancelling 360 Reality Audio Ambient Sound Âm thanh Hi-Fi', 'Công nghệ âm thanh', 102),
+(682, 'Có', 'Micro', 102),
+(683, 'Các thiết bị có hỗ trợ Bluetooth', 'Tương thích', 102),
+(684, 'Trợ Lý ảo Bixby Tự động kết nối khi mở hộp sạc', 'Tính năng khác', 102),
+(685, 'Chạm cảm ứng', 'Phương thức điều khiển', 102),
+(686, 'Samsung Chính hãng', 'Hãng sản xuất', 102),
+(687, 'Sony', 'Hãng sản xuất', 103),
+(688, 'Compact (pns)', 'Loại máy ảnh', 103),
+(689, 'Exmor RS CMOS 1.0', 'Loại cảm biến', 103),
+(690, 'Zeiss Vario-Sonnar T 10 thấu kính xếp thành 9 nhóm', 'Loại ống kính', 103),
+(691, 'F= 9.4 - 25.7 mm', 'Tiêu cự', 103),
+(692, 'Tối đa f/1.8 Tối thiểu f/2.8', 'Khẩu độ', 103),
+(693, 'Single-shot AF, Automatic AF, Continuous AF, DMF, Manual Focus', 'Chế độ lấy nét', 103),
+(694, '5472 x 3648', 'Kích thước ảnh', 103),
+(695, '3000D', 'Model', 104),
+(696, 'DSLR', 'Loại máy ảnh', 104),
+(697, '18 megapixels', 'Độ phân giải máy ảnh', 104),
+(698, 'DIGIC 4+', 'Bộ xử lý hình ảnh', 104),
+(699, 'Có', 'Chế độ tự động lấy nét', 104),
+(700, '100 / 6400 đến 12800', 'Độ nhạy sáng ISO', 104),
+(701, 'EF Canon (bao gồm ống kính EF-S)', 'Kiểu ống kính', 104),
+(702, '11 inches', 'Kích thước màn hình', 105),
+(703, 'IPS LCD', 'Công nghệ màn hình', 105),
+(704, '12MP góc rộng 10MP góc siêu rộng', 'Camera sau', 105),
+(705, '12MP góc siêu rộng 122 độ', 'Camera trước', 105),
+(706, 'Apple M1 8 nhân', 'Chipset', 105),
+(707, '8 GB', 'Dung lượng RAM', 105),
+(708, '128 GB', 'Bộ nhớ trong', 105),
+(709, '7538mAh', 'Pin', 105),
+(710, 'iPadOS', 'Hệ điều hành', 105),
+(711, '11 inches', 'Kích thước màn hình', 106),
+(712, 'TFT LCD', 'Công nghệ màn hình', 106),
+(713, 'Camera chính: 13MP Camera góc siêu rộng: 6MP', 'Camera sau', 106),
+(714, 'Camera góc siêu rộng 12MP', 'Camera trước', 106),
+(715, '8 GB', 'Dung lượng RAM', 106),
+(716, '128 GB', 'Bộ nhớ trong', 106),
+(717, 'Android 12, UI 4.1.', 'Hệ điều hành', 106),
+(718, '2560 x 1600 pixel (2K)', 'Độ phân giải màn hình', 106),
+(719, '10.36 inches', 'Kích thước màn hình', 107),
+(720, 'IPS LCD', 'Công nghệ màn hình', 107),
+(721, '8 MP, AF', 'Camera sau', 107),
+(722, '8 MP', 'Camera trước', 107),
+(723, '4 GB', 'Dung lượng RAM', 107),
+(724, '128 GB', 'Bộ nhớ trong', 107),
+(725, 'Nano-SIM', 'Thẻ SIM', 107),
+(726, 'Android 12', 'Hệ điều hành', 107),
+(727, '1200 x 2000 pixels', 'Độ phân giải màn hình', 107),
+(728, '10.36 inches', 'Kích thước màn hình', 108),
+(729, 'IPS LCD', 'Công nghệ màn hình', 108),
+(730, '8MP (f/2.0)', 'Camera sau', 108),
+(731, '5MP (f/2.2)', 'Camera trước', 108),
+(732, '4 GB', 'Dung lượng RAM', 108),
+(733, '64 GB', 'Bộ nhớ trong', 108),
+(734, 'ColorOS 12.1', 'Hệ điều hành', 108),
+(735, '1200 x 2000 pixels', 'Độ phân giải màn hình', 108),
+(736, '360nits, 120Hz, 1 tỉ màu', 'Tính năng màn hình', 108),
+(737, '7100mAh', 'Pin', 108),
+(738, 'Snapdragon® 680 8 nhân 6nm', 'Chipset', 108);
 
 -- --------------------------------------------------------
 
@@ -1024,7 +1153,8 @@ INSERT INTO `user` (`userid`, `address`, `email`, `password`, `phonenumber`, `us
 (2, 'Ha Noi', 'admin01@gmail.com', '$2a$10$PrI5Gk9L.tSZiW9FXhTS8O8Mz9E97k2FZbFvGFFaSsiTUIl.TCrFu', '0125678904', 'admin01', NULL, NULL, b'1'),
 (4, 'Ben Tre', 'huuloctran129@gmail.com', '$2a$10$hB9eDXRTv9L8u.Y8enCPFetylj/huqjeyPuQOQCxXNRwedOfZaOtm', '0777099046', 'loc tran', NULL, NULL, b'1'),
 (5, 'ha noi', 'linhnguyen@gmail.com', '$2a$10$W8NCtz92fejFOBF5PSROGeQysuUIo4FeiM6Mr18xQwa0eOb9SrFny', '0777099046', 'linh', NULL, NULL, b'1'),
-(6, 'ha noi', 'admin02@gmail.com', '$2a$10$.tti9BIju9buTCKP11vG8e5WCnkfRktI1/7SEC23PdZU7O5YJY7cy', '0777099046', 'admin02', NULL, NULL, b'1');
+(6, 'ha noi', 'admin02@gmail.com', '$2a$10$.tti9BIju9buTCKP11vG8e5WCnkfRktI1/7SEC23PdZU7O5YJY7cy', '0777099046', 'admin02', NULL, NULL, b'1'),
+(7, 'TDTU', 'dangminhphong912@gmail.com', '$2a$10$Bb4YgiRlSctl1i6fJt8STuQKMIqHnCpVSIPXA6AfRCqGQell2ZfKe', '0764186912', 'admin', NULL, NULL, b'1');
 
 -- --------------------------------------------------------
 
@@ -1047,7 +1177,8 @@ INSERT INTO `userrole` (`id`, `roleid`, `userid`) VALUES
 (2, 1, 2),
 (3, 2, 4),
 (8, 1, 5),
-(5, 1, 6);
+(5, 1, 6),
+(10, 1, 7);
 
 --
 -- Indexes for dumped tables
@@ -1168,7 +1299,7 @@ ALTER TABLE `userrole`
 -- AUTO_INCREMENT for table `brand`
 --
 ALTER TABLE `brand`
-  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `brandid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `card`
@@ -1180,7 +1311,7 @@ ALTER TABLE `card`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `cartid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -1228,13 +1359,13 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
 -- AUTO_INCREMENT for table `productvalue`
 --
 ALTER TABLE `productvalue`
-  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=619;
+  MODIFY `valueid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=739;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -1246,13 +1377,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `userrole`
 --
 ALTER TABLE `userrole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
